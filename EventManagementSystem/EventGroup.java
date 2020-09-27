@@ -1,3 +1,5 @@
+package EventManagementSystem;
+
 import java.util.ArrayList;
 
 public class EventGroup extends Event {
@@ -5,6 +7,14 @@ public class EventGroup extends Event {
 	private ArrayList<Group> joinedGroupList;
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
+	
+	public EventGroup(String eName, String eID, int cap, int min, int max) {
+		eventName = eName;
+		eventID = eID;
+		capacity = cap;
+		minNumInOneJoin = min;
+		maxNumInOneJoin = max;
+	}
 	
 	public void addGroup(Group group) {
 		joinedGroupList.add(group);

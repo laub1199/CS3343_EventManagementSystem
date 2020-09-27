@@ -1,9 +1,17 @@
+package EventManagementSystem;
+
 import java.util.ArrayList;
 
 public class EventIndividual extends Event {
 	
 	private ArrayList<Student> joinedStudentList;
 
+	public EventIndividual(String eName, String eID, int cap) {
+		eventName = eName;
+		eventID = eID;
+		capacity = cap;
+	}
+	
 	public void addStudent(Student student) {
 		joinedStudentList.add(student);
 	}

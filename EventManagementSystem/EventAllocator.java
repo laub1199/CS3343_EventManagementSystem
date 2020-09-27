@@ -1,3 +1,5 @@
+package EventManagementSystem;
+
 import java.util.ArrayList;
 
 public class EventAllocator {
