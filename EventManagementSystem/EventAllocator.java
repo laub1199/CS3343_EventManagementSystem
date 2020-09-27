@@ -19,11 +19,9 @@ public class EventAllocator {
 	}
 	
 	public void deleteEvent(String eventID) {
-		for (Event e: eventList) {
-			if (e.getEventID().equals(eventID)) {
-				eventList.remove(e);
-			}
-		}
+		Event event = findEventByID(eventID);
+		if (event != null)
+			eventList.remove(event);
 	}
 	
 	public void groupJoinEvent(Group group, EventGroup event) {
@@ -31,11 +29,9 @@ public class EventAllocator {
 	}
 	
 	public void groupJoinEvent(Group group, String eventID) {
-		for (Event e: eventList) {
-			if (e.getEventID().equals(eventID)) {
-				((EventGroup) e).addGroup(group);
-			}
-		}
+		Event event = findEventByID(eventID);
+		if (event != null)
+			((EventGroup) event).addGroup(group);
 	}
 	
 	public void studentJoinEvent(Student student, EventIndividual event) {
@@ -43,11 +39,9 @@ public class EventAllocator {
 	}
 	
 	public void studentJoinEvent(Student student, String eventID) {
-		for (Event e: eventList) {
-			if (e.getEventID().equals(eventID)) {
-				((EventIndividual) e).addStudent(student);
-			}
-		}
+		Event event = findEventByID(eventID);
+		if (event != null)
+			((EventIndividual) event).addStudent(student);
 	}
 	
 	public void groupQuitEvent(Group group, EventGroup event) {
@@ -55,11 +49,9 @@ public class EventAllocator {
 	}
 	
 	public void groupQuitEvent(Group group, String eventID) {
-		for (Event e: eventList) {
-			if (e.getEventID().equals(eventID)) {
-				((EventGroup) e).quitGroup(group);
-			}
-		}
+		Event event = findEventByID(eventID);
+		if (event != null)
+			((EventGroup) event).quitGroup(group);
 	}
 	
 	public void studentQuitEvent(Student student, EventIndividual event) {
@@ -67,11 +59,9 @@ public class EventAllocator {
 	}
 	
 	public void studentQuitEvent(Student student, String eventID) {
-		for (Event e: eventList) {
-			if (e.getEventID().equals(eventID)) {
-				((EventIndividual) e).quitStudent(student);
-			}
-		}
+		Event event = findEventByID(eventID);
+		if (event != null)
+			((EventIndividual) event).quitStudent(student);
 	}
 	
 	public void listEvent() {
@@ -84,6 +74,15 @@ public class EventAllocator {
 		for (Event e: eventList) {
 			((EventGroup) e).listJoinedStudent();
 		}
+	}
+	
+	private Event findEventByID(String eventID) {
+		for (Event e: eventList) {
+			if (e.getEventID().equals(eventID)) {
+				return e;
+			}
+		}
+		return null;
 	}
 	
 }
