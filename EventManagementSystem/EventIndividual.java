@@ -6,10 +6,8 @@ public class EventIndividual extends Event {
 	
 	private ArrayList<Student> joinedStudentList;
 
-	public EventIndividual(String eName, String eID, int cap) {
-		eventName = eName;
-		eventID = eID;
-		capacity = cap;
+	public EventIndividual(String eName, String eID, int cap, Date eDate) {
+		super(eName, eID, cap, eDate);
 	}
 	
 	public void addStudent(Student student) {
@@ -25,10 +23,6 @@ public class EventIndividual extends Event {
 		for (Student s:joinedStudentList) {
 			System.out.println(s.toString());
 		}
-	}
-
-	public boolean validToJoin(int numOfStudent) {
-		return capacity <= capacity + numOfStudent;
 	}
 
 	@Override

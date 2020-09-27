@@ -8,10 +8,8 @@ public class EventGroup extends Event {
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
 	
-	public EventGroup(String eName, String eID, int cap, int min, int max) {
-		eventName = eName;
-		eventID = eID;
-		capacity = cap;
+	public EventGroup(String eName, String eID, int cap, Date eDate, int min, int max) {
+		super(eName, eID, cap, eDate);
 		minNumInOneJoin = min;
 		maxNumInOneJoin = max;
 	}
@@ -33,12 +31,15 @@ public class EventGroup extends Event {
 
 	@Override
 	public boolean isFull() {
-		int numOfStudents = 0;
+		int numOfStudent = 0;
 		for (Group g:joinedGroupList) {
-			numOfStudents += g.getNumOfGroup();
+			numOfStudent += g.getNumOfStudent();
 		}
-		
 		return capacity <= numOfStudents;
+	}
+	
+	public boolean validToJoin(int numOfStudent) {
+		return capacity <= capacity + numOfStudent;
 	}
 	
 }
