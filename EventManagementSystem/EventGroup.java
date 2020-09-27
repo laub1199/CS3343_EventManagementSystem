@@ -31,15 +31,25 @@ public class EventGroup extends Event {
 
 	@Override
 	public boolean isFull() {
-		int numOfStudent = 0;
-		for (Group g:joinedGroupList) {
-			numOfStudent += g.getNumOfStudent();
-		}
-		return capacity <= numOfStudents;
+		return capacity <= getTotalNumOfStudent();
 	}
 	
 	public boolean validToJoin(int numOfStudent) {
 		return capacity <= capacity + numOfStudent;
+	}
+	
+	@Override
+	public void printDetail() {
+		super.printDetail();
+		System.out.printf("%d\t%s\t%d\t%d\n", capacity-getTotalNumOfStudent(), "Group", minNumInOneJoin, maxNumInOneJoin);
+	}
+	
+	public int getTotalNumOfStudent() {
+		int numOfStudent = 0;
+		for (Group g:joinedGroupList) {
+			numOfStudent += g.getNumOfStudent();
+		}
+		return numOfStudent;
 	}
 	
 }

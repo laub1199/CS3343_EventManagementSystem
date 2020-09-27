@@ -29,6 +29,12 @@ public class EventIndividual extends Event {
 	public boolean isFull() {
 		return capacity <= joinedStudentList.size();
 	}
+	
+	@Override
+	public void printDetail() {
+		super.printDetail();
+		System.out.printf("%d\t%s\n",capacity-joinedStudentList.size(), "Individual");
+	}
 
 
 }

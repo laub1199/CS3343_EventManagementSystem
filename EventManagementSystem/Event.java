@@ -3,11 +3,11 @@ package EventManagementSystem;
 import java.util.ArrayList;
 
 public abstract class Event {
-	
-	private String eventName;
+
 	private String eventID;
-	protected int capacity;
+	private String eventName;
 	private Date eventDate;
+	protected int capacity;
 	
 	public Event(String eName, String eID, int cap, Date eDate) {
 		eventName = eName;
@@ -23,7 +23,10 @@ public abstract class Event {
 	public abstract boolean isFull();
 
 	public abstract void listJoinedStudent();
-	
+
+	public void printDetail() {
+		System.out.printf("%s\t%s\t%s\t%d\t", eventID, eventName, eventDate.toString, capacity);
+	}
 	
 }
 //remark: state pattern for different kind of event?
