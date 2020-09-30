@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StudentHandler {
     private static StudentHandler instance = new StudentHandler();
     private ArrayList<Student> studentList;
-
+    private StudentHandler() {studentList = new ArrayList<>();}
     public static StudentHandler getInstance() {
         return instance;
     }
