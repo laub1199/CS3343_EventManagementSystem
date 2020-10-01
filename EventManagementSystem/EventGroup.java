@@ -35,7 +35,7 @@ public class EventGroup extends Event {
 	}
 	
 	public boolean validToJoin(int numOfStudent) {
-		return capacity <= capacity + numOfStudent;
+		return capacity <= getTotalNumOfStudent() + numOfStudent;
 	}
 	
 	@Override

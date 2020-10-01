@@ -3,9 +3,8 @@ package EventManagementSystem;
 import java.util.ArrayList;
 
 public class EventAllocator {
+	
 	private static EventAllocator instance = new EventAllocator();
-	private StudentHandler studentHandler = StudentHandler.getInstance();
-	private GroupHandler groupHandler = GroupHandler.getInstance();
 	private ArrayList<Event> eventList;
 	
 	public static EventAllocator getInstance(){return instance;}

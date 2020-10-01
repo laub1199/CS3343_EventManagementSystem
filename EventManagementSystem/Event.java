@@ -1,6 +1,7 @@
 package EventManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public abstract class Event {
 
@@ -25,7 +26,7 @@ public abstract class Event {
 	public abstract void listJoinedStudent();
 
 	public void printDetail() {
-		System.out.printf("%s\t%s\t%s\t%d\t", eventID, eventName, eventDate.toString, capacity);
+		System.out.printf("%s\t%s\t%s\t%d\t", eventID, eventName, eventDate.toString(), capacity);
 	}
 	
 }

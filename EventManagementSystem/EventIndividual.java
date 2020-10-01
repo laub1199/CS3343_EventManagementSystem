@@ -21,7 +21,7 @@ public class EventIndividual extends Event {
 	@Override
 	public void listJoinedStudent() {
 		for (Student s:joinedStudentList) {
-			System.out.println(s.toString());
+			System.out.println(s.printString());
 		}
 	}
 
