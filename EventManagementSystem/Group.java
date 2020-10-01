@@ -8,7 +8,7 @@ public class Group{
     
     public Group(String groupID, int numOfStudent){
         this.groupID = groupID;
-        this.studentList = new ArrayList<Student>();
+        this.studentList = new ArrayList<>(numOfStudent);
         this. numOfStudent = numOfStudent;
     }
 

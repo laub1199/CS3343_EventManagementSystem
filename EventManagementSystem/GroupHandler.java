@@ -5,9 +5,7 @@ public class GroupHandler {
     private static GroupHandler instance = new GroupHandler();
     private ArrayList<Group> groupList = new ArrayList<Group>();
     
-    private GroupHandler() {
-    	
-    }
+    private GroupHandler() {}
     
     
     public static GroupHandler getInstance(){return instance;}
@@ -27,8 +25,8 @@ public class GroupHandler {
     public ArrayList<Group> getGroupList(){
         return groupList;
     }
-    public void addGroup(Group group){
-        groupList.add(group);
+    public void createGroup(String groupId, int numOfStudent){
+        groupList.add(new Group(groupId, numOfStudent));
     }
     public void deleteGroup(Group group){
         groupList.remove(group);
