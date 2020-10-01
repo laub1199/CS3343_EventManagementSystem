@@ -570,7 +570,7 @@ public class TestEvent {
 		Group gp4 = new Group("g24680", studentList4);
 		eventAllocator.groupJoinEvent(gp4, event);
 		
-		result = event.getTotalNumOfStudent();
+		result = ((EventGroup) event).getTotalNumOfStudent();
 	    assertEquals(8, result);
 	}
 
