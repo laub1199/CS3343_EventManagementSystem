@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class EventGroup extends Event {
 
-	private ArrayList<Group> joinedGroupList = new ArrayList<>();
+	private ArrayList<Group> joinedGroupList;
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
 	
@@ -13,6 +13,7 @@ public class EventGroup extends Event {
 		super(eName, eID, cap, eDate);
 		minNumInOneJoin = min;
 		maxNumInOneJoin = max;
+		joinedGroupList = new ArrayList<>();
 	}
 	
 	public void addGroup(Group group) {

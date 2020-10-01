@@ -1,6 +1,7 @@
 package EventManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventIndividual extends Event {
 	
@@ -8,6 +9,7 @@ public class EventIndividual extends Event {
 
 	public EventIndividual(String eName, String eID, int cap, Date eDate) {
 		super(eName, eID, cap, eDate);
+		joinedStudentList = new ArrayList<>();
 	}
 	
 	public void addStudent(Student student) {
