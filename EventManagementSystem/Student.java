@@ -7,10 +7,10 @@ public class Student {
 
     //constructor
     public Student(String studentID, String major, String firstName, String lastName, char sex, int age) {
-        this.studentID = studentID;
-        this.major = major;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.studentID = studentID; //length: 8
+        this.major = major; //length: 10
+        this.firstName = firstName;  //length: 20
+        this.lastName = lastName;  //length: 20
         this.sex = sex;
         this.age = age;
     }
@@ -24,8 +24,7 @@ public class Student {
     }
 
     public String printString() {
-        StringBuilder s = new StringBuilder();
-        s.append(studentID).append(" ").append(firstName).append(" ").append(lastName).append(" ").append(sex).append(" ").append(major).append(" ").append(age);
-        return s.toString();
+        String s = String.format("|%s|%-20s|%-20s|%s|%-10s|%d|", studentID, firstName, lastName, sex, major, age);
+        return s;
     }
 }
