@@ -3,12 +3,12 @@ import java.util.ArrayList;
 
 public class Group{
 	private String groupID;
-	private ArrayList<Student> studentList = new ArrayList<Student>();
+	private ArrayList<Student> studentList;
     private int numOfStudent;
     
-    public Group(String groupID, ArrayList<Student> studentList, int numOfStudent){
+    public Group(String groupID, int numOfStudent){
         this.groupID = groupID;
-        this.studentList = studentList;
+        this.studentList = new ArrayList<Student>();
         this. numOfStudent = numOfStudent;
     }
 
