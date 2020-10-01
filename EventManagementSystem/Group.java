@@ -1,10 +1,9 @@
 package EventManagementSystem;
-
-import Student Student;
+import java.util.ArrayList;
 
 public class Group{
 	private String groupID;
-	private ArrayList<Student> studentList;
+	private ArrayList<Student> studentList = new ArrayList<Student>();
     private int numOfStudent;
     
     public Group(String groupID, ArrayList<Student> studentList, int numOfStudent){
@@ -21,8 +20,8 @@ public class Group{
         return this.numOfStudent;
     }       
 	public void listStudentInGroup(){
-        for(String student:this.studentList){
-            System.out.println(student);
+        for(Student student:studentList){
+            student.PrintString();
         }
     }     
 	public ArrayList<Student> getStudentList(){
