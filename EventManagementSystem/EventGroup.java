@@ -1,10 +1,11 @@
 package EventManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventGroup extends Event {
 
-	private ArrayList<Group> joinedGroupList;
+	private ArrayList<Group> joinedGroupList = new ArrayList<>();
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
 	

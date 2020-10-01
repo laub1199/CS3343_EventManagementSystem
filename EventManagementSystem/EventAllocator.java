@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class EventAllocator {
 	
 	private static EventAllocator instance = new EventAllocator();
-	private ArrayList<Event> eventList;
+	private ArrayList<Event> eventList = new ArrayList<>();
 	
 	public static EventAllocator getInstance(){return instance;}
 	
