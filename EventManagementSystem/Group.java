@@ -34,5 +34,11 @@ public class Group{
 	public void deleteStudent(Student student){
         studentList.remove(student);
     }
+    public String toString() {
+    	if (eventGroup == null)
+    		return groupID + "\t" + numOfStudent + "\t/\t/n";
+    	else
+    		return groupID + "\t" + numOfStudent + "\t" + eventGroup.getEventID() +"\t" + eventGroup.getEventName() + "\n";
+    }
 }
 

@@ -7,8 +7,8 @@ public class EventIndividual extends Event {
 	
 	private ArrayList<Student> joinedStudentList;
 
-	public EventIndividual(String eName, String eID, int cap, Date eDate) {
-		super(eName, eID, cap, eDate);
+	public EventIndividual(String eName, String eID, int cap, Date eDate, String maj) {
+		super(eName, eID, cap, eDate, maj);
 		joinedStudentList = new ArrayList<>();
 	}
 	
@@ -35,7 +35,7 @@ public class EventIndividual extends Event {
 	@Override
 	public void printDetail() {
 		super.printDetail();
-		System.out.printf("%d\t%s\n",capacity-joinedStudentList.size(), "Individual");
+		System.out.printf("%d\t%s\t/\t/\n",capacity-joinedStudentList.size(), "Individual");
 	}
 
 
