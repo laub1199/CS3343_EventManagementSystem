@@ -3,9 +3,11 @@ import java.util.ArrayList;
 
 public class GroupHandler {
     private static GroupHandler instance = new GroupHandler();
-    private ArrayList<Group> groupList = new ArrayList<Group>();
+    private ArrayList<Group> groupList;
     
-    private GroupHandler() {}
+    private GroupHandler() {
+        groupList = new ArrayList<>();
+    }
     
     
     public static GroupHandler getInstance(){return instance;}
