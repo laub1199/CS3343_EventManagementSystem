@@ -34,41 +34,92 @@ public class TestEvent {
 	
 	@Test
 	public void testFindEventIndividualByID01() {
+		Event result = null;
+		Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
+		eventAllocator.addEvent(event);
 		try {
-			Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
-			eventAllocator.addEvent(event);
-			Event result = eventAllocator.findEventByID("e12345");
+			result = eventAllocator.findEventByID("e12345");
 			assertEquals(event, result);
 		} catch (ExEventNotFound e) {
 			System.out.println(e.getMessage());
+			assertEquals(null, result);
 		}
 	}
 	
 	@Test
-	public void testgetEventIndividualID01() {
-		String eventID = "e12345";
-		Event event = new EventIndividual("Programming course", eventID, 50, new Date(), "CS");
-		String result = event.getEventID();
-		assertEquals(eventID, result);
+	public void testFindEventIndividualByID02() {
+		Event result = null;
+		Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
+		eventAllocator.addEvent(event);
+		try {
+			result = eventAllocator.findEventByID("e13579");
+			assertEquals(event, result);
+		} catch (ExEventNotFound e) {
+			System.out.println(e.getMessage());
+			assertEquals(null, result);
+		}
 	}
 	
 	@Test
 	public void testFindEventGroupByID01() {
+		Event result = null;
+		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		eventAllocator.addEvent(event);
 		try {
-			Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
-			eventAllocator.addEvent(event);
-			Event result = eventAllocator.findEventByID("e54321");
+			result = eventAllocator.findEventByID("e54321");
 			assertEquals(event, result);
 		} catch (ExEventNotFound e) {
 			System.out.println(e.getMessage());
+			assertEquals(null, result);
 		}
 	}
 	
 	@Test
-	public void testgetEventGroupID01() {
+	public void testFindEventGroupByID02() {
+		Event result = null;
+		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		eventAllocator.addEvent(event);
+		try {
+			result = eventAllocator.findEventByID("e13579");
+			assertEquals(event, result);
+		} catch (ExEventNotFound e) {
+			System.out.println(e.getMessage());
+			assertEquals(null, result);
+		}
+	}
+	
+	@Test
+	public void testFindEventGroupByMajor01() {
+		boolean result = false;
+		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		eventAllocator.addEvent(event);
+		try {
+			result = eventAllocator.findEventByMajor("CS");
+			assertEquals(true, result);
+		} catch (ExEventNotFound e) {
+			System.out.println(e.getMessage());
+			assertEquals(false, result);
+		}
+	}
+	
+	@Test
+	public void testFindEventGroupByMajor02() {
+		boolean result = false;
+		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		eventAllocator.addEvent(event);
+		try {
+			result = eventAllocator.findEventByMajor("EE");
+			assertEquals(true, result);
+		} catch (ExEventNotFound e) {
+			System.out.println(e.getMessage());
+			assertEquals(false, result);
+		}
+	}
+	
+	@Test
+	public void testGetEventGroupID01() {
 		String eventID = "e54321";
 		Event event = new EventGroup("Basketball competition", eventID, 90, new Date(), "CS", 8, 5, 15);
-		eventAllocator.addEvent(event);
 		String result = event.getEventID();
 		assertEquals(eventID, result);
 	}
