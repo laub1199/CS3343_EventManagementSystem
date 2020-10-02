@@ -7,12 +7,13 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the Event Management System");
-        System.out.println("Please enter your command: ");
 
         try {
             String command;
             boolean exit = false;
             do {
+                System.out.println("Please enter your command: ");
+                
                 command = in.nextLine(); // get command from user
                 String[] cmdParts = command.trim().split("\\|"); // split the trim command by '|'
 
@@ -78,8 +79,11 @@ public class Main {
                     else if (cmdParts[1].equals("group")) {
                         (new CmdSearchGroup()).execute(cmdParts);
                     }
-                    else if (cmdParts[1].equals("event")) {
-                        (new CmdSearchEvent()).execute(cmdParts);
+                    else if (cmdParts[1].equals("event_id")) {
+                        (new CmdSearchEventID()).execute(cmdParts);
+                    }
+                    else if (cmdParts[1].equals("event_major")) {
+                        (new CmdSearchEventMajor()).execute(cmdParts);
                     }
                 }
                 else if (cmdParts[0].equals("help")) {

@@ -10,8 +10,8 @@ public class EventGroup extends Event {
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
 	
-	public EventGroup(String eName, String eID, int cap, Date eDate, int gpCap, int min, int max) {
-		super(eName, eID, cap, eDate);
+	public EventGroup(String eName, String eID, int cap, Date eDate, String maj, int gpCap, int min, int max) {
+		super(eName, eID, cap, eDate, maj);
 		groupCapacity = gpCap;
 		minNumInOneJoin = min;
 		maxNumInOneJoin = max;
@@ -45,7 +45,7 @@ public class EventGroup extends Event {
 	@Override
 	public void printDetail() {
 		super.printDetail();
-		System.out.printf("%d\t%s\t%d\t%d\n", capacity-getTotalNumOfStudent(), "Group", minNumInOneJoin, maxNumInOneJoin);
+		System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\n", capacity-getTotalNumOfStudent(), "Group", groupCapacity, groupCapacity- joinedGroupList.size(), minNumInOneJoin, maxNumInOneJoin);
 	}
 	
 	public int getTotalNumOfStudent() {
@@ -55,5 +55,6 @@ public class EventGroup extends Event {
 		}
 		return numOfStudent;
 	}
+
 	
 }

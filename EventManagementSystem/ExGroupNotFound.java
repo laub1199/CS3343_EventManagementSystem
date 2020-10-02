@@ -1,0 +1,7 @@
+package EventManagementSystem;
+
+public class ExGroupNotFound extends Exception {
+
+	public ExGroupNotFound() { super("Group not found!"); }
+	public ExGroupNotFound(String msg) { super(msg); }
+}

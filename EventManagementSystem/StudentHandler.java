@@ -17,13 +17,13 @@ public class StudentHandler {
         }
     }
 
-    public Student getStudent(String studentID) {
+    public Student getStudent(String studentID) throws ExStudentNotFound {
         for (Student s: studentList) {
             if (s.getStudentID().equals(studentID)) {
                 return s;
             }
         }
-        return null;
+        throw new ExStudentNotFound();
     }
 
     public void addStudent(Student student) {
