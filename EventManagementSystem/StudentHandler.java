@@ -26,8 +26,9 @@ public class StudentHandler {
         return null;
     }
 
-    public void addStudent(Student student) {
-        studentList.add(student);
+    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) {
+        Student s = new Student(studentID, major, firstName, lastName, sex, age);
+        studentList.add(s);
     }
 
     public void deleteStudent(Student student) {
