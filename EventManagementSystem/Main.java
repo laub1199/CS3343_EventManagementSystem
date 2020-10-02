@@ -14,7 +14,7 @@ public class Main {
             boolean exit = false;
             do {
                 command = in.nextLine(); // get command from user
-                String[] cmdParts = command.trim().split("\\|"); // split the trim command by '|'
+                String[] cmdParts = command.split(" "); // split the command by ' '
 
                 if (cmdParts[0].equals("exit")) {
                     exit = true;
