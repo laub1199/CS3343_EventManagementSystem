@@ -35,11 +35,11 @@ public class EventGroup extends Event {
 
 	@Override
 	public boolean isFull() {
-		return capacity <= getTotalNumOfStudent() || groupCapacity <= joinedGroupList.size();
+		return capacity < getTotalNumOfStudent() + minNumInOneJoin || groupCapacity <= joinedGroupList.size();
 	}
 	
 	public boolean validToJoin(int numOfStudent) {
-		return capacity <= getTotalNumOfStudent() + numOfStudent && groupCapacity <= joinedGroupList.size() - 1;
+		return capacity >= getTotalNumOfStudent() + numOfStudent && groupCapacity >= joinedGroupList.size() - 1;
 	}
 	
 	@Override
