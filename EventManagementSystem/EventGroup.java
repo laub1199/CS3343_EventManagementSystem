@@ -55,6 +55,15 @@ public class EventGroup extends Event {
 		}
 		return numOfStudent;
 	}
+	
+	public boolean foundGourp(Group group) {
+		for (Group gp: joinedGroupList) {
+			if (gp.equals(group)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	
 }

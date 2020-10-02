@@ -22,7 +22,6 @@ public class EventAllocator {
 	}
 	
 	public void groupJoinEvent(Group group, EventGroup event) {
-		group.setEventGroup((EventGroup)event);
 		event.addGroup(group);
 	}
 	
@@ -32,7 +31,6 @@ public class EventAllocator {
 	
 	public void groupQuitEvent(Group group, EventGroup event) {
 		event.quitGroup(group);
-		group.setEventGroup(null);
 	}
 	
 	public void studentQuitEvent(Student student, EventIndividual event) {
@@ -73,6 +71,15 @@ public class EventAllocator {
 			}
 		}
 		throw new ExEventNotFound();
+	}
+	
+	public Event findEventByGroup(Group group) {
+		for (Event e: getEventList()) {
+			if (((EventGroup) e).foundGourp(group)) {
+				return e;
+			}
+		}
+		return null;
 	}
 	
 	public ArrayList<Event> getEventList() {

@@ -117,6 +117,29 @@ public class TestEvent {
 	}
 	
 	@Test
+	public void testFindEventGroupByGroup01() {
+		Event result;
+		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		Group gp1 = new Group("g12345", 3);
+		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
+		eventAllocator.addEvent(event);
+		result = eventAllocator.findEventByGroup(gp1);
+		assertEquals(event, result);
+	}
+	
+	@Test
+	public void testFindEventGroupByGroup02() {
+		Event result;
+		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		Group gp1 = new Group("g12345", 3);
+		Group gp2 = new Group("g54321", 4);
+		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
+		eventAllocator.addEvent(event);
+		result = eventAllocator.findEventByGroup(gp2);
+		assertEquals(null, result);
+	}
+	
+	@Test
 	public void testGetEventGroupID01() {
 		String eventID = "e54321";
 		Event event = new EventGroup("Basketball competition", eventID, 90, new Date(), "CS", 8, 5, 15);
