@@ -4,42 +4,35 @@ import java.util.ArrayList;
 public class Group{
 	private String groupID;
 	private ArrayList<Student> studentList;
-    private int numOfStudent;
+    private int maxNumOfStudent;
     
-    public Group(String groupID, int numOfStudent){
+    public Group(String groupID, int maxNumOfStudent){
         this.groupID = groupID;
-        this.studentList = new ArrayList<>(numOfStudent);
-        this. numOfStudent = numOfStudent;
+        this.studentList = new ArrayList<>();
+        this.maxNumOfStudent = maxNumOfStudent;
     }
-
-
     public String getGroupID(){
         return groupID;
     }
 	public int getNumOfStudent(){
-        return this.numOfStudent;
+        return studentList.size();
     }       
 	public void listStudentInGroup(){
         for(Student student:studentList){
-            student.PrintString();
+            student.printString();
         }
-    }     
-	public ArrayList<Student> getStudentList(){
+    }
+    public int getMaxNumOfStudent() {
+        return maxNumOfStudent;
+    }
+    public ArrayList<Student> getStudentList(){
         return studentList;
     }
 	public void addStudent(Student student){
         studentList.add(student);
     }
-	public void addStudent(String studentID){
-        studentList.add(getStudent(studentID));
-    }
 	public void deleteStudent(Student student){
         studentList.remove(student);
-    }
-	public void deleteStudent(String studentID){
-        studentList.remove(getStudent(studentID));
-    }
-    public void setEvent(){
     }
 }
 
