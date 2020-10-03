@@ -32,8 +32,9 @@ public class TestEvent {
      */
 	public void tearDown() {}
 	
+	//test can find EventIndividual By ID 
 	@Test
-	public void testFindEventIndividualByID01() {
+	public void testFindEventIndividualByID01() {	
 		Event result = null;
 		Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
 		eventAllocator.addEvent(event);
@@ -46,8 +47,9 @@ public class TestEvent {
 		}
 	}
 	
+	//test cannot find EventIndividual By ID 
 	@Test
-	public void testFindEventIndividualByID02() {
+	public void testFindEventIndividualByID02() {	
 		Event result = null;
 		Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
 		eventAllocator.addEvent(event);
@@ -60,8 +62,9 @@ public class TestEvent {
 		}
 	}
 	
+	//test can find EventGroup by ID
 	@Test
-	public void testFindEventGroupByID01() {
+	public void testFindEventGroupByID01() {	
 		Event result = null;
 		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
 		eventAllocator.addEvent(event);
@@ -74,8 +77,9 @@ public class TestEvent {
 		}
 	}
 	
+	//test cannot find EventGroup by ID
 	@Test
-	public void testFindEventGroupByID02() {
+	public void testFindEventGroupByID02() {	
 		Event result = null;
 		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
 		eventAllocator.addEvent(event);
@@ -88,8 +92,9 @@ public class TestEvent {
 		}
 	}
 	
+	//test can find EventGroup by major
 	@Test
-	public void testFindEventGroupByMajor01() {
+	public void testFindEventGroupByMajor01() {		
 		boolean result = false;
 		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
 		eventAllocator.addEvent(event);
@@ -102,8 +107,9 @@ public class TestEvent {
 		}
 	}
 	
+	//test cannot find EventGroup by major
 	@Test
-	public void testFindEventGroupByMajor02() {
+	public void testFindEventGroupByMajor02() {		
 		boolean result = false;
 		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
 		eventAllocator.addEvent(event);
@@ -116,8 +122,9 @@ public class TestEvent {
 		}
 	}
 	
+	//test can find EventGroup By Group
 	@Test
-	public void testFindEventGroupByGroup01() {
+	public void testFindEventGroupByGroup01() {		
 		Event result;
 		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
 		Group gp1 = new Group("g12345", 3);
@@ -127,8 +134,9 @@ public class TestEvent {
 		assertEquals(event, result);
 	}
 	
+	//test cannot find EventGroup By Group
 	@Test
-	public void testFindEventGroupByGroup02() {
+	public void testFindEventGroupByGroup02() {		
 		Event result;
 		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
 		Group gp1 = new Group("g12345", 3);
@@ -139,16 +147,18 @@ public class TestEvent {
 		assertEquals(null, result);
 	}
 	
+	//test can get EventGroupID
 	@Test
-	public void testGetEventGroupID01() {
+	public void testGetEventGroupID01() {		
 		String eventID = "e54321";
 		Event event = new EventGroup("Basketball competition", eventID, 90, new Date(), "CS", 8, 5, 15);
 		String result = event.getEventID();
 		assertEquals(eventID, result);
 	}
 	
+	//test EventIndividual is Full---- cap: 5, added 5 students
 	@Test
-	public void testEventIndividualIsFull01() {
+	public void testEventIndividualIsFull01() {		
 		boolean result;
 		
 		Event event = new EventIndividual("robot competition", "e12345", 5, new Date(), "CS");
@@ -163,8 +173,9 @@ public class TestEvent {
 	    assertEquals(true, result);
 	}
 	
+	//test EventIndividual is Full---- cap: 5, added 4 students
 	@Test
-	public void testEventIndividualIsFull02() {
+	public void testEventIndividualIsFull02() {		
 		boolean result;
 		
 		Event event = new EventIndividual("robot competition", "e12345", 5, new Date(), "CS");
@@ -178,8 +189,9 @@ public class TestEvent {
 	    assertEquals(false, result);
 	}
 	
+	//test EventGroup is Full---- cap: 8, added 8 students, group cap 4, added 3 groups
 	@Test
-	public void testEventGroupIsFull01() {
+	public void testEventGroupIsFull01() {		
 		boolean result;
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
@@ -205,8 +217,9 @@ public class TestEvent {
 	    assertEquals(true, result);
 	}
 	
+	//test EventGroup is Full---- cap: 8, added 7 students, group cap 4, added 3 groups
 	@Test
-	public void testEventGroupIsFull02() {
+	public void testEventGroupIsFull02() {		
 		boolean result;
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
@@ -232,8 +245,9 @@ public class TestEvent {
 	    assertEquals(true, result);
 	}
 	
+	//test EventGroup is Full---- cap: 8, added 8 students, group cap 4, added 4 groups
 	@Test
-	public void testEventGroupIsFull03() {
+	public void testEventGroupIsFull03() {		
 		boolean result;
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
@@ -266,8 +280,9 @@ public class TestEvent {
 	    assertEquals(true, result);
 	}
 	
+	//test EventGroup is Full---- cap: 8, added 6 students, group cap 4, added 3 groups
 	@Test
-	public void testEventGroupIsFull04() {
+	public void testEventGroupIsFull04() {		
 		boolean result;
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
@@ -294,9 +309,9 @@ public class TestEvent {
 	    assertEquals(false, result);
 	}
 	
-	
+	//test EventGroup is valid to join---- cap: 8, added 8 students, group cap 4, added 3 groups, if add 2 more
 	@Test
-	public void testEventGroupValidToJoin01() {
+	public void testEventGroupValidToJoin01() {		
 		boolean result;
 		
 		EventGroup event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
@@ -323,6 +338,7 @@ public class TestEvent {
 	    assertEquals(false, result);
 	}
 	
+	//test EventGroup is valid to join---- cap: 8, added 7 students, group cap 4, added 3 groups, if add 2 more
 	@Test
 	public void testEventGroupValidToJoin02() {
 		boolean result;
@@ -349,6 +365,7 @@ public class TestEvent {
 	    assertEquals(false, result);
 	}
 	
+	//test EventGroup is valid to join---- cap: 8, added 8 students, group cap 4, added 4 groups, if add 2 more
 	@Test
 	public void testEventGroupValidToJoin03() {
 		boolean result;
@@ -379,6 +396,7 @@ public class TestEvent {
 	    assertEquals(false, result);
 	}
 	
+	//test EventGroup is valid to join---- cap: 8, added 6 students, group cap 4, added 3 groups, if add 2 more
 	@Test
 	public void testEventGroupValidToJoin04() {
 		boolean result;
@@ -408,6 +426,7 @@ public class TestEvent {
 	    assertEquals(true, result);
 	}
 	
+	//test EventGroup is valid to join---- cap: 8, added 6 students, group cap 4, added 3 groups, if add 3 more
 	@Test
 	public void testEventGroupValidToJoin05() {
 		boolean result;
@@ -433,6 +452,7 @@ public class TestEvent {
 	    assertEquals(false, result);
 	}
 	
+	//test EventGroup is valid to join---- cap: 8, added 5 students, group cap 4, added 2 groups, if add 3 more
 	@Test
 	public void testEventGroupValidToJoin06() {
 		boolean result;
@@ -456,6 +476,7 @@ public class TestEvent {
 	    assertEquals(true, result);
 	}
 	
+	//test EventGroup can get total number of students
 	@Test
 	public void testEventGroupgetTotalNumOfStudent01() {
 		int result;
