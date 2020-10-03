@@ -184,24 +184,21 @@ public class TestEvent {
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
-		studentList1.add(student3);
 		Group gp1 = new Group("g12345", 3);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);	
+		gp1.addStudent(student3);		
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student4);
-		studentList2.add(student5);
-		studentList2.add(student6);
 		Group gp2 = new Group("g54321", 3);
+		gp2.addStudent(student4);
+		gp2.addStudent(student5);	
+		gp2.addStudent(student6);		
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student7);
-		studentList3.add(student8);
 		Group gp3 = new Group("g13579", 2);
+		gp3.addStudent(student7);
+		gp3.addStudent(student8);	
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 		
 		result = event.isFull();
@@ -215,23 +212,20 @@ public class TestEvent {
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		eventAllocator.addEvent(event);
 		
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
 		Group gp1 = new Group("g12345", 2);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);	
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student3);
-		studentList2.add(student4);
 		Group gp2 = new Group("g54321", 2);
+		gp2.addStudent(student3);
+		gp2.addStudent(student4);	
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student5);
-		studentList3.add(student6);
-		studentList3.add(student7);
 		Group gp3 = new Group("g13579", 3);
+		gp3.addStudent(student5);
+		gp3.addStudent(student6);
+		gp3.addStudent(student7);
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 		
 		result = event.isFull();
@@ -307,24 +301,22 @@ public class TestEvent {
 		
 		EventGroup event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
-		studentList1.add(student3);
 		Group gp1 = new Group("g12345", 3);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);
+		gp1.addStudent(student3);
+
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student4);
-		studentList2.add(student5);
-		studentList2.add(student6);
 		Group gp2 = new Group("g54321", 3);
+		gp2.addStudent(student4);
+		gp2.addStudent(student5);
+		gp2.addStudent(student6);
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student7);
-		studentList3.add(student8);
 		Group gp3 = new Group("g13579", 2);
+		gp3.addStudent(student7);
+		gp3.addStudent(student8);
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 		
 		result = ((EventGroup) event).validToJoin(2);
@@ -337,23 +329,20 @@ public class TestEvent {
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		 	
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
 		Group gp1 = new Group("g12345", 2);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student3);
-		studentList2.add(student4);
 		Group gp2 = new Group("g54321", 2);
+		gp2.addStudent(student3);
+		gp2.addStudent(student4);
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student5);
-		studentList3.add(student6);
-		studentList3.add(student7);
 		Group gp3 = new Group("g13579", 3);
+		gp3.addStudent(student5);
+		gp3.addStudent(student6);
+		gp3.addStudent(student7);
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 		
 		result = ((EventGroup) event).validToJoin(2);
@@ -366,28 +355,24 @@ public class TestEvent {
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
 		Group gp1 = new Group("g12345", 2);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student3);
-		studentList2.add(student4);
 		Group gp2 = new Group("g54321", 2);
+		gp2.addStudent(student3);
+		gp2.addStudent(student4);
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student5);
-		studentList3.add(student6);
 		Group gp3 = new Group("g13579", 2);
+		gp3.addStudent(student5);
+		gp3.addStudent(student6);		
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 
-		ArrayList<Student> studentList4 = new ArrayList<>();
-		studentList4.add(student7);
-		studentList4.add(student8);
 		Group gp4 = new Group("g24680", 2);
+		gp4.addStudent(student7);
+		gp4.addStudent(student8);		
 		eventAllocator.groupJoinEvent(gp4, (EventGroup) event);
 		
 		result = ((EventGroup) event).validToJoin(2);
@@ -429,22 +414,19 @@ public class TestEvent {
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
 		Group gp1 = new Group("g12345", 2);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);		
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student3);
-		studentList2.add(student4);
 		Group gp2 = new Group("g54321", 2);
+		gp2.addStudent(student3);
+		gp2.addStudent(student4);		
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student5);
-		studentList3.add(student6);
 		Group gp3 = new Group("g13579", 2);
+		gp3.addStudent(student5);
+		gp3.addStudent(student6);		
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 
 		result = ((EventGroup) event).validToJoin(3);
@@ -480,28 +462,24 @@ public class TestEvent {
 		
 		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
 		
-		ArrayList<Student> studentList1 = new ArrayList<>();
-		studentList1.add(student1);
-		studentList1.add(student2);
 		Group gp1 = new Group("g12345", 2);
+		gp1.addStudent(student1);
+		gp1.addStudent(student2);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		
-		ArrayList<Student> studentList2 = new ArrayList<>();
-		studentList2.add(student3);
-		studentList2.add(student4);
 		Group gp2 = new Group("g54321", 2);
+		gp2.addStudent(student3);
+		gp2.addStudent(student4);
 		eventAllocator.groupJoinEvent(gp2, (EventGroup) event);
 		
-		ArrayList<Student> studentList3 = new ArrayList<>();
-		studentList3.add(student5);
-		studentList3.add(student6);
 		Group gp3 = new Group("g13579", 2);
+		gp3.addStudent(student5);
+		gp3.addStudent(student6);
 		eventAllocator.groupJoinEvent(gp3, (EventGroup) event);
 
-		ArrayList<Student> studentList4 = new ArrayList<>();
-		studentList4.add(student7);
-		studentList4.add(student8);
 		Group gp4 = new Group("g24680", 2);
+		gp4.addStudent(student7);
+		gp4.addStudent(student8);
 		eventAllocator.groupJoinEvent(gp4, (EventGroup) event);
 		
 		result = ((EventGroup) event).getTotalNumOfStudent();
