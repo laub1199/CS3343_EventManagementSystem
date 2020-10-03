@@ -24,7 +24,7 @@ public class Student {
     }
 
     public String printString() {
-        String s = String.format("|%s|%-20s|%-20s|%s|%-10s|%d|", studentID, firstName, lastName, sex, major, age);
+        String s = String.format("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3d|", studentID, firstName, lastName, sex, major, age);
         return s;
     }
 }

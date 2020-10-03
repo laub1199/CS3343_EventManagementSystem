@@ -11,7 +11,7 @@ public class StudentHandler {
     }
 
     public void listStudent() {
-        System.out.println("Student list:");
+        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3s|", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
         for (Student s: studentList) {
             System.out.println(s.printString());
         }
