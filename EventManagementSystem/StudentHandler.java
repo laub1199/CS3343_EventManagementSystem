@@ -26,7 +26,22 @@ public class StudentHandler {
         return null;
     }
 
-    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) {
+    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) throws ExStudentIDtooLong, ExMajorTooLong, ExFirstNameTooLong, ExLastNameTooLong, ExWrongSexInput {
+        if (studentID.length() < 8) {
+            throw new ExStudentIDtooLong();
+        }
+        if (major.length() < 10) {
+            throw new ExMajorTooLong();
+        }
+        if (firstName.length() < 20) {
+            throw new ExFirstNameTooLong();
+        }
+        if (lastName.length() < 20) {
+            throw new ExLastNameTooLong();
+        }
+        if (!(sex == 'M' || sex == 'F')) {
+            throw new ExWrongSexInput();
+        }
         Student s = new Student(studentID, major, firstName, lastName, sex, age);
         studentList.add(s);
     }
