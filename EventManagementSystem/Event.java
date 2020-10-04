@@ -7,18 +7,28 @@ public abstract class Event {
 
 	private String eventID;
 	private String eventName;
-	private Date eventDate;
 	protected int capacity;
+	private Date eventDate;
+	private String major;
 	
-	public Event(String eName, String eID, int cap, Date eDate) {
+	public Event(String eName, String eID, int cap, Date eDate, String maj) {
 		eventName = eName;
 		eventID = eID;
 		capacity = cap;
 		eventDate = eDate;
+		major = maj;
 	}
 	
 	public String getEventID() {
 		return this.eventID;
+	}
+	
+	public String getEventName() {
+		return this.eventName;
+	}
+	
+	public String getMajor() {
+		return this.major;
 	}
 	
 	public abstract boolean isFull();
@@ -26,7 +36,7 @@ public abstract class Event {
 	public abstract void listJoinedStudent();
 
 	public void printDetail() {
-		System.out.printf("%s\t%s\t%s\t%d\t", eventID, eventName, eventDate.toString(), capacity);
+		System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
 	}
 	
 }

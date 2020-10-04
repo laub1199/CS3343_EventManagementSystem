@@ -6,11 +6,13 @@ import java.util.Date;
 public class EventGroup extends Event {
 
 	private ArrayList<Group> joinedGroupList;
+	private int groupCapacity;
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
 	
-	public EventGroup(String eName, String eID, int cap, Date eDate, int min, int max) {
-		super(eName, eID, cap, eDate);
+	public EventGroup(String eName, String eID, int cap, Date eDate, String maj, int gpCap, int min, int max) {
+		super(eName, eID, cap, eDate, maj);
+		groupCapacity = gpCap;
 		minNumInOneJoin = min;
 		maxNumInOneJoin = max;
 		joinedGroupList = new ArrayList<>();
@@ -33,17 +35,17 @@ public class EventGroup extends Event {
 
 	@Override
 	public boolean isFull() {
-		return capacity <= getTotalNumOfStudent();
+		return capacity < getTotalNumOfStudent() + minNumInOneJoin || groupCapacity <= joinedGroupList.size();
 	}
 	
 	public boolean validToJoin(int numOfStudent) {
-		return capacity <= getTotalNumOfStudent() + numOfStudent;
+		return capacity >= getTotalNumOfStudent() + numOfStudent && groupCapacity >= joinedGroupList.size() - 1;
 	}
 	
 	@Override
 	public void printDetail() {
 		super.printDetail();
-		System.out.printf("%d\t%s\t%d\t%d\n", capacity-getTotalNumOfStudent(), "Group", minNumInOneJoin, maxNumInOneJoin);
+		System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\n", capacity-getTotalNumOfStudent(), "Group", groupCapacity, groupCapacity- joinedGroupList.size(), minNumInOneJoin, maxNumInOneJoin);
 	}
 	
 	public int getTotalNumOfStudent() {
@@ -53,5 +55,6 @@ public class EventGroup extends Event {
 		}
 		return numOfStudent;
 	}
+
 	
 }

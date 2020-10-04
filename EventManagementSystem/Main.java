@@ -7,14 +7,15 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the Event Management System");
-        System.out.println("Please enter your command: ");
 
         try {
             String command;
             boolean exit = false;
             do {
+                System.out.println("Please enter your command: ");
+                
                 command = in.nextLine(); // get command from user
-                String[] cmdParts = command.trim().split("\\|"); // split the trim command by '|'
+                String[] cmdParts = command.split(" "); // split the command by ' '
 
                 if (cmdParts[0].equals("exit")) {
                     exit = true;

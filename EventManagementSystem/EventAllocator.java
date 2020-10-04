@@ -14,14 +14,15 @@ public class EventAllocator {
 	public static EventAllocator getInstance(){return instance;}
 	
 	public void addEvent(Event event) {
-		eventList.add(event);
+		getEventList().add(event);
 	}
 	
 	public void deleteEvent(Event event) {
-		eventList.remove(event);
+		getEventList().remove(event);
 	}
 	
 	public void groupJoinEvent(Group group, EventGroup event) {
+		group.setEventGroup((EventGroup)event);
 		event.addGroup(group);
 	}
 	
@@ -31,6 +32,7 @@ public class EventAllocator {
 	
 	public void groupQuitEvent(Group group, EventGroup event) {
 		event.quitGroup(group);
+		group.setEventGroup(null);
 	}
 	
 	public void studentQuitEvent(Student student, EventIndividual event) {
@@ -38,9 +40,8 @@ public class EventAllocator {
 	}
 	
 	public void listEvent() {
-		System.out.println("Event ID" + "\t" + "Event name" + "\t" + "Date" + "\t" + "Capacity" + "\t" + "Quota" + 
-							"\t" + "Type" + "\t" + "Min no. in group" + "\t" + "Max no. in group" + "\t");
-		for (Event e: eventList) {
+		System.out.println("Event ID\tEvent Name\tDate\tCapacity\tMajor\tQuota\tType\tGroup Capacity\tGroup Quota\tMin No. In Group\tMax No. In Group");
+		for (Event e: getEventList()) {
 			if (e instanceof EventIndividual) {
 				((EventIndividual)e).printDetail();
 			}
@@ -51,18 +52,32 @@ public class EventAllocator {
 	}
 	
 	public void listEventApplicans() {
-		for (Event e: eventList) {
+		for (Event e: getEventList()) {
 			((EventGroup) e).listJoinedStudent();
 		}
 	}
 	
-	public Event findEventByID(String eventID) {
-		for (Event e: eventList) {
+	public Event findEventByID(String eventID)  throws ExEventNotFound {
+		for (Event e: getEventList()) {
 			if (e.getEventID().equals(eventID)) {
 				return e;
 			}
 		}
-		return null;
+		throw new ExEventNotFound();
 	}
+	
+	public boolean findEventByMajor(String major)  throws ExEventNotFound {
+		for (Event e: getEventList()) {
+			if (e.getMajor().equals(major)) {
+				return true;
+			}
+		}
+		throw new ExEventNotFound();
+	}
+	
+	public ArrayList<Event> getEventList() {
+		return eventList;
+	}
+	
 	
 }
