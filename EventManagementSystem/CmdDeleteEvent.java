@@ -11,7 +11,7 @@ public class CmdDeleteEvent implements Command {
             instance.deleteEvent(cmdParts[2]);
         } catch (ExWrongCommand e) {
             System.out.println(e.getMessage());
-        } catch (NullPointerException) {
+        } catch (NullPointerException e) {
             System.out.println("Wrong event ID!");
         }
     }
