@@ -26,7 +26,7 @@ public class StudentHandler {
         throw new ExStudentNotFound();
     }
 
-    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) throws ExStudentIDtooLong, ExMajorTooLong, ExFirstNameTooLong, ExLastNameTooLong, ExWrongSexInput {
+    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) throws ExStudentIDtooLong, ExMajorTooLong, ExFirstNameTooLong, ExLastNameTooLong, ExWrongSexInput, ExInvalidStudentID {
         if (studentID.length() < 8) {
             throw new ExStudentIDtooLong();
         }
@@ -41,6 +41,11 @@ public class StudentHandler {
         }
         if (!(sex == 'M' || sex == 'F')) {
             throw new ExWrongSexInput();
+        }
+        for (Student s: studentList) {
+            if (s.getStudentID().equals(studentID)) {
+                throw new ExInvalidStudentID();
+            }
         }
         Student s = new Student(studentID, major, firstName, lastName, sex, age);
         studentList.add(s);

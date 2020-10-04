@@ -13,7 +13,7 @@ public class CmdCreateStudent implements Command {
             System.out.println("Wrong number format!");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Sex should be 1 character(M/F)!");
-        } catch (ExWrongCommand | ExStudentIDtooLong | ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput e) {
+        } catch (ExWrongCommand | ExStudentIDtooLong | ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID e) {
             System.out.println(e.getMessage());
         }
     }
