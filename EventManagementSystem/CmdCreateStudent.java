@@ -4,8 +4,8 @@ public class CmdCreateStudent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length < 8) {
-                throw new ExInsufficientArguments();
+            if (cmdParts.length != 8) {
+                throw new ExWrongCommand();
             }
             StudentHandler s = StudentHandler.getInstance();
             s.createStudent(cmdParts[2], cmdParts[3], cmdParts[4], cmdParts[5], cmdParts[6].charAt(0), Integer.parseInt(cmdParts[7]));
@@ -13,7 +13,7 @@ public class CmdCreateStudent implements Command {
             System.out.println("Wrong number format!");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Sex should be 1 character(M/F)!");
-        } catch (ExInsufficientArguments | ExStudentIDtooLong | ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput e) {
+        } catch (ExWrongCommand | ExStudentIDtooLong | ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput e) {
             System.out.println(e.getMessage());
         }
     }
