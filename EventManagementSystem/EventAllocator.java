@@ -1,6 +1,7 @@
 package EventManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventAllocator {
 	
@@ -13,7 +14,14 @@ public class EventAllocator {
 	
 	public static EventAllocator getInstance(){return instance;}
 	
-	public void addEvent(Event event) {
+	public void addEvent(String eName, String eID, int cap, Date eDate) throws ExInvalidEventID, ExInvalidEventDate {
+		if (findEventByID(eID) != null) {
+			throw new ExInvalidEventID();
+		}
+		if (eDate.before(new Date())) {
+			throw new ExInvalidEventDate();
+		}
+		Event event = new EventIndividual(eName, eID, cap, eDate);
 		eventList.add(event);
 	}
 	
