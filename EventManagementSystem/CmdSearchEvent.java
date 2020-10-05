@@ -35,7 +35,6 @@ public class CmdSearchEvent implements Command {
 							else if ((e instanceof EventGroup)) {
 								((EventGroup)e).printDetail();
 							}
-							foundEvent = true;
 						}
 					}
 		    	}
