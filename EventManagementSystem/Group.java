@@ -31,6 +31,16 @@ public class Group{
 	public void addStudent(Student student){
         studentList.add(student);
     }
+	
+	public boolean isFoundStudentById(String studentId) {
+		for(Student student:studentList) {
+			if(student.getStudentID() == studentId) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void deleteStudent(Student student){
         studentList.remove(student);
     }

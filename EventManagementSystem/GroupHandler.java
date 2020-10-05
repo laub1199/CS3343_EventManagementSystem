@@ -11,12 +11,14 @@ public class GroupHandler {
     
     
     public static GroupHandler getInstance(){return instance;}
+    
     public void listGroup(){
     	System.out.println("GroupID\tNumber Of Student");
         for(Group group:groupList){
             System.out.println(group);
         }
     }
+    
     public Group getGroup(String groupID) throws ExGroupNotFound{
         for(Group group:groupList){
             if(groupID == group.getGroupID()){
@@ -25,20 +27,27 @@ public class GroupHandler {
         }
         throw new ExGroupNotFound();
     }
+    
+    public void listGroupByStudentId(String studentId) {
+    	for(Group group:groupList) {
+    		if(group.isFoundStudentById(studentId)) {
+    			System.out.println(group.toString());
+    		}
+    	}
+    }
+    
     public ArrayList<Group> getGroupList(){
         return groupList;
     }
-    public void createGroup(String groupId, int numOfStudent) throws ExInvalidGroupID{
-        for (Group group:groupList) {
-            if (groupId.equals(group.getGroupID())) {
-                throw new ExInvalidGroupID();
-            }
-        }
+    
+    public void createGroup(String groupId, int numOfStudent){
         groupList.add(new Group(groupId, numOfStudent));
     }
+    
     public void deleteGroup(Group group){
         groupList.remove(group);
     }
+    
     public void deleteGroup(String groupID) throws ExGroupNotFound{
         groupList.remove(getGroup(groupID));
     }
