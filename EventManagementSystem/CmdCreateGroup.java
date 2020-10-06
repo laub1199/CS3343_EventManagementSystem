@@ -11,7 +11,7 @@ public class CmdCreateGroup implements Command {
             instance.createGroup(cmdParts[2], Integer.parseInt(cmdParts[3]));
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExWrongCommand | ExInvalidGroupID e) {
+        } catch (ExWrongCommand | ExInvalidGroupID | ExGroupStudentTooLess e) {
             System.out.println(e.getMessage());
         }
     }

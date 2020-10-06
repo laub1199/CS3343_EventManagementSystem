@@ -7,7 +7,7 @@ public class Group{
     private int maxNumOfStudent;
     
     public Group(String groupID, int maxNumOfStudent){
-        this.groupID = groupID;
+        this.groupID = groupID; //length: 9 e.g. g12345678
         this.studentList = new ArrayList<>();
         this.maxNumOfStudent = maxNumOfStudent;
     }

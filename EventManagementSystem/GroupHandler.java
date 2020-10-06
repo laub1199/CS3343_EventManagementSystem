@@ -28,11 +28,17 @@ public class GroupHandler {
     public ArrayList<Group> getGroupList(){
         return groupList;
     }
-    public void createGroup(String groupId, int numOfStudent) throws ExInvalidGroupID{
+    public void createGroup(String groupId, int numOfStudent) throws ExInvalidGroupID, ExGroupStudentTooLess {
+        if (groupId.length() != 9 || groupId.charAt(0) != 'g') {
+            throw new ExInvalidGroupID();
+        }
         for (Group group:groupList) {
             if (groupId.equals(group.getGroupID())) {
                 throw new ExInvalidGroupID();
             }
+        }
+        if (numOfStudent <= 1) {
+            throw new ExGroupStudentTooLess();
         }
         groupList.add(new Group(groupId, numOfStudent));
     }
