@@ -74,5 +74,7 @@ public class EventGroup extends Event {
 		return false;
 	}
 
-	
+	public int getMinNumInOneJoin() {
+		return minNumInOneJoin;
+	}
 }
