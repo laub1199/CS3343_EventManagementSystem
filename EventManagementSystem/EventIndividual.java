@@ -40,7 +40,7 @@ public class EventIndividual extends Event {
 	@Override
 	public void printDetail() {
 		super.printDetail();
-		System.out.printf("%d\t%s\t/\t/\n",capacity-joinedStudentList.size(), "Individual");
+		System.out.printf("%-5d|%-10s|%-15s|%-11s|%-16s|%-16s|\n",capacity-joinedStudentList.size(),"Individual","/","/","/","/");
 	}
 
 

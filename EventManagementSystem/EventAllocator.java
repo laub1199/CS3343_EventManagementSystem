@@ -43,7 +43,8 @@ public class EventAllocator {
 	}
 	
 	public void listEvent() {
-		System.out.println("Event ID\tEvent Name\tDate\tCapacity\tMajor\tQuota\tType\tGroup Capacity\tGroup Quota\tMin No. In Group\tMax No. In Group");
+		System.out.printf("%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 		for (Event e: getEventList()) {
 			if (e instanceof EventIndividual) {
 				((EventIndividual)e).printDetail();
@@ -69,13 +70,14 @@ public class EventAllocator {
 		throw new ExEventNotFound();
 	}
 	
-	public boolean findEventByMajor(String major)  throws ExEventNotFound {
+	public ArrayList<Event> findEventByMajor(String major) {
+		ArrayList<Event> eventMajorList = new ArrayList<>();
 		for (Event e: getEventList()) {
 			if (e.getMajor().equals(major)) {
-				return true;
+				eventMajorList.add(e);
 			}
 		}
-		throw new ExEventNotFound();
+		return eventMajorList;
 	}
 	
 	public Event findEventByGroup(Group group) {

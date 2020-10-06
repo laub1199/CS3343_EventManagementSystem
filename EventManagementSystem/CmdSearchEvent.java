@@ -1,5 +1,7 @@
 package EventManagementSystem;
 
+import java.util.ArrayList;
+
 public class CmdSearchEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
@@ -8,11 +10,13 @@ public class CmdSearchEvent implements Command {
     			throw new ExWrongCommand();
     		}
     		
+    		System.out.printf("%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+    				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
+    		
     		//search event by id
 	    	EventAllocator eventAllocator = EventAllocator.getInstance();
     		if (cmdParts[2].equals("id")) {
 		    	Event event = eventAllocator.findEventByID(cmdParts[3]);
-				System.out.println("Event ID\tEvent name\tDate\tCapacity\tMajor\tQuota\tType\tGroup capacity\tGroup Quota\tMin no. in group\tMax no. in group");
 				if (event instanceof EventIndividual) {
 					((EventIndividual)event).printDetail();
 				}
@@ -24,21 +28,21 @@ public class CmdSearchEvent implements Command {
     		//search event by major
     		else if (cmdParts[2].equals("major")){	
 		    	String major = cmdParts[3];
-		    	boolean foundEvent = eventAllocator.findEventByMajor(major);
-		    	if (foundEvent) {
-					System.out.println("Event ID\tEvent name\tDate\tCapacity\tMajor\tQuota\tType\tGroup capacity\tGroup Quota\tMin no. in group\tMax no. in group");
-					for (Event e:eventAllocator.getEventList()) {
-						if (e.getMajor().equals(major)) {
-							if (e instanceof EventIndividual) {
-								((EventIndividual)e).printDetail();
-							}
-							else if ((e instanceof EventGroup)) {
-								((EventGroup)e).printDetail();
-							}
-						}
+		    	ArrayList<Event> foundEventList = eventAllocator.findEventByMajor(major);
+		    	if (foundEventList.size() == 0) {
+		    		throw new ExEventNotFound();
+		    	}
+		    	
+		    	for (Event e:foundEventList) {
+		    		if (e instanceof EventIndividual) {
+						((EventIndividual)e).printDetail();
+					}
+					else if ((e instanceof EventGroup)) {
+						((EventGroup)e).printDetail();
 					}
 		    	}
     		}
+    		
     		
     	}
     	catch (ExEventNotFound e){

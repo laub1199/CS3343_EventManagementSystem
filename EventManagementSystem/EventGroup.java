@@ -54,7 +54,8 @@ public class EventGroup extends Event {
 	@Override
 	public void printDetail() {
 		super.printDetail();
-		System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\n", capacity-getTotalNumOfStudent(), "Group", groupCapacity, groupCapacity- joinedGroupList.size(), minNumInOneJoin, maxNumInOneJoin);
+		System.out.printf("%-5d|%-10s|%-15d|%-11d|%-16d|%-16d|\n",capacity-getTotalNumOfStudent(),
+				"Group",groupCapacity, groupCapacity- joinedGroupList.size(), minNumInOneJoin, maxNumInOneJoin);
 	}
 	
 	public int getTotalNumOfStudent() {

@@ -8,7 +8,7 @@ public class CmdCreateEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length != 7 || cmdParts.length != 10) {
+            if (!(cmdParts.length == 7  || cmdParts.length == 10)) {
                 throw new ExWrongCommand();
             }
             

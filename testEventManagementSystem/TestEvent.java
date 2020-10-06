@@ -36,7 +36,7 @@ public class TestEvent {
 	@Test
 	public void testFindEventIndividualByID01() {	
 		Event result = null;
-		Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
+		Event event = new EventIndividual("Programming course", "e12345123", 50, new Date(), "CS");
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e12345");
@@ -51,7 +51,7 @@ public class TestEvent {
 	@Test
 	public void testFindEventIndividualByID02() {	
 		Event result = null;
-		Event event = new EventIndividual("Programming course", "e12345", 50, new Date(), "CS");
+		Event event = new EventIndividual("Programming course", "e12345123", 50, new Date(), "CS");
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e13579");
@@ -66,7 +66,7 @@ public class TestEvent {
 	@Test
 	public void testFindEventGroupByID01() {	
 		Event result = null;
-		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		Event event = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e54321");
@@ -81,7 +81,7 @@ public class TestEvent {
 	@Test
 	public void testFindEventGroupByID02() {	
 		Event result = null;
-		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		Event event = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e13579");
@@ -95,38 +95,46 @@ public class TestEvent {
 	//test can find EventGroup by major
 	@Test
 	public void testFindEventGroupByMajor01() {		
-		boolean result = false;
-		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
-		eventAllocator.addEvent(event);
-		try {
-			result = eventAllocator.findEventByMajor("CS");
-			assertEquals(true, result);
-		} catch (ExEventNotFound e) {
-			System.out.println(e.getMessage());
-			assertEquals(false, result);
-		}
+		ArrayList<Event> result = new ArrayList<>();
+		ArrayList<Event> test = new ArrayList<>();
+		
+		Event event1 = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
+		Event event2 = new EventIndividual("robot competition", "e12345123", 5, new Date(), "EE");
+		Event event3 = new EventIndividual("Football competition", "e54321123", 90, new Date(), "CS");
+
+		eventAllocator.addEvent(event1);
+		eventAllocator.addEvent(event2);
+		eventAllocator.addEvent(event3);
+		
+		test.add(event1);
+		test.add(event3);
+		
+		result = eventAllocator.findEventByMajor("CS");
+		assertEquals(test, result);
+		
 	}
 	
 	//test cannot find EventGroup by major
 	@Test
 	public void testFindEventGroupByMajor02() {		
-		boolean result = false;
-		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
-		eventAllocator.addEvent(event);
-		try {
-			result = eventAllocator.findEventByMajor("EE");
-			assertEquals(true, result);
-		} catch (ExEventNotFound e) {
-			System.out.println(e.getMessage());
-			assertEquals(false, result);
-		}
+		ArrayList<Event> result = new ArrayList<>();
+		ArrayList<Event> test = new ArrayList<>();
+		
+		Event event1 = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
+		Event event2 = new EventIndividual("robot competition", "e12345123", 5, new Date(), "CS");
+
+		eventAllocator.addEvent(event1);
+		eventAllocator.addEvent(event2);
+		
+		result = eventAllocator.findEventByMajor("EE");
+		assertEquals(test, result);
 	}
 	
 	//test can find EventGroup By Group
 	@Test
 	public void testFindEventGroupByGroup01() {		
 		Event result;
-		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		Event event = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
 		Group gp1 = new Group("g12345", 3);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		eventAllocator.addEvent(event);
@@ -138,7 +146,7 @@ public class TestEvent {
 	@Test
 	public void testFindEventGroupByGroup02() {		
 		Event result;
-		Event event = new EventGroup("Basketball competition", "e54321", 90, new Date(), "CS", 8, 5, 15);
+		Event event = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
 		Group gp1 = new Group("g12345", 3);
 		Group gp2 = new Group("g54321", 4);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
@@ -150,7 +158,7 @@ public class TestEvent {
 	//test can get EventGroupID
 	@Test
 	public void testGetEventGroupID01() {		
-		String eventID = "e54321";
+		String eventID = "e54321123";
 		Event event = new EventGroup("Basketball competition", eventID, 90, new Date(), "CS", 8, 5, 15);
 		String result = event.getEventID();
 		assertEquals(eventID, result);
@@ -161,7 +169,7 @@ public class TestEvent {
 	public void testEventIndividualIsFull01() {		
 		boolean result;
 		
-		Event event = new EventIndividual("robot competition", "e12345", 5, new Date(), "CS");
+		Event event = new EventIndividual("robot competition", "e12341235", 5, new Date(), "CS");
 		eventAllocator.addEvent(event);
 		((EventIndividual) event).addStudent(student1);
 		((EventIndividual) event).addStudent(student2);
@@ -178,7 +186,7 @@ public class TestEvent {
 	public void testEventIndividualIsFull02() {		
 		boolean result;
 		
-		Event event = new EventIndividual("robot competition", "e12345", 5, new Date(), "CS");
+		Event event = new EventIndividual("robot competition", "e12345123", 5, new Date(), "CS");
 		eventAllocator.addEvent(event);
 		((EventIndividual) event).addStudent(student1);
 		((EventIndividual) event).addStudent(student2);
@@ -194,7 +202,7 @@ public class TestEvent {
 	public void testEventGroupIsFull01() {		
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		Group gp1 = new Group("g12345", 3);
 		gp1.addStudent(student1);
@@ -222,7 +230,7 @@ public class TestEvent {
 	public void testEventGroupIsFull02() {		
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		eventAllocator.addEvent(event);
 		
 		Group gp1 = new Group("g12345", 2);
@@ -250,7 +258,7 @@ public class TestEvent {
 	public void testEventGroupIsFull03() {		
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 
 		ArrayList<Student> studentList1 = new ArrayList<>();
 		studentList1.add(student1);
@@ -285,7 +293,7 @@ public class TestEvent {
 	public void testEventGroupIsFull04() {		
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		ArrayList<Student> studentList1 = new ArrayList<>();
 		studentList1.add(student1);
@@ -314,7 +322,7 @@ public class TestEvent {
 	public void testEventGroupValidToJoin01() {		
 		boolean result;
 		
-		EventGroup event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		EventGroup event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		Group gp1 = new Group("g12345", 3);
 		gp1.addStudent(student1);
@@ -343,7 +351,7 @@ public class TestEvent {
 	public void testEventGroupValidToJoin02() {
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		 	
 		Group gp1 = new Group("g12345", 2);
 		gp1.addStudent(student1);
@@ -370,7 +378,7 @@ public class TestEvent {
 	public void testEventGroupValidToJoin03() {
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		Group gp1 = new Group("g12345", 2);
 		gp1.addStudent(student1);
@@ -401,7 +409,7 @@ public class TestEvent {
 	public void testEventGroupValidToJoin04() {
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		eventAllocator.addEvent(event);
 		
 		ArrayList<Student> studentList1 = new ArrayList<>();
@@ -431,7 +439,7 @@ public class TestEvent {
 	public void testEventGroupValidToJoin05() {
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		Group gp1 = new Group("g12345", 2);
 		gp1.addStudent(student1);
@@ -457,7 +465,7 @@ public class TestEvent {
 	public void testEventGroupValidToJoin06() {
 		boolean result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		ArrayList<Student> studentList1 = new ArrayList<>();
 		studentList1.add(student1);
@@ -481,7 +489,7 @@ public class TestEvent {
 	public void testEventGroupgetTotalNumOfStudent01() {
 		int result;
 		
-		Event event = new EventGroup("Betmenten competition", "e12345", 8, new Date(), "CS", 4, 2, 3);
+		Event event = new EventGroup("Betmenten competition", "e12345123", 8, new Date(), "CS", 4, 2, 3);
 		
 		Group gp1 = new Group("g12345", 2);
 		gp1.addStudent(student1);

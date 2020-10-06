@@ -12,31 +12,33 @@ public class CmdListStudentJoinedEvent implements Command {
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		//eventAllocator.findEventByStudent();
     		
+    		System.out.println(studentHandler.getStudent(cmdParts[2]).printString());
+    		
     		if(cmdParts[3] == "all") {
-    			System.out.println(studentHandler.getStudent(cmdParts[2]).printString());
     			System.out.println("All events: ");
+				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2]))) {
-    					System.out.println(event.getEventID() + " | " + event.getEventName());
+    					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
     				}
     			}
 				// can use listEventFunction - laub
     		}else if(cmdParts[3] == "pending") {
-    			System.out.println(studentHandler.getStudent(cmdParts[2]).printString());
     			System.out.println("Pending events: ");
 				//need add header - laub
+				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate() > SystemDate.getInstance()) {
-    					System.out.println(event.getEventID() + " | " + event.getEventName());
+    					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
     				}
     			}
     		}else if(cmdParts[3] == "end") {
-    			System.out.println(studentHandler.getStudent(cmdParts[2]).printString());
 				//need add header - laub
     			System.out.println("End events: ");
+				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate() < SystemDate.getInstance()) {
-    					System.out.println(event.getEventID() + " | " + event.getEventName());
+    					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
     				}
     			}
     		}else {
