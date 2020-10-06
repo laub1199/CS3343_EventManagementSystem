@@ -15,7 +15,7 @@ public class EventAllocator {
 	public static EventAllocator getInstance(){return instance;}
 	
 	public void addEvent(String eName, String eID, int cap, Date eDate) throws ExInvalidEventID, ExInvalidEventDate {
-		if (findEventByID(eID) != null) {
+		if (findEventByID(eID) != null || eID.length() != 9 || eID.charAt(0) != 'e') {
 			throw new ExInvalidEventID();
 		}
 		if (eDate.before(new Date())) {
@@ -29,7 +29,7 @@ public class EventAllocator {
 		eventList.remove(event);
 	}
 
-	public void deleteEvent(String eID) {
+	public void deleteEvent(String eID) throws NullPointerException {
 		eventList.removeIf(e -> e.getEventID().equals(eID));
 	}
 	
