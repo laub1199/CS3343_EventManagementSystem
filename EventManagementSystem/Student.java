@@ -7,7 +7,7 @@ public class Student {
 
     //constructor
     public Student(String studentID, String major, String firstName, String lastName, char sex, int age) {
-        this.studentID = studentID; //length: 8
+        this.studentID = studentID; //length: 9 e.g. s12345678
         this.major = major; //length: 10
         this.firstName = firstName;  //length: 20
         this.lastName = lastName;  //length: 20

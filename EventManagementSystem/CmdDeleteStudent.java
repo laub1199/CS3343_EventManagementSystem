@@ -4,7 +4,7 @@ public class CmdDeleteStudent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length < 3) {
+            if (cmdParts.length != 3) {
                 throw new ExWrongCommand();
             }
             StudentHandler s = StudentHandler.getInstance();

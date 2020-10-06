@@ -26,17 +26,17 @@ public class StudentHandler {
         throw new ExStudentNotFound();
     }
 
-    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) throws ExStudentIDtooLong, ExMajorTooLong, ExFirstNameTooLong, ExLastNameTooLong, ExWrongSexInput, ExInvalidStudentID {
-        if (studentID.length() < 8) {
-            throw new ExStudentIDtooLong();
+    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) throws ExInvalidStudentID, ExMajorTooLong, ExFirstNameTooLong, ExLastNameTooLong, ExWrongSexInput {
+        if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            throw new ExInvalidStudentID();
         }
-        if (major.length() < 10) {
+        if (major.length() > 10) {
             throw new ExMajorTooLong();
         }
-        if (firstName.length() < 20) {
+        if (firstName.length() > 20) {
             throw new ExFirstNameTooLong();
         }
-        if (lastName.length() < 20) {
+        if (lastName.length() > 20) {
             throw new ExLastNameTooLong();
         }
         if (!(sex == 'M' || sex == 'F')) {
@@ -55,7 +55,7 @@ public class StudentHandler {
         studentList.remove(student);
     }
 
-    public void deleteStudent(String studentID) {
+    public void deleteStudent(String studentID) throws NullPointerException {
         studentList.removeIf(s -> s.getStudentID().equals(studentID));
     }
 }
