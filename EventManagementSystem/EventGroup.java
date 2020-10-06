@@ -27,6 +27,15 @@ public class EventGroup extends Event {
 	}
 	
 	@Override
+	public ArrayList<Student> getStudentList(){
+		ArrayList<Student> allStudentList = new ArrayList<Student>();
+		for(Group group:joinedGroupList) {
+			allStudentList.addAll(group.getStudentList());
+		}
+		return allStudentList;
+	}
+	
+	@Override
 	public void listJoinedStudent() {		
 		for (Group g:joinedGroupList) {
 			g.listStudentInGroup();

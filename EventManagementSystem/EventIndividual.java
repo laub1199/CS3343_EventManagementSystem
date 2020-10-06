@@ -21,6 +21,11 @@ public class EventIndividual extends Event {
 	}
 	
 	@Override
+	public ArrayList<Student> getStudentList(){
+		return joinedStudentList;
+	}
+	
+	@Override
 	public void listJoinedStudent() {
 		for (Student s:joinedStudentList) {
 			System.out.println(s.printString());

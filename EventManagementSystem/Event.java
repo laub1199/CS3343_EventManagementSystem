@@ -31,9 +31,15 @@ public abstract class Event {
 		return this.major;
 	}
 	
+	public Date getEventDate() {
+		return eventDate;
+	}
+	
 	public abstract boolean isFull();
 
 	public abstract void listJoinedStudent();
+	
+	public abstract ArrayList<Student> getStudentList();
 
 	public void printDetail() {
 		System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
