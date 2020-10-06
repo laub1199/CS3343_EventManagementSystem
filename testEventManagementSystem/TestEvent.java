@@ -1,4 +1,4 @@
-package TestEventManagementSystem;
+package testEventManagementSystem;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;

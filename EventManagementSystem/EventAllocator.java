@@ -14,17 +14,7 @@ public class EventAllocator {
 	
 	public static EventAllocator getInstance(){return instance;}
 	
-	public void addEvent(String eName, String eID, int cap, Date eDate) throws ExInvalidEventID, ExInvalidEventDate, ExInvalidEventCapacity {
-		if (findEventByID(eID) != null || eID.length() != 9 || eID.charAt(0) != 'e') {
-			throw new ExInvalidEventID();
-		}
-		if (eDate.before(new Date())) {
-			throw new ExInvalidEventDate();
-		}
-		if (cap < 1) {
-			throw new ExInvalidEventCapacity();
-		}
-		Event event = new EventIndividual(eName, eID, cap, eDate);
+	public void addEvent(Event event) {
 		eventList.add(event);
 	}
 	
