@@ -1,6 +1,7 @@
 package EventManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventAllocator {
 	
@@ -13,12 +14,26 @@ public class EventAllocator {
 	
 	public static EventAllocator getInstance(){return instance;}
 	
-	public void addEvent(Event event) {
-		getEventList().add(event);
+	public void addEvent(String eName, String eID, int cap, Date eDate) throws ExInvalidEventID, ExInvalidEventDate, ExInvalidEventCapacity {
+		if (findEventByID(eID) != null || eID.length() != 9 || eID.charAt(0) != 'e') {
+			throw new ExInvalidEventID();
+		}
+		if (eDate.before(new Date())) {
+			throw new ExInvalidEventDate();
+		}
+		if (cap < 1) {
+			throw new ExInvalidEventCapacity();
+		}
+		Event event = new EventIndividual(eName, eID, cap, eDate);
+		eventList.add(event);
 	}
 	
 	public void deleteEvent(Event event) {
 		getEventList().remove(event);
+	}
+
+	public void deleteEvent(String eID) throws NullPointerException {
+		eventList.removeIf(e -> e.getEventID().equals(eID));
 	}
 	
 	public void groupJoinEvent(Group group, EventGroup event) {
