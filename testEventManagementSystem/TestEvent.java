@@ -42,8 +42,7 @@ public class TestEvent {
 			result = eventAllocator.findEventByID("e12345");
 			assertEquals(event, result);
 		} catch (ExEventNotFound e) {
-			System.out.println(e.getMessage());
-			assertEquals(null, result);
+			//should not enter here
 		}
 	}
 	
@@ -55,9 +54,9 @@ public class TestEvent {
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e13579");
-			assertEquals(event, result);
+
+			//should not enter here
 		} catch (ExEventNotFound e) {
-			System.out.println(e.getMessage());
 			assertEquals(null, result);
 		}
 	}
@@ -72,8 +71,7 @@ public class TestEvent {
 			result = eventAllocator.findEventByID("e54321");
 			assertEquals(event, result);
 		} catch (ExEventNotFound e) {
-			System.out.println(e.getMessage());
-			assertEquals(null, result);
+			//should not enter here
 		}
 	}
 	
@@ -85,7 +83,8 @@ public class TestEvent {
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e13579");
-			assertEquals(event, result);
+			
+			//should not enter here
 		} catch (ExEventNotFound e) {
 			System.out.println(e.getMessage());
 			assertEquals(null, result);
@@ -133,26 +132,35 @@ public class TestEvent {
 	//test can find EventGroup By Group
 	@Test
 	public void testFindEventGroupByGroup01() {		
-		Event result;
+		Event result = null;
 		Event event = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
 		Group gp1 = new Group("g12345", 3);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		eventAllocator.addEvent(event);
-		result = eventAllocator.findEventByGroup(gp1);
-		assertEquals(event, result);
+		try {
+			result = eventAllocator.findEventByGroup(gp1);
+			assertEquals(event, result);
+		} catch (ExEventNotFound e) {
+			//should not enter here
+		}
 	}
 	
 	//test cannot find EventGroup By Group
 	@Test
 	public void testFindEventGroupByGroup02() {		
-		Event result;
+		Event result = null;
 		Event event = new EventGroup("Basketball competition", "e54321123", 90, new Date(), "CS", 8, 5, 15);
 		Group gp1 = new Group("g12345", 3);
 		Group gp2 = new Group("g54321", 4);
 		eventAllocator.groupJoinEvent(gp1, (EventGroup) event);
 		eventAllocator.addEvent(event);
-		result = eventAllocator.findEventByGroup(gp2);
-		assertEquals(null, result);
+		try {
+			result = eventAllocator.findEventByGroup(gp2);
+			
+			//should not enter here
+		} catch (ExEventNotFound e) {
+			assertEquals(null, result);
+		}
 	}
 	
 	//test can get EventGroupID

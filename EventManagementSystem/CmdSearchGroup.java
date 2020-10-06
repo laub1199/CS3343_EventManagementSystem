@@ -32,10 +32,13 @@ public class CmdSearchGroup implements Command {
     	}
     	catch (ExGroupNotFound e) {
 			System.out.println(e.getMessage());
-    	}
+    	} 
     	catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
-    	}
+    	} 
+    	catch (ExEventNotFound e) {
+			System.out.println(e.getMessage());
+		}
     	
     }
 }
