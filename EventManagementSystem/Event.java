@@ -13,7 +13,7 @@ public abstract class Event {
 	public Event(String eName, String eID, int cap, Date eDate) {
 		eventName = eName;
 		eventID = eID; //length: 9 e.g. e12345678
-		capacity = cap;
+		capacity = cap; // cap > 0
 		eventDate = eDate;
 	}
 	

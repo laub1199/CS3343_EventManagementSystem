@@ -16,7 +16,7 @@ public class CmdCreateEvent implements Command {
             instance.addEvent(cmdParts[2], cmdParts[3], Integer.parseInt(cmdParts[4]), eDate);
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExWrongCommand | ExInvalidEventID | ExInvalidEventDate e) {
+        } catch (ExWrongCommand | ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity e) {
             System.out.println(e.getMessage());
         } catch (ParseException e) {
             System.out.println("Wrong date format!");
