@@ -31,6 +31,9 @@ public class Main {
                     else if (cmdParts[1].equals("event")) {
                         (new CmdCreateEvent()).execute(cmdParts);
                     }
+                    else {
+                    	throw new ExWrongCommand();
+                    }
                 }
                 else if (cmdParts[0].equals("delete")) {
                     if (cmdParts[1].equals("student")) {
@@ -41,6 +44,9 @@ public class Main {
                     }
                     else if (cmdParts[1].equals("event")) {
                         (new CmdDeleteEvent()).execute(cmdParts);
+                    }
+                    else {
+                    	throw new ExWrongCommand();
                     }
                 }
                 else if (cmdParts[0].equals("list")) {
@@ -59,6 +65,9 @@ public class Main {
                     else if (cmdParts[1].equals("studentJoinedGroup")) {
                         (new CmdListStudentJoinedGroup()).execute(cmdParts);
                     }
+                    else {
+                    	throw new ExWrongCommand();
+                    }
                 }
                 else if (cmdParts[0].equals("studentJoin")) {
                     if (cmdParts[1].equals("group")) {
@@ -67,10 +76,16 @@ public class Main {
                     else if (cmdParts[1].equals("event")) {
                         (new CmdStudentJoinEvent()).execute(cmdParts);
                     }
+                    else {
+                    	throw new ExWrongCommand();
+                    }
                 }
                 else if (cmdParts[0].equals("groupJoin")) {
                     if (cmdParts[1].equals("event")) {
                         (new CmdGroupJoin()).execute(cmdParts);
+                    }
+                    else {
+                    	throw new ExWrongCommand();
                     }
                 }
                 else if (cmdParts[0].equals("search")) {
@@ -82,6 +97,9 @@ public class Main {
                     }
                     else if (cmdParts[1].equals("event")) {
                         (new CmdSearchEvent()).execute(cmdParts);
+                    }
+                    else {
+                    	throw new ExWrongCommand();
                     }
                 }
                 else if (cmdParts[0].equals("help")) {

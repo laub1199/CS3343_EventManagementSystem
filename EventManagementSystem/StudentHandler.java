@@ -11,9 +11,14 @@ public class StudentHandler {
     }
 
     public void listStudent() {
-        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
-        for (Student s: studentList) {
-            System.out.println(s.printString());
+    	if (studentList.size() > 0) {
+	        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+	        for (Student s: studentList) {
+	            System.out.println(s.printString());
+	        }
+	    }
+        else {
+			System.out.println("There are no student.");
         }
     }
 
@@ -26,29 +31,8 @@ public class StudentHandler {
         throw new ExStudentNotFound();
     }
 
-    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) throws ExInvalidStudentID, ExMajorTooLong, ExFirstNameTooLong, ExLastNameTooLong, ExWrongSexInput {
-        if (studentID.length() != 9 || studentID.charAt(0) != 's') {
-            throw new ExInvalidStudentID();
-        }
-        if (major.length() > 10) {
-            throw new ExMajorTooLong();
-        }
-        if (firstName.length() > 20) {
-            throw new ExFirstNameTooLong();
-        }
-        if (lastName.length() > 20) {
-            throw new ExLastNameTooLong();
-        }
-        if (!(sex == 'M' || sex == 'F')) {
-            throw new ExWrongSexInput();
-        }
-        for (Student s: studentList) {
-            if (s.getStudentID().equals(studentID)) {
-                throw new ExInvalidStudentID();
-            }
-        }
-        Student s = new Student(studentID, major, firstName, lastName, sex, age);
-        studentList.add(s);
+    public void createStudent(Student student) {
+        studentList.add(student);
     }
 
     public void deleteStudent(Student student) {

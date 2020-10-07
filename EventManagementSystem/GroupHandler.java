@@ -13,10 +13,15 @@ public class GroupHandler {
     public static GroupHandler getInstance(){return instance;}
     
     public void listGroup(){
-    	System.out.println("GroupID\tNumber Of Student");
-        for(Group group:groupList){
-            System.out.println(group);
-        }
+    	if (groupList.size() > 0) {
+	    	System.out.println("GroupID\tNumber Of Student");
+	        for(Group group:groupList){
+	            System.out.println(group);
+	        }
+    	}
+    	else {
+    		System.out.println("There are no group.");
+    	}
     }
     
     public Group getGroup(String groupID) throws ExGroupNotFound{
