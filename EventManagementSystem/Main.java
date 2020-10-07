@@ -85,6 +85,8 @@ public class Main {
                 }
                 else if (cmdParts[0].equals("help")) {
 
+                }else if(cmdParts[0].equals("recommend")){
+                    (new CmdRecommend()).execute(cmdParts);
                 }
                 else
                     throw new ExWrongCommand();

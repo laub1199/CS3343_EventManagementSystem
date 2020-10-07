@@ -1,6 +1,7 @@
 package EventManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventAllocator {
 	
@@ -14,7 +15,18 @@ public class EventAllocator {
 	public static EventAllocator getInstance(){return instance;}
 	
 	public void addEvent(Event event) {
-		getEventList().add(event);
+		int x=0;
+		for(int i=0;i<eventList.size();i++){
+			if(eventList.get(i).getEventDate().compareTo(event.getEventDate()) <= 0 && eventList.get(i+1).getEventDate().compareTo(event.getEventDate()) >= 0 ){
+				x=i;
+				break;
+			}
+
+		}
+		for (int j= eventList.size() ; j>x ;j--){
+			eventList.set(j, eventList.get(j - 1));
+		}
+		getEventList().add(x, event);
 	}
 	
 	public void deleteEvent(Event event) {
@@ -78,6 +90,5 @@ public class EventAllocator {
 	public ArrayList<Event> getEventList() {
 		return eventList;
 	}
-	
-	
+
 }
