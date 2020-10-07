@@ -38,7 +38,7 @@ public class CmdSearchGroup implements Command {
 			System.out.println("Search group command should be \"search group gXXXXXXXXX\"");
     	} 
     	catch (ExEventNotFound e) {
-			System.out.println(e.getMessage());
+			System.out.println("This group did not join event yet.");
 		}
     	
     }
