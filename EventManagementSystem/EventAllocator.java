@@ -86,7 +86,7 @@ public class EventAllocator {
 		return eventMajorList;
 	}
 	
-	public Event findEventByGroup(Group group) throws ExEventNotFound {
+	public Event findEventByGroup(Group group) throws ExEventNotFound, ExGroupNotFound {
 		for (Event e: getEventList()) {
 			if (((EventGroup) e).foundGroup(group)) {
 				return e;
