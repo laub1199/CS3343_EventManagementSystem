@@ -32,10 +32,6 @@ public class EventAllocator {
 	public void deleteEvent(Event event) {
 		eventList.remove(event);
 	}
-
-	public void deleteEvent(String eID) throws NullPointerException {
-		eventList.removeIf(e -> e.getEventID().equals(eID));
-	}
 	
 	public void groupJoinEvent(Group group, EventGroup event) {
 		event.addGroup(group);

@@ -38,8 +38,5 @@ public class StudentHandler {
     public void deleteStudent(Student student) {
         studentList.remove(student);
     }
-
-    public void deleteStudent(String studentID) throws NullPointerException {
-        studentList.removeIf(s -> s.getStudentID().equals(studentID));
-    }
+    
 }
