@@ -139,7 +139,7 @@ public class TestEvent {
 		try {
 			result = eventAllocator.findEventByGroup(gp1);
 			assertEquals(event, result);
-		} catch (ExEventNotFound e) {
+		} catch (ExEventNotFound | ExGroupNotFound e) {
 			//should not enter here
 		}
 	}
@@ -157,7 +157,7 @@ public class TestEvent {
 			result = eventAllocator.findEventByGroup(gp2);
 			
 			//should not enter here
-		} catch (ExEventNotFound e) {
+		} catch (ExEventNotFound | ExGroupNotFound e) {
 			assertEquals(null, result);
 		}
 	}
