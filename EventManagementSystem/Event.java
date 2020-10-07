@@ -22,10 +22,6 @@ public abstract class Event {
 	public String getEventID() {
 		return this.eventID;
 	}
-
-	public Date getEventDate(){
-		return this.eventDate;
-	}
 	
 	public String getEventName() {
 		return this.eventName;
