@@ -42,8 +42,14 @@ public abstract class Event {
 	public abstract ArrayList<Student> getStudentList();
 
 	public void printDetail() {
-		System.out.printf("%-10s|%-25s|%-28s|%-8d|%-25s|",eventID,eventName,eventDate.toString(),capacity,major);
+		System.out.printf("|%-10s|%-25s|%-28s|%-8d|%-25s|",eventID,eventName,eventDate.toString(),capacity,major);
 		//System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
+	}
+	
+	public boolean isStudentJoined(Student student) {
+		if (getStudentList().contains(student)) 
+			return true;
+		return false;
 	}
 	
 }

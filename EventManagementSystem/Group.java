@@ -34,7 +34,7 @@ public class Group{
 	
 	public boolean isFoundStudentById(String studentId) throws ExStudentNotFound{
 		for(Student student:studentList) {
-			if(student.getStudentID() == studentId) {
+			if(student.getStudentID().equals(studentId)) {
 				return true;
 			}
 		}
@@ -45,7 +45,8 @@ public class Group{
         studentList.remove(student);
     }
     public String toString() {
-    	return groupID + "\t" + getNumOfStudent() + "\t" +maxNumOfStudent;
+    	return String.format("|%-10s|%-18s|%-23s|",groupID, getNumOfStudent(), maxNumOfStudent);
+    	//return groupID + "\t" + getNumOfStudent() + "\t" +maxNumOfStudent;
     }
 }
 
