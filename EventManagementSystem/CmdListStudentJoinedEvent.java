@@ -7,7 +7,6 @@ public class CmdListStudentJoinedEvent implements Command {
     		if(cmdParts.length != 4) {
     			throw new ExWrongCommand();
     		}
-    		
     		EventAllocator eventAllocator = EventAllocator.getInstance();
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		//eventAllocator.findEventByStudent();
@@ -28,7 +27,7 @@ public class CmdListStudentJoinedEvent implements Command {
 				//need add header - laub
 				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
-    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate() > SystemDate.getInstance()) {
+    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().after(SystemDate.getInstance())) {
     					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
     				}
     			}
@@ -37,7 +36,7 @@ public class CmdListStudentJoinedEvent implements Command {
     			System.out.println("End events: ");
 				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
-    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate() < SystemDate.getInstance()) {
+    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().before(SystemDate.getInstance())) {
     					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
     				}
     			}

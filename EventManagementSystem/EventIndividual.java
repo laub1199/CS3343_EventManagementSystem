@@ -42,6 +42,6 @@ public class EventIndividual extends Event {
 		super.printDetail();
 		System.out.printf("%-5d|%-10s|%-15s|%-11s|%-16s|%-16s|\n",capacity-joinedStudentList.size(),"Individual","/","/","/","/");
 	}
-
+	
 
 }

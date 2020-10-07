@@ -46,5 +46,11 @@ public abstract class Event {
 		//System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
 	}
 	
+	public boolean isStudentJoined(Student student) {
+		if (getStudentList().contains(student)) 
+			return true;
+		return false;
+	}
+	
 }
 //remark: state pattern for different kind of event?
