@@ -17,14 +17,14 @@ public class TestEvent {
 	@BeforeEach
 	public void setUp() throws Exception { 
 		eventAllocator = new EventAllocator(); 
-		Student student1 = new Student("s12345123","Computer Science", "Mary", "Ng", 'F', 18);
-		Student student2 = new Student("s13579123","Computer Science", "Peter", "Chan", 'M', 20);
-		Student student3 = new Student("s24680123","Computer Science", "Simon", "Wong", 'M', 19);
-		Student student4 = new Student("s54321123","Computer Science", "Polly", "Chan", 'F', 22);
-		Student student5 = new Student("s11111123","Computer Science", "Tom", "Chan", 'M', 22);
-		Student student6 = new Student("s55555123","Data Science", "John", "Lee", 'M', 21);
-		Student student7 = new Student("s11111123","Science", "May", "Lam", 'F', 22);
-		Student student8 = new Student("s11111123","Science", "Chirtin", "Wong", 'F', 18);
+		Student student1 = new Student("s12345123","CS", "Mary", "Ng", 'F', 18);
+		Student student2 = new Student("s13579123","CS", "Peter", "Chan", 'M', 20);
+		Student student3 = new Student("s24680123","CS", "Simon", "Wong", 'M', 19);
+		Student student4 = new Student("s54321123","CS", "Polly", "Chan", 'F', 22);
+		Student student5 = new Student("s22222123","CS", "Tom", "Chan", 'M', 22);
+		Student student6 = new Student("s55555123","DS", "John", "Lee", 'M', 21);
+		Student student7 = new Student("s11111123","Sci", "May", "Lam", 'F', 22);
+		Student student8 = new Student("s33333123","Sci", "Chirtin", "Wong", 'F', 18);
 	}
     /**
      * Tears down the test fixture.
