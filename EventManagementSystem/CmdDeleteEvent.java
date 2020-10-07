@@ -7,12 +7,11 @@ public class CmdDeleteEvent implements Command {
             if (cmdParts.length != 3) {
                 throw new ExWrongCommand();
             }
-            EventAllocator instance = EventAllocator.getInstance();
-            instance.deleteEvent(cmdParts[2]);
-        } catch (ExWrongCommand e) {
+            EventAllocator eventAllocator = EventAllocator.getInstance();
+            Event event = eventAllocator.findEventByID(cmdParts[2]);
+            eventAllocator.deleteEvent(event);
+        } catch (ExWrongCommand | ExEventNotFound e) {
             System.out.println(e.getMessage());
-        } catch (NullPointerException e) {
-            System.out.println("Wrong event ID!");
-        }
+        } 
     }
 }

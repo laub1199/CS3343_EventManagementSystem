@@ -21,10 +21,6 @@ public class EventAllocator {
 	public void deleteEvent(Event event) {
 		getEventList().remove(event);
 	}
-
-	public void deleteEvent(String eID) throws NullPointerException {
-		eventList.removeIf(e -> e.getEventID().equals(eID));
-	}
 	
 	public void groupJoinEvent(Group group, EventGroup event) {
 		event.addGroup(group);
@@ -86,7 +82,7 @@ public class EventAllocator {
 		return eventMajorList;
 	}
 	
-	public Event findEventByGroup(Group group) throws ExEventNotFound {
+	public Event findEventByGroup(Group group) throws ExEventNotFound, ExGroupNotFound {
 		for (Event e: getEventList()) {
 			if (((EventGroup) e).foundGroup(group)) {
 				return e;

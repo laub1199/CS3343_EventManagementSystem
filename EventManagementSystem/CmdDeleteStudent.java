@@ -7,12 +7,11 @@ public class CmdDeleteStudent implements Command {
             if (cmdParts.length != 3) {
                 throw new ExWrongCommand();
             }
-            StudentHandler s = StudentHandler.getInstance();
-            s.deleteStudent(cmdParts[3]);
-        } catch (NullPointerException e) {
-            System.out.println("Wrong Student ID!");
-        } catch (ExWrongCommand e) {
+            StudentHandler studentHandler = StudentHandler.getInstance();
+            Student student = studentHandler.getStudent(cmdParts[2]);
+            studentHandler.deleteStudent(student);
+        } catch (ExWrongCommand | ExStudentNotFound e) {
             System.out.println(e.getMessage());
-        }
+        } 
     }
 }
