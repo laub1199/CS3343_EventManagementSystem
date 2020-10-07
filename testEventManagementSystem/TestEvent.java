@@ -42,7 +42,7 @@ public class TestEvent {
 			result = eventAllocator.findEventByID("e12345");
 			assertEquals(event, result);
 		} catch (ExEventNotFound e) {
-			//should not enter here
+			System.out.println("Wrong test case.");
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class TestEvent {
 		try {
 			result = eventAllocator.findEventByID("e13579123");
 
-			//should not enter here
+			System.out.println("Wrong test case.");
 		} catch (ExEventNotFound e) {
 			assertEquals(null, result);
 		}
@@ -71,7 +71,7 @@ public class TestEvent {
 			result = eventAllocator.findEventByID("e54321123");
 			assertEquals(event, result);
 		} catch (ExEventNotFound e) {
-			//should not enter here
+			System.out.println("Wrong test case.");
 		}
 	}
 	
@@ -83,8 +83,8 @@ public class TestEvent {
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByID("e13579123");
-			
-			//should not enter here
+
+			System.out.println("Wrong test case.");
 		} catch (ExEventNotFound e) {
 			assertEquals(null, result);
 		}
@@ -140,7 +140,7 @@ public class TestEvent {
 			result = eventAllocator.findEventByGroup(gp1);
 			assertEquals(event, result);
 		} catch (ExEventNotFound | ExGroupNotFound e) {
-			//should not enter here
+			System.out.println("Wrong test case.");
 		}
 	}
 	
@@ -155,8 +155,8 @@ public class TestEvent {
 		eventAllocator.addEvent(event);
 		try {
 			result = eventAllocator.findEventByGroup(gp2);
-			
-			//should not enter here
+
+			System.out.println("Wrong test case.");
 		} catch (ExEventNotFound | ExGroupNotFound e) {
 			assertEquals(null, result);
 		}

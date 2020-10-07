@@ -7,8 +7,9 @@ public class CmdDeleteGroup implements Command {
             if (cmdParts.length != 3) {
                 throw new ExWrongCommand();
             }
-            GroupHandler instance = GroupHandler.getInstance();
-            instance.deleteGroup(cmdParts[2]);
+            GroupHandler groupHandler = GroupHandler.getInstance();
+            Group group = groupHandler.getGroup(cmdParts[2]);
+            groupHandler.deleteGroup(group);
         } catch (ExWrongCommand | ExGroupNotFound e) {
             System.out.println(e.getMessage());
         }
