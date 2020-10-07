@@ -10,7 +10,7 @@ public class CmdSearchEvent implements Command {
     			throw new ExWrongCommand();
     		}
     		
-    		System.out.printf("%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+    		System.out.printf("|%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
     				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
     		
     		//search event by id

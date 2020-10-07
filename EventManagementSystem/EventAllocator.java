@@ -45,7 +45,7 @@ public class EventAllocator {
 	public void listEvent() {
 		
 		if (eventList.size() > 0) {
-			System.out.printf("%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+			System.out.printf("|%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
 					"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 			for (Event e: getEventList()) {
 				if (e instanceof EventIndividual) {

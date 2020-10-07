@@ -16,9 +16,11 @@ public class CmdSearchGroup implements Command {
     		Event event = eventAllocator.findEventByGroup(group);
     		
     		if (event != null) {
-	        	System.out.println("GroupID\tNumber Of Students\tMaximum Number Of Students\tEventID\tEvent Name");
+    			System.out.printf("|%-10s|%-18s|%-23s|%-10s|%-25s|","GroupID","Number Of Students","Max. Number Of Students","EventID","Event Name");
+	        	//System.out.println("GroupID\tNumber Of Students\tMaximum Number Of Students\tEventID\tEvent Name");
 		        System.out.print(group.toString());
-		        System.out.println(event.getEventID() + "\t" + event.getEventName());
+		        System.out.printf("%-10s|%-25s|\n",event.getEventID() ,event.getEventName());
+		        //System.out.println(event.getEventID() + "\t" + event.getEventName());
     		}
     		else {
     			System.out.println("GroupID\tNumber Of Students\tMaximum Number Of Students");

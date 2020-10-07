@@ -9,12 +9,12 @@ public class GroupHandler {
         groupList = new ArrayList<>();
     }
     
-    
     public static GroupHandler getInstance(){return instance;}
     
     public void listGroup(){
     	if (groupList.size() > 0) {
-	    	System.out.println("GroupID\tNumber Of Student");
+    		System.out.printf("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
+	    	//System.out.println("GroupID\tNumber Of Student");
 	        for(Group group:groupList){
 	            System.out.println(group);
 	        }
