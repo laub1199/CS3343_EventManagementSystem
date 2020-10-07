@@ -8,10 +8,11 @@ public class Main {
 
         System.out.println("Welcome to the Event Management System");
 
-        try {
+        
             String command;
             boolean exit = false;
             do {
+            	try {
                 System.out.println("Please enter your command: ");
                 
                 command = in.nextLine(); // get command from user
@@ -88,12 +89,13 @@ public class Main {
                 }
                 else
                     throw new ExWrongCommand();
-
+            	}
+                catch (ExWrongCommand e) {
+                    System.out.println("Unknown command - ignored!");
+                }
             } while (!exit);
-        }
-        catch (ExWrongCommand e) {
-            System.out.println("Unknown command - ignored!");
-        }
+        
+        
 
 
     }

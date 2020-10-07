@@ -5,7 +5,7 @@ public class CmdSearchStudent implements Command {
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	
     	try {
-    		if (cmdParts.length != 3) {
+    		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 's' || cmdParts[2].length() != 9) {
     			throw new ExWrongCommand();
     		}
     		StudentHandler studentHandler = StudentHandler.getInstance();
@@ -18,6 +18,7 @@ public class CmdSearchStudent implements Command {
     	}
     	catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
+			System.out.println("Search student command should be \"search student sXXXXXXXXX\"");
     	}
     	
     }

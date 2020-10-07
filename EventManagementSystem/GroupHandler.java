@@ -21,7 +21,7 @@ public class GroupHandler {
     
     public Group getGroup(String groupID) throws ExGroupNotFound{
         for(Group group:groupList){
-            if(groupID == group.getGroupID()){
+            if(groupID.equals(group.getGroupID())){
                 return group;
             }
         }

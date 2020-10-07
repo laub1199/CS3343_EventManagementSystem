@@ -23,20 +23,18 @@ public class CmdCreateGroup implements Command {
 	            if (numOfStudent <= 1) {
 	                throw new ExGroupStudentTooLess();
 	            }
-	            
-	            group = new Group(groupId, numOfStudent);
-	            instance.createGroup(group);
+	            instance.createGroup(new Group(groupId, numOfStudent));
             }
             finally {
             	if (group != null)
-            		throw new ExGroupNotFound();
+            		throw new ExInvalidGroupID();
             }
             
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExGroupNotFound | ExWrongCommand | ExInvalidGroupID | ExGroupStudentTooLess e) {
+        } catch (ExWrongCommand | ExInvalidGroupID | ExGroupStudentTooLess e) {
             System.out.println(e.getMessage());
-        } 
+        }
         
     }
 }

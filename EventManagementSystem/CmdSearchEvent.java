@@ -6,7 +6,7 @@ public class CmdSearchEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	try {
-    		if (cmdParts.length != 4 || !(cmdParts[2].equals("id")||cmdParts[2].equals("major"))) {
+    		if (cmdParts.length != 4 || !(cmdParts[2].equals("id")||cmdParts[2].equals("major")) || (cmdParts[2].equals("id") && (cmdParts[3].charAt(0) != 'e' || cmdParts[3].length() != 9))) {
     			throw new ExWrongCommand();
     		}
     		
@@ -50,6 +50,7 @@ public class CmdSearchEvent implements Command {
     	}
     	catch (ExWrongCommand e){
 			System.out.println(e.getMessage());
+			System.out.println("Search event command should be \"search event id eXXXXXXXXX\" or \"search event major XXXXXXXXX\"");
     	}
     	
     }
