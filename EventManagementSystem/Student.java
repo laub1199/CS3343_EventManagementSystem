@@ -7,7 +7,7 @@ public class Student {
 
     //constructor
     public Student(String studentID, String major, String firstName, String lastName, char sex, int age) {
-        this.studentID = studentID; //length: 8
+        this.studentID = studentID; //length: 9 e.g. s12345678
         this.major = major; //length: 10
         this.firstName = firstName;  //length: 20
         this.lastName = lastName;  //length: 20
@@ -24,7 +24,7 @@ public class Student {
     }
 
     public String printString() {
-        String s = String.format("|%s|%-20s|%-20s|%s|%-10s|%d|", studentID, firstName, lastName, sex, major, age);
+        String s = String.format("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3d|", studentID, firstName, lastName, sex, major, age);
         return s;
     }
 }

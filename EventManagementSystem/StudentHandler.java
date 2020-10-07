@@ -11,9 +11,14 @@ public class StudentHandler {
     }
 
     public void listStudent() {
-        System.out.println("Student list:");
-        for (Student s: studentList) {
-            System.out.println(s.printString());
+    	if (studentList.size() > 0) {
+	        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+	        for (Student s: studentList) {
+	            System.out.println(s.printString());
+	        }
+	    }
+        else {
+			System.out.println("There are no student.");
         }
     }
 
@@ -26,16 +31,15 @@ public class StudentHandler {
         throw new ExStudentNotFound();
     }
 
-    public void createStudent(String studentID, String major, String firstName, String lastName, char sex, int age) {
-        Student s = new Student(studentID, major, firstName, lastName, sex, age);
-        studentList.add(s);
+    public void createStudent(Student student) {
+        studentList.add(student);
     }
 
     public void deleteStudent(Student student) {
         studentList.remove(student);
     }
 
-    public void deleteStudent(String studentID) {
+    public void deleteStudent(String studentID) throws NullPointerException {
         studentList.removeIf(s -> s.getStudentID().equals(studentID));
     }
 }

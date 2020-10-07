@@ -7,7 +7,7 @@ public class Group{
     private int maxNumOfStudent;
     
     public Group(String groupID, int maxNumOfStudent){
-        this.groupID = groupID;
+        this.groupID = groupID; //length: 9 e.g. g12345678
         this.studentList = new ArrayList<>();
         this.maxNumOfStudent = maxNumOfStudent;
     }
@@ -31,14 +31,22 @@ public class Group{
 	public void addStudent(Student student){
         studentList.add(student);
     }
+	
+	public boolean isFoundStudentById(String studentId) throws ExStudentNotFound{
+		for(Student student:studentList) {
+			if(student.getStudentID().equals(studentId)) {
+				return true;
+			}
+		}
+		throw new ExStudentNotFound();
+	}
+	
 	public void deleteStudent(Student student){
         studentList.remove(student);
     }
     public String toString() {
-    	if (eventGroup == null)
-    		return groupID + "\t" + numOfStudent + "\t/\t/n";
-    	else
-    		return groupID + "\t" + numOfStudent + "\t" + eventGroup.getEventID() +"\t" + eventGroup.getEventName() + "\n";
+    	return String.format("|%-10s|%-18s|%-23s|",groupID, getNumOfStudent(), maxNumOfStudent);
+    	//return groupID + "\t" + getNumOfStudent() + "\t" +maxNumOfStudent;
     }
 }
 

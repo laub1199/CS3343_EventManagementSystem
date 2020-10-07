@@ -13,8 +13,8 @@ public abstract class Event {
 	
 	public Event(String eName, String eID, int cap, Date eDate, String maj) {
 		eventName = eName;
-		eventID = eID;
-		capacity = cap;
+		eventID = eID; //length: 9 e.g. e12345678
+		capacity = cap; // cap > 0
 		eventDate = eDate;
 		major = maj;
 	}
@@ -35,12 +35,25 @@ public abstract class Event {
 		return this.major;
 	}
 	
+	public Date getEventDate() {
+		return eventDate;
+	}
+	
 	public abstract boolean isFull();
 
 	public abstract void listJoinedStudent();
+	
+	public abstract ArrayList<Student> getStudentList();
 
 	public void printDetail() {
-		System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
+		System.out.printf("|%-10s|%-25s|%-28s|%-8d|%-25s|",eventID,eventName,eventDate.toString(),capacity,major);
+		//System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
+	}
+	
+	public boolean isStudentJoined(Student student) {
+		if (getStudentList().contains(student)) 
+			return true;
+		return false;
 	}
 	
 }
