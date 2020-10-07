@@ -83,6 +83,12 @@ public class Main {
                         (new CmdSearchEvent()).execute(cmdParts);
                     }
                 }
+                else if (cmdParts[0].equals("studentQuit")) {
+                    (new CmdStudentQuit()).execute(cmdParts);
+                }
+                else if (cmdParts[0].equals("groupQuit")) {
+                    (new CmdGroupQuit()).execute(cmdParts);
+                }
                 else if (cmdParts[0].equals("help")) {
 
                 }
