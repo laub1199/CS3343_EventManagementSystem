@@ -16,8 +16,10 @@ public class CmdGroupQuit implements Command {
             if (cmdParts[3].charAt(0) == 'e' && cmdParts[3].length() == 9) {
                 Event event = eventAllocator.findEventByID(cmdParts[3]);
                 if(event instanceof EventGroup) {
-                    ((EventGroup)event).quitGroup(group);
-                    System.out.println("Group" + cmdParts[2] + " has quited event " + cmdParts[3]);
+                    if(((EventGroup)event).foundGroup(group)) {
+                        ((EventGroup)event).quitGroup(group);
+                        System.out.println("Group" + cmdParts[2] + " has quited event " + cmdParts[3]);
+                    }
                 }
                 else  {
                     throw new ExInvalidGroupQuitCommand();

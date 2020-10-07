@@ -28,7 +28,7 @@ public class GroupHandler {
         throw new ExGroupNotFound();
     }
     
-    public void listGroupByStudentId(String studentId) {
+    public void listGroupByStudentId(String studentId) throws ExStudentNotFound {
     	for(Group group:groupList) {
     		if(group.isFoundStudentById(studentId)) {
     			System.out.println(group.toString());

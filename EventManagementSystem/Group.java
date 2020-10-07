@@ -32,13 +32,13 @@ public class Group{
         studentList.add(student);
     }
 	
-	public boolean isFoundStudentById(String studentId) {
+	public boolean isFoundStudentById(String studentId) throws ExStudentNotFound{
 		for(Student student:studentList) {
 			if(student.getStudentID() == studentId) {
 				return true;
 			}
 		}
-		return false;
+		throw new ExStudentNotFound();
 	}
 	
 	public void deleteStudent(Student student){
