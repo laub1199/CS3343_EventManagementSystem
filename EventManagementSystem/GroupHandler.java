@@ -9,31 +9,49 @@ public class GroupHandler {
         groupList = new ArrayList<>();
     }
     
-    
     public static GroupHandler getInstance(){return instance;}
+    
     public void listGroup(){
-    	System.out.println("GroupID\tNumber Of Student");
-        for(Group group:groupList){
-            System.out.println(group);
-        }
+    	if (groupList.size() > 0) {
+    		System.out.printf("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
+	    	//System.out.println("GroupID\tNumber Of Student");
+	        for(Group group:groupList){
+	            System.out.println(group);
+	        }
+    	}
+    	else {
+    		System.out.println("There are no group.");
+    	}
     }
+    
     public Group getGroup(String groupID) throws ExGroupNotFound{
         for(Group group:groupList){
-            if(groupID == group.getGroupID()){
+            if(groupID.equals(group.getGroupID())){
                 return group;
             }
         }
         throw new ExGroupNotFound();
     }
+    
+    public void listGroupByStudentId(String studentId) throws ExStudentNotFound {
+    	for(Group group:groupList) {
+    		if(group.isFoundStudentById(studentId)) {
+    			System.out.println(group.toString());
+    		}
+    	}
+    }
+    
     public ArrayList<Group> getGroupList(){
         return groupList;
     }
-    public void createGroup(String groupId, int numOfStudent){
-        groupList.add(new Group(groupId, numOfStudent));
+    public void createGroup(Group group) {
+        groupList.add(group);
     }
+    
     public void deleteGroup(Group group){
         groupList.remove(group);
     }
+    
     public void deleteGroup(String groupID) throws ExGroupNotFound{
         groupList.remove(getGroup(groupID));
     }
