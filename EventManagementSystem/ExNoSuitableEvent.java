@@ -2,6 +2,6 @@ package EventManagementSystem;
 
 public class ExNoSuitableEvent extends Exception {
 
-    public ExNoSuitableEvent() { super("There is no suitable event for you."); }
+    public ExNoSuitableEvent() { super("Sorry, there is no recommended event for you."); }
     public ExNoSuitableEvent(String msg) { super(msg); }
 }

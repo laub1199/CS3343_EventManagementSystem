@@ -37,8 +37,9 @@ public class CmdRecommend implements Command {
 
 
             if(emaj.isEmpty()){
-                System.out.println("There is no recommendation for your major!");
+                System.out.println("There is no recommended event from your department!");
             }else{
+                System.out.println("Here are the recommended events from your department:");
                 for(int j=0; j<2;j++){
                     if (emaj.get(j) instanceof EventIndividual) {
                         ((EventIndividual)emaj.get(j)).printDetail();
@@ -49,8 +50,9 @@ public class CmdRecommend implements Command {
                 }
             }
             if(eothers.isEmpty()){
-                System.out.println("There is no recommendation for event out of your major!");
+                System.out.println("There is no recommended event from other department!");
             }else{
+                System.out.println("Here are the recommended events outside your department");
                 for(int k=0; k<2;k++){
                     if (eothers.get(k) instanceof EventIndividual) {
                         ((EventIndividual)eothers.get(k)).printDetail();
