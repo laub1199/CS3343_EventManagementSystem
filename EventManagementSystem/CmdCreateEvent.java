@@ -28,6 +28,7 @@ public class CmdCreateEvent implements Command {
 				if (eDate.before(new Date())) {
 					throw new ExInvalidEventDate();
 				}
+				System.out.println(eCap < 1);
 				if (eCap < 1) {
 					throw new ExInvalidEventCapacity();
 				}
@@ -38,7 +39,7 @@ public class CmdCreateEvent implements Command {
 				}
 				else {
 					int gpCap = Integer.parseInt(cmdParts[7]), gpMin = Integer.parseInt(cmdParts[8]), gpMax = Integer.parseInt(cmdParts[9]);
-					if (gpCap < 1 || gpMin < 1 || gpMax < 1 || gpMax < gpMin || eCap <= gpCap || gpCap <= gpMin) {
+					if (gpCap < 1 || gpMin < 1 || gpMax < 1 || gpMax < gpMin || eCap <= gpCap) {
 						throw new ExInvalidEventCapacity();
 					}
 					event = new EventGroup(eName, eID, eCap, eDate, eMaj, gpCap, gpMin, gpMax);
