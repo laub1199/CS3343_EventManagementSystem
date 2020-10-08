@@ -23,46 +23,36 @@ public class CmdGroupJoin implements Command {
     		boolean groupExist;
     		
     		//does the event allow group join
-    		if(groupEvent instanceof EventGroup){
+    		if(groupEvent instanceof EventGroup==false){
+    			throw new ExNotGroupEvent();}
+    			
     			//does the event full already
-    			if(groupEvent.isFull()==false){
+    			if(groupEvent.isFull()==true){
+    				throw new ExEventGroupIsFull();}
+    			
     				//already joined the event or not
-    				try { groupExist = ((EventGroup) groupEvent).foundGroup(groupJoin)}
-    				catch (ExGroupNotFound e) {
+    				try { groupExist = ((EventGroup) groupEvent).foundGroup(groupJoin);}
+    				catch (ExGroupNotFound e) {// if catch this error, continue to validate 
     					System.out.println(e.getMessage());
     		    	}
-    				if(groupExist !=true){
-    					if(((EventGroup) groupEvent).getMinNumInOneJoin()<groupJoin.getNumOfStudent()){ {
-    		       			if(((EventGroup) groupEvent).getMaxNumInOneJoin()>groupJoin.getMaxNumOfStudent()){
+    				
+    				if(groupExist ==true){
+    					throw new ExGroupAlreadyJoinEvent();}
+    				
+    					if(((EventGroup) groupEvent).getMinNumInOneJoin()>groupJoin.getNumOfStudent()){ 
+    						throw new ExEventGroupMinNum();}
+    					
+    		       			if(((EventGroup) groupEvent).getMaxNumInOneJoin()<groupJoin.getMaxNumOfStudent()){
+    		       				throw new ExEventGroupMaxNum();}
+    		       			
     		       			        eventAllocator.groupJoinEvent(groupJoin,((EventGroup) groupEvent));
-    		       					System.out.print("Your group join the event successfully.");
-    		       				}
-    		       				else{
-    		       					System.out.print("Fail to join the event.The number of groupmate is more than the required minimum number of event.");	 
-    		       					};
-    						}}
-    						else{
-    		                   System.out.print("Fail to join the event. The number of groupmate is less than the required minimum number of event.");	 
-    							 };
-    					}
-    					else {
-    					 System.out.print("Fail to join the event as you already joined the event.");
-    						 };							 		
-    				}
-    						 	else
-    						 	{
-    						 		System.out.print("Fail to join the event. The number of participated group of this event has reached its maximum.");
-    						 	};
-    						 }else
-    						  {System.out.print("Fail to join the event. This event only allows individuals to join.");};
-    						 }
-		
-    	
-		
+    		       					System.out.print("Your group join the event successfully.");}
+    		
+    		       				
+    		    
 		//if the event not exist, group cant join the event
 		catch(ExEventNotFound e) {
 			System.out.println(e.getMessage());
 		}
-	}
-
-}
+	
+	}}

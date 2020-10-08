@@ -19,29 +19,20 @@ public class CmdStudentJoinEvent implements Command{
 			 Event individualEvent = eventAllocator.findEventByID(eventID);
 			 
 			 //does the event allow individual join
-			 if(individualEvent instanceof EventIndividual)
-				 {
+			 if(individualEvent instanceof EventIndividual == true )
+				 { throw new ExNotIndividualEvent();}
+			 
 				//does the event full already
-				 	if(individualEvent.isFull()==false)
-				 	{
+				 	if(individualEvent.isFull()==true)
+				 	 { throw new ExEventIndividualIsFull();}
+				 	
 				 		//already joined the event or not
-						 if(individualEvent.isStudentJoined(student)==false){
+						 if(individualEvent.isStudentJoined(student)==true)
+							 { throw new ExIndividualAlreadyJoinEvent();}
+						 
 								((EventIndividual) individualEvent).addStudent(student);
 								System.out.print("You join the event successfully.");	 
-						}
-						 else {
-							 System.out.print("Fail to join the event as you already joined the event.");
-							 }
-										 		
-				 	}
-				 	else
-				 	{
-				 		System.out.print("Fail to join the event. The number of participant of this event has reached its maximum.");
-				 	}
-				 }
-			 else{
-				 System.out.print("Fail to join the event. This event need to join in group.");
-			 };
+				 
 		 }
 		//no this student
 		 catch (ExStudentNotFound e) {
@@ -51,6 +42,6 @@ public class CmdStudentJoinEvent implements Command{
 		 catch (ExEventNotFound e){
 				System.out.println(e.getMessage());
 	    	}
-		 }
+	}
 
 }

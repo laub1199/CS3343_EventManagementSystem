@@ -22,11 +22,14 @@ public class CmdStudentJoinGroup implements Command{
 			 EventAllocator eventAllocator = EventAllocator.getInstance();
 			 Event groupJoinedEvent;
 			 //check student is in that group already or not
-			 if(group.isFoundStudentById(studentID)==false){
+			 if(group.isFoundStudentById(studentID)==true){
+				 throw new ExStudentAlreadyJoinedGroup();
+			 }
 				 
 				//check group is full or not
 				 if (group.getNumOfStudent()<group.getMaxNumOfStudent()){
-					 
+					 throw new ExGroupIsFull();}
+				 
 					 //if the group have joined a event, need to consider the event required group max number
 					 try {
 						 groupJoinedEvent = eventAllocator.findEventByGroup(group);
@@ -41,20 +44,8 @@ public class CmdStudentJoinGroup implements Command{
 					 else {
 						 System.out.print("Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.");
 					 }
-				 }
-				 else
-				 {
-					 System.out.print("Fail to join the group. The group is full.");
-					 }
-				 }
-					 				 
-			 else
-		 {
-				 System.out.print("Fail to join the group as you already joined the group.");
-				 }
-			 
-		 }
-
+				 }	 
+		 
 		//no this student
 		 catch (ExStudentNotFound e) {
 				System.out.println(e.getMessage());
@@ -63,4 +54,4 @@ public class CmdStudentJoinGroup implements Command{
 		 catch (ExGroupNotFound e) {
 				System.out.println(e.getMessage());
 	    	}
-		 }
+}}
