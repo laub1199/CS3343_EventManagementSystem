@@ -78,4 +78,8 @@ public class EventGroup extends Event {
 	public int getMinNumInOneJoin() {
 		return minNumInOneJoin;
 	}
+	
+	public int getMaxNumInOneJoin() {
+		return maxNumInOneJoin;
+	}
 }
