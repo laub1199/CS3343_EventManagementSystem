@@ -17,7 +17,8 @@ public class CmdCreateEvent implements Command {
             String eName = cmdParts[2], eID = cmdParts[3], eMaj = cmdParts[6];
             int eCap = Integer.parseInt(cmdParts[4]);
             Date eDate = new SimpleDateFormat("dd/MM/yyyy").parse(cmdParts[5]);
-            
+            if (eName.length() > 30)
+            	throw new ExFirstNameTooLong();
             Event eventFound = null;
     		try {
     			eventFound = instance.findEventByID(eID);
@@ -64,7 +65,7 @@ public class CmdCreateEvent implements Command {
             
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |ExInvalidEventGroupSize e) {
+        } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |ExInvalidEventGroupSize | ExFirstNameTooLong e) {
             System.out.println(e.getMessage());
         } catch (ParseException e) {
             System.out.println("Wrong date format!");

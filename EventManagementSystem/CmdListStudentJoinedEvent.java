@@ -27,29 +27,29 @@ public class CmdListStudentJoinedEvent implements Command {
     		
     		if(cmdParts[3] == "all") {
     			System.out.println("All events: ");
-				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
+				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(studentID))) {
-    					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
+    					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
 				// can use listEventFunction - laub
     		}else if(cmdParts[3] == "pending") {
     			System.out.println("Pending events: ");
 				//need add header - laub
-				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
+				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().after(SystemDate.getInstance())) {
-    					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
+    					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
     		}else if(cmdParts[3] == "end") {
 				//need add header - laub
     			System.out.println("End events: ");
-				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
+				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().before(SystemDate.getInstance())) {
-    					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
+    					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
     		}else {
