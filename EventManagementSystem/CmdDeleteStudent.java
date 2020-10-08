@@ -7,11 +7,25 @@ public class CmdDeleteStudent implements Command {
             if (cmdParts.length != 3) {
                 throw new ExWrongCommand();
             }
+            try {
+            	String sID = cmdParts[2];
+            	if (sID.length() != 9 || sID.charAt(0) != 's') {
+            		throw new ExInvalidStudentID();
+            	}
+            	Integer.parseInt(sID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
+            }
             StudentHandler studentHandler = StudentHandler.getInstance();
             Student student = studentHandler.getStudent(cmdParts[2]);
             studentHandler.deleteStudent(student);
-        } catch (ExWrongCommand | ExStudentNotFound e) {
+            System.out.println("Deleted student with StudentID: " + cmdParts[2] + ".");
+        } catch (ExStudentNotFound | ExInvalidStudentID e) {
             System.out.println(e.getMessage());
-        } 
+        } catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Delete student command should be \"delete student sXXXXXXXXX\"");
+    	} 
     }
 }

@@ -5,10 +5,19 @@ public class CmdSearchGroup implements Command {
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	
     	try {
-    		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'g' || cmdParts[2].length() != 9) {
+    		if (cmdParts.length != 3) {
     			throw new ExWrongCommand();
     		}
-    		
+    		try {
+            	String gID = cmdParts[2];
+            	if (gID.length() != 9 || gID.charAt(0) != 'g') {
+            		throw new ExInvalidGroupID();
+            	}
+            	Integer.parseInt(gID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidGroupID();
+            }
     		GroupHandler groupHandler = GroupHandler.getInstance();
     		Group group = groupHandler.getGroup(cmdParts[2]);
     		
@@ -32,7 +41,7 @@ public class CmdSearchGroup implements Command {
         	group.listStudentInGroup();
     		
     	}
-    	catch (ExGroupNotFound e) {
+    	catch (ExGroupNotFound | ExInvalidGroupID e) {
 			System.out.println(e.getMessage());
     	} 
     	catch (ExWrongCommand e) {

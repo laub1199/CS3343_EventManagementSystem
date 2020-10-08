@@ -7,24 +7,35 @@ public class CmdListStudentJoinedGroup implements Command {
     		if(cmdParts.length != 3 || !(cmdParts[2] instanceof String)) {
     			throw new ExWrongCommand();
     		}
-    		
+    		String studentID = null;
+    		try {
+    			studentID = cmdParts[2];
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            		throw new ExInvalidStudentID();
+            	}
+            	Integer.parseInt(studentID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
+            }
     		GroupHandler groupHandler = GroupHandler.getInstance();
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		
-    		System.out.println(studentHandler.getStudent(cmdParts[2]).printString());
+    		System.out.println(studentHandler.getStudent(studentID).printString());
     		System.out.println("Joined Group: ");
     		
     		for(Group group:groupHandler.getGroupList()) {
-    			if(group.getStudentList().contains(studentHandler.getStudent(cmdParts[2]))) {
+    			if(group.getStudentList().contains(studentHandler.getStudent(studentID))) {
     				System.out.println(group.toString());
     			}
     		}
     		
     		groupHandler.listGroupByStudentId(cmdParts[2]);
-    	}catch(ExWrongCommand e) {
+    	}catch(ExInvalidStudentID | ExStudentNotFound e) {
     		System.out.println(e.getMessage());
-    	}catch(ExStudentNotFound e) {
-    		System.out.println(e.getMessage());
-    	}
+    	} catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("List student joined group command should be \"list studentJoinedGroup sXXXXXXXX\"");
+    	} 
     }
 }

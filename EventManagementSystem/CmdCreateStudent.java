@@ -12,9 +12,17 @@ public class CmdCreateStudent implements Command {
             
             String studentID = cmdParts[2], major = cmdParts[3], firstName = cmdParts[4], lastName = cmdParts[5];
             int age = Integer.parseInt(cmdParts[7]);
-            if (studentID.length() != 9 || studentID.charAt(0) != 's') {
-                throw new ExInvalidStudentID();
+            
+            try {
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            		throw new ExInvalidStudentID();
+            	}
+            	Integer.parseInt(studentID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
             }
+            
             if (major.length() > 10) {
                 throw new ExMajorTooLong();
             }
@@ -34,6 +42,7 @@ public class CmdCreateStudent implements Command {
             } catch (ExStudentNotFound e) {
             	char sex = cmdParts[6].charAt(0);
             	studentHandler.createStudent(new Student(studentID, major, firstName, lastName, sex, age));
+            	System.out.println("Created student " + firstName + " " + lastName + " with StudentID: " + studentID + ".");
             }
             finally {
             	if (student != null) {
@@ -46,8 +55,11 @@ public class CmdCreateStudent implements Command {
             System.out.println("Wrong number format!");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Sex should be 1 character(M/F)!");
-        } catch (ExWrongCommand | ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID e) {
+        } catch (ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID e) {
             System.out.println(e.getMessage());
-        }
+        } catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Create student command should be \"create student sXXXXXXXXX\".");
+    	} 
     }
 }

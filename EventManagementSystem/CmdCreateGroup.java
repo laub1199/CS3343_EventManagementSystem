@@ -8,11 +8,17 @@ public class CmdCreateGroup implements Command {
                 throw new ExWrongCommand();
             }
             GroupHandler instance = GroupHandler.getInstance();
-            String groupId = cmdParts[2];
+            String groupId = null;
             int numOfStudent = Integer.parseInt(cmdParts[3]);
-            
-            if (groupId.length() != 9 || groupId.charAt(0) != 'g') {
-                throw new ExInvalidGroupID();
+            try {
+            	groupId = cmdParts[2];
+            	if (groupId.length() != 9 || groupId.charAt(0) != 'g') {
+            		throw new ExInvalidGroupID();
+            	}
+            	Integer.parseInt(groupId.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidGroupID();
             }
             Group group = null;
             try {
@@ -24,6 +30,7 @@ public class CmdCreateGroup implements Command {
 	                throw new ExGroupStudentTooLess();
 	            }
 	            instance.createGroup(new Group(groupId, numOfStudent));
+	            System.out.println("Created group with GroupID: " + groupId + ".");
             }
             finally {
             	if (group != null)
@@ -32,9 +39,12 @@ public class CmdCreateGroup implements Command {
             
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExWrongCommand | ExInvalidGroupID | ExGroupStudentTooLess e) {
+        } catch (ExInvalidGroupID | ExGroupStudentTooLess e) {
             System.out.println(e.getMessage());
-        }
+        } catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Create group command should be \"create group gXXXXXXXXX\".");
+    	} 
         
     }
 }

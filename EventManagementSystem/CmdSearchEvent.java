@@ -6,8 +6,20 @@ public class CmdSearchEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	try {
-    		if (cmdParts.length != 4 || !(cmdParts[2].equals("id")||cmdParts[2].equals("major")) || (cmdParts[2].equals("id") && (cmdParts[3].charAt(0) != 'e' || cmdParts[3].length() != 9))) {
+    		if (cmdParts.length != 4 || !(cmdParts[2].equals("id")||cmdParts[2].equals("major"))) {
     			throw new ExWrongCommand();
+    		}
+    		if (cmdParts[2].equals("id")) {
+    			try {
+                	String eID = cmdParts[3];
+                	if (eID.length() != 9 || eID.charAt(0) != 'e') {
+                		throw new ExInvalidEventID();
+                	}
+                	Integer.parseInt(eID.substring(1,8));
+                } 
+                catch (NumberFormatException ex) {
+                	throw new ExInvalidEventID();
+                }
     		}
     		
     		System.out.printf("|%-10s|%-25s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
@@ -45,7 +57,7 @@ public class CmdSearchEvent implements Command {
     		
     		
     	}
-    	catch (ExEventNotFound e){
+    	catch (ExEventNotFound | ExInvalidEventID e){
 			System.out.println(e.getMessage());
     	}
     	catch (ExWrongCommand e){

@@ -10,15 +10,23 @@ public class CmdStudentQuit implements Command {
             if (cmdParts.length != 3) {
                 throw new ExWrongCommand();
             }
-            if(cmdParts[2].charAt(0) != 's' || cmdParts[2].length() != 9) {
-                throw new ExInvalidStudentQuitCommand();
+            String studentID = null;
+    		try {
+    			studentID = cmdParts[2];
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            		throw new ExInvalidStudentID();
+            	}
+            	Integer.parseInt(studentID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
             }
-            Student student = studentHandler.getStudent(cmdParts[2]);
+            Student student = studentHandler.getStudent(studentID);
             if (cmdParts[3].charAt(0) == 'g' && cmdParts[3].length() == 9) {
                 Group group = groupHandler.getGroup(cmdParts[3]);
-                if (group.isFoundStudentById(cmdParts[2])) {
+                if (group.isFoundStudentById(studentID)) {
                     group.deleteStudent(student);
-                    System.out.println("Student" + cmdParts[2] + " has quited group " + cmdParts[3]);
+                    System.out.println("Student" + studentID + " has quited group " + cmdParts[3]);
                     EventGroup event = (EventGroup) (eventAllocator.findEventByGroup(group));
                     if (event != null) {
                         if (group.getNumOfStudent() < event.getMinNumInOneJoin()) {
@@ -59,9 +67,12 @@ public class CmdStudentQuit implements Command {
 
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExWrongCommand | ExInvalidStudentQuitCommand | ExInvalidID | ExStudentNotFound | ExGroupNotFound |
-                ExEventNotFound | ExInvalidEventGroupQuitCommand e) {
+        } catch (ExInvalidStudentQuitCommand | ExInvalidID | ExStudentNotFound | ExGroupNotFound |
+                ExEventNotFound | ExInvalidEventGroupQuitCommand | ExInvalidStudentID e) {
             System.out.println(e.getMessage());
-        }
+        } catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"");
+    	} 
     }
 }

@@ -9,8 +9,15 @@ public class CmdGroupQuit implements Command {
             if (cmdParts.length != 4) {
                 throw new ExWrongCommand();
             }
-            if (cmdParts[2].charAt(0) != 'g' || cmdParts[2].length() != 9) {
-                throw new ExInvalidGroupQuitCommand();
+            try {
+            	String gID = cmdParts[2];
+            	if (gID.length() != 9 || gID.charAt(0) != 'g') {
+            		throw new ExInvalidGroupID();
+            	}
+            	Integer.parseInt(gID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidGroupID();
             }
             Group group = groupHandler.getGroup(cmdParts[2]);
             if (cmdParts[3].charAt(0) == 'e' && cmdParts[3].length() == 9) {
@@ -30,8 +37,11 @@ public class CmdGroupQuit implements Command {
             }
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExWrongCommand | ExInvalidGroupQuitCommand | ExGroupNotFound | ExEventNotFound e) {
+        } catch (ExInvalidGroupQuitCommand | ExGroupNotFound | ExEventNotFound | ExInvalidGroupID e) {
             System.out.println(e.getMessage());
-        }
+        } catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Group quit command should be \"quit group gXXXXXXXXX\"");
+    	} 
     }
 }

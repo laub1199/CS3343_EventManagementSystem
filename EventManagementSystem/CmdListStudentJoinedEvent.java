@@ -7,17 +7,29 @@ public class CmdListStudentJoinedEvent implements Command {
     		if(cmdParts.length != 4) {
     			throw new ExWrongCommand();
     		}
+    		String studentID = null;
+    		try {
+    			studentID = cmdParts[2];
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            		throw new ExInvalidStudentID();
+            	}
+            	Integer.parseInt(studentID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
+            }
+    		
     		EventAllocator eventAllocator = EventAllocator.getInstance();
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		//eventAllocator.findEventByStudent();
     		
-    		System.out.println(studentHandler.getStudent(cmdParts[2]).printString());
+    		System.out.println(studentHandler.getStudent(studentID).printString());
     		
     		if(cmdParts[3] == "all") {
     			System.out.println("All events: ");
 				System.out.printf("%-12s|%s\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
-    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2]))) {
+    				if(event.getStudentList().contains(studentHandler.getStudent(studentID))) {
     					System.out.printf("%-12s|%s\n", event.getEventID(), event.getEventName());
     				}
     			}
@@ -43,10 +55,11 @@ public class CmdListStudentJoinedEvent implements Command {
     		}else {
     			throw new ExWrongCommand();
     		}
-    	}catch(ExWrongCommand e) {
+    	}catch(ExInvalidStudentID | ExStudentNotFound e) {
     		System.out.println(e.getMessage());
-    	}catch(ExStudentNotFound e) {
-    		System.out.println(e.getMessage());
-    	}
+    	} catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("List student joined event command should be \"list studentJoinedEvent sXXXXXXXX all\" or \"list studentJoinedEvent sXXXXXXXX pending\" or \"list studentJoinedEvent sXXXXXXXX end\" ");
+    	} 
     }
 }

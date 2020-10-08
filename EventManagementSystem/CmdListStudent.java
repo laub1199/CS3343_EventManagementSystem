@@ -10,8 +10,9 @@ public class CmdListStudent implements Command {
     		
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		studentHandler.listStudent();
-    	}catch(ExWrongCommand e) {
-    		System.out.println(e.getMessage());
-    	}
+    	} catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("List student command should be \"list student\"");
+    	} 
     }
 }

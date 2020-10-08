@@ -10,8 +10,9 @@ public class CmdListGroup implements Command {
     		
     		GroupHandler groupHandler = GroupHandler.getInstance();
     		groupHandler.listGroup();
-    	}catch(ExWrongCommand e){
-    		System.out.println(e.getMessage());
-    	}
+    	} catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("List group command should be \"list group\"");
+    	} 
     }
 }

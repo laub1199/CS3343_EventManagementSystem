@@ -7,11 +7,11 @@ public class CmdListEvent implements Command {
     		if (cmdParts.length != 2) {
     			throw new ExWrongCommand();
     		}
-    		
     		EventAllocator eventallocator = EventAllocator.getInstance();
     		eventallocator.listEvent();
-    	}catch(ExWrongCommand e){
-    		System.out.println(e.getMessage());
-    	}
+    	} catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("List event command should be \"list event\"");
+    	} 
     }
 }

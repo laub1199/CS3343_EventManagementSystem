@@ -5,15 +5,26 @@ public class CmdSearchStudent implements Command {
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	
     	try {
-    		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 's' || cmdParts[2].length() != 9) {
+    		if (cmdParts.length != 3) {
     			throw new ExWrongCommand();
     		}
+    		String studentID = null;
+    		try {
+    			studentID = cmdParts[2];
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            		throw new ExInvalidStudentID();
+            	}
+            	Integer.parseInt(studentID.substring(1,8));
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
+            }
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		Student student = studentHandler.getStudent(cmdParts[2]);
         	System.out.printf("|%s|%-20s|%-20s|%s|%-10s|%s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
         	System.out.println(student.printString());
     	}
-    	catch (ExStudentNotFound e) {
+    	catch (ExStudentNotFound | ExInvalidStudentID e) {
 			System.out.println(e.getMessage());
     	}
     	catch (ExWrongCommand e) {
