@@ -23,16 +23,10 @@ public class CmdCreateEvent implements Command {
     		try {
     			eventFound = instance.findEventByID(eID);
     		} catch (ExEventNotFound e) {	//if event id not found then enter the catch block to add new event
-    			try {
-                	if (eID.length() != 9 || eID.charAt(0) != 'e') {
-                		throw new ExInvalidEventID();
-                	}
-                	Integer.parseInt(eID.substring(1,8));
-                } 
-                catch (NumberFormatException ex) {
-                	throw new ExInvalidEventID();
-                }
-				if (eDate.before(new Date())) {
+	            if (eID.length() != 9 || eID.charAt(0) != 'e') {
+					throw new ExInvalidEventID();
+				}
+				if (eDate.before(SystemDate.getInstance())) {
 					throw new ExInvalidEventDate();
 				}
 				//System.out.println(eCap < 1);
