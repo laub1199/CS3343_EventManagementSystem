@@ -17,7 +17,7 @@ public class CmdCreateEvent implements Command {
             String eName = cmdParts[2], eID = cmdParts[3], eMaj = cmdParts[6];
             int eCap = Integer.parseInt(cmdParts[4]);
             Date eDate = new SimpleDateFormat("dd/MM/yyyy").parse(cmdParts[5]);
-            
+
             Event eventFound = null;
     		try {
     			eventFound = instance.findEventByID(eID);
@@ -25,7 +25,7 @@ public class CmdCreateEvent implements Command {
 	            if (eID.length() != 9 || eID.charAt(0) != 'e') {
 					throw new ExInvalidEventID();
 				}
-				if (eDate.before(new Date())) {
+				if (eDate.before(SystemDate.getInstance())) {
 					throw new ExInvalidEventDate();
 				}
 				System.out.println(eCap < 1);
