@@ -11,8 +11,7 @@ public class CmdCreateEvent implements Command {
             if (!(cmdParts.length == 7  || cmdParts.length == 10)) {
                 throw new ExWrongCommand();
             }
-            
-            EventAllocator instance = EventAllocator.getInstance();
+            EventAllocator eventAllocator = EventAllocator.getInstance();
             
             String eName = cmdParts[2], eID = cmdParts[3], eMaj = cmdParts[6];
             int eCap = Integer.parseInt(cmdParts[4]);
@@ -21,7 +20,7 @@ public class CmdCreateEvent implements Command {
             	throw new ExFirstNameTooLong();
             Event eventFound = null;
     		try {
-    			eventFound = instance.findEventByID(eID);
+    			eventFound = eventAllocator.findEventByID(eID);
     		} catch (ExEventNotFound e) {	//if event id not found then enter the catch block to add new event
 	            if (eID.length() != 9 || eID.charAt(0) != 'e') {
 					throw new ExInvalidEventID();
@@ -29,7 +28,6 @@ public class CmdCreateEvent implements Command {
 				if (eDate.before(SystemDate.getInstance())) {
 					throw new ExInvalidEventDate();
 				}
-				//System.out.println(eCap < 1);
 				if (eCap < 1) {
 					throw new ExInvalidEventCapacity();
 				}
@@ -49,7 +47,7 @@ public class CmdCreateEvent implements Command {
 					
 					event = new EventGroup(eName, eID, eCap, eDate, eMaj, gpCap, gpMin, gpMax);
 				}
-					instance.addEvent(event);
+					eventAllocator.addEvent(event);
 					System.out.println("Created " + eName + " event with EventID: " + eID + ".");
     		} finally {
     			if (eventFound != null)

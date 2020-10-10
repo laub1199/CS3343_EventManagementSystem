@@ -1,5 +1,7 @@
 package EventManagementSystem;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -7,8 +9,8 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the Event Management System");
-
-        
+        System.out.println("Please input today date.");
+        SystemDate.createTheInstance(in.nextLine()); // get command from user
             String command;
             boolean exit = false;
             do {
@@ -110,9 +112,10 @@ public class Main {
                 }
                 else if (cmdParts[0].equals("help")) {
 
-                }else if(cmdParts[0].equals("recommend")){
-                    (new CmdRecommend()).execute(cmdParts);
-                }
+				} /*
+					 * else if(cmdParts[0].equals("recommend")){ (new
+					 * CmdRecommend()).execute(cmdParts); }
+					 */
                 else
                     throw new ExWrongCommand();
             	}
