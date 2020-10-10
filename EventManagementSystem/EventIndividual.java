@@ -7,7 +7,7 @@ public class EventIndividual extends Event {
 	
 	private ArrayList<Student> joinedStudentList;
 
-	public EventIndividual(String eName, String eID, int cap, Date eDate, String maj) {
+	public EventIndividual(String eName, String eID, int cap, Day eDate, String maj) {
 		super(eName, eID, cap, eDate, maj);
 		joinedStudentList = new ArrayList<>();
 	}

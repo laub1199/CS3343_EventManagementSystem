@@ -15,7 +15,7 @@ public class CmdCreateEvent implements Command {
             
             String eName = cmdParts[2], eID = cmdParts[3], eMaj = cmdParts[6];
             int eCap = Integer.parseInt(cmdParts[4]);
-            Date eDate = new SimpleDateFormat("dd/MM/yyyy").parse(cmdParts[5]);
+            Day eDate = new Day(cmdParts[5]);
             if (eName.length() > 30)
             	throw new ExFirstNameTooLong();
             Event eventFound = null;
@@ -25,7 +25,7 @@ public class CmdCreateEvent implements Command {
 	            if (eID.length() != 9 || eID.charAt(0) != 'e') {
 					throw new ExInvalidEventID();
 				}
-				if (eDate.before(SystemDate.getInstance())) {
+				if (eDate.compareTo(SystemDate.getInstance()) < 0) {
 					throw new ExInvalidEventDate();
 				}
 				if (eCap < 1) {
@@ -59,8 +59,6 @@ public class CmdCreateEvent implements Command {
             System.out.println("Wrong number format!");
         } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |ExInvalidEventGroupSize | ExFirstNameTooLong e) {
             System.out.println(e.getMessage());
-        } catch (ParseException e) {
-            System.out.println("Wrong date format!");
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
 			System.out.println("Create event command should be \"create event eXXXXXXXXX\".");

@@ -8,10 +8,10 @@ public abstract class Event {
 	private String eventID;
 	private String eventName;
 	protected int capacity;
-	private Date eventDate;
+	private Day eventDate;
 	private String major;
 	
-	public Event(String eName, String eID, int cap, Date eDate, String maj) {
+	public Event(String eName, String eID, int cap, Day eDate, String maj) {
 		eventName = eName;
 		eventID = eID; //length: 9 e.g. e12345678
 		capacity = cap; // cap > 0
@@ -31,7 +31,7 @@ public abstract class Event {
 		return this.major;
 	}
 	
-	public Date getEventDate() {
+	public Day getEventDate() {
 		return eventDate;
 	}
 	

@@ -39,7 +39,7 @@ public class CmdListStudentJoinedEvent implements Command {
 				//need add header - laub
 				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
-    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().after(SystemDate.getInstance())) {
+    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().compareTo(SystemDate.getInstance()) > 0) {
     					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
@@ -48,7 +48,7 @@ public class CmdListStudentJoinedEvent implements Command {
     			System.out.println("End events: ");
 				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
-    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().before(SystemDate.getInstance())) {
+    				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().compareTo(SystemDate.getInstance()) < 0) {
     					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}

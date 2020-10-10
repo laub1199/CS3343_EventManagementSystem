@@ -9,7 +9,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the Event Management System");
-        System.out.println("Please input today date.");
+        System.out.println("Please input today date (e.g. 01-jan-2020).");
         SystemDate.createTheInstance(in.nextLine()); // get command from user
             String command;
             boolean exit = false;
