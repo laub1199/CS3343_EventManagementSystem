@@ -15,18 +15,28 @@ public class EventAllocator {
 	public static EventAllocator getInstance(){return instance;}
 	
 	public void addEvent(Event event) {
-		int position=0;
-		for(int i=0;i<eventList.size();i++){
-			if(eventList.get(i).getEventDate().compareTo(event.getEventDate()) <= 0 && eventList.get(i+1).getEventDate().compareTo(event.getEventDate()) >= 0 ){
-				position=i;
-				break;
+		int position=-1;
+		for(int i=0;i<eventList.size()-1;i++){
+			if(i == 0) {
+				if(event.getEventDate().compareTo(eventList.get(i).getEventDate()) < 0) {
+					position = i;
+					break;
+				}
 			}
-
+			else {
+				if( event.getEventDate().compareTo(eventList.get(i).getEventDate()) >= 0 &&
+					event.getEventDate().compareTo(eventList.get(i+1).getEventDate()) < 0) {
+					position = i;
+					break;
+				}
+			}
 		}
-		for (int j= eventList.size() ; j>position ;j--){
-			eventList.set(j, eventList.get(j - 1));
+		if(position != -1) {
+			eventList.add(position, event);
 		}
-		eventList.add(position, event);
+		else {
+			eventList.add(event);
+		}
 	}
 	
 	public void deleteEvent(Event event) {
