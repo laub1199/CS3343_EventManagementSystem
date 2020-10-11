@@ -1,12 +1,13 @@
 package EventManagementSystem;
 
 public class Student {
-    private String studentID, major, firstName, lastName;
+    private String studentID, firstName, lastName;
     private char sex;
     private int age;
+    private Major major;
 
     //constructor
-    public Student(String studentID, String major, String firstName, String lastName, char sex, int age) {
+    public Student(String studentID, Major major, String firstName, String lastName, char sex, int age) {
         this.studentID = studentID; //length: 9 e.g. s12345678
         this.major = major; //length: 10
         this.firstName = firstName;  //length: 20
@@ -20,11 +21,10 @@ public class Student {
     }
 
     public String getMajor() {
-        return major;
+        return major.getMajorFullTitle();
     }
 
     public String printString() {
-        String s = String.format("|%-9s|%-20s|%-20s|%-3s|%-10s|%-3d|", studentID, firstName, lastName, sex, major, age);
-        return s;
+    	return String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|", studentID, firstName, lastName, sex, getMajor(), age);
     }
 }

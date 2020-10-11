@@ -13,8 +13,12 @@ public class CmdCreateEvent implements Command {
             }
             EventAllocator eventAllocator = EventAllocator.getInstance();
             
-            String eName = cmdParts[2], eID = cmdParts[3], eMaj = cmdParts[6];
+            String eName = cmdParts[2], eID = cmdParts[3];
             int eCap = Integer.parseInt(cmdParts[4]);
+            Major eMaj = Major.getMajor(cmdParts[6]);
+            if(eMaj == null) {
+            	throw new ExMajorNotFound();
+            }
             Day eDate = new Day(cmdParts[5]);
             if (eName.length() > 30)
             	throw new ExFirstNameTooLong();
@@ -64,7 +68,7 @@ public class CmdCreateEvent implements Command {
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
         } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |
-				ExInvalidEventGroupSize | ExFirstNameTooLong | ExDateFormatDay | ExDateFormatMonth |
+				ExInvalidEventGroupSize | ExFirstNameTooLong | ExDateFormatDay | ExDateFormatMonth | ExMajorNotFound|
 				ExDateFormatYear | ExInvalidDate e) {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {

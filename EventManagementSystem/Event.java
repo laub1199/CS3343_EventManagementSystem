@@ -9,9 +9,10 @@ public abstract class Event {
 	private String eventName;
 	protected int capacity;
 	private Day eventDate;
-	private String major;
-	
-	public Event(String eName, String eID, int cap, Day eDate, String maj) {
+	//private String major;
+	private Major major;
+
+	public Event(String eName, String eID, int cap, Day eDate, Major maj) {
 		eventName = eName;
 		eventID = eID; //length: 9 e.g. e12345678
 		capacity = cap; // cap > 0
@@ -28,7 +29,7 @@ public abstract class Event {
 	}
 	
 	public String getMajor() {
-		return this.major;
+		return this.major.getMajorFullTitle();
 	}
 	
 	public Day getEventDate() {
@@ -42,7 +43,7 @@ public abstract class Event {
 	public abstract ArrayList<Student> getStudentList();
 
 	public void printDetail() {
-		System.out.printf("|%-10s|%-30s|%-12s|%-8d|%-6s|",eventID,eventName,eventDate.toString(),capacity,major);
+		System.out.printf("|%-10s|%-30s|%-12s|%-8d|%-30s|",eventID,eventName,eventDate.toString(),capacity,getMajor());
 		//System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
 	}
 	
