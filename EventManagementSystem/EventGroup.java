@@ -66,13 +66,13 @@ public class EventGroup extends Event {
 		return numOfStudent;
 	}
 	
-	public boolean foundGroup(Group group) throws ExGroupNotFound {
+	public boolean foundGroup(Group group) {
 		for (Group gp: joinedGroupList) {
 			if (gp.equals(group)) {
 				return true;
 			}
 		}
-		throw new ExGroupNotFound();
+		return false;
 	}
 
 	public int getMinNumInOneJoin() {

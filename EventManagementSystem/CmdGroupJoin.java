@@ -35,7 +35,7 @@ public class CmdGroupJoin implements Command {
 			//already joined the event or not
 			groupExist = ((EventGroup) groupEvent).foundGroup(groupJoin);
 
-			if(groupExist ==true){
+			if(groupExist == true){
 				throw new ExGroupAlreadyJoinEvent();
 			}
 			if(((EventGroup) groupEvent).getMinNumInOneJoin()>groupJoin.getNumOfStudent()){

@@ -36,6 +36,12 @@ public class CmdStudentQuit implements Command {
                             System.out.println("Group " + cmdParts[3] + " is forced to quit event " + event.getEventID());
                         }
                     }
+                    else {
+                        throw new ExEventNotFound();
+                    }
+                }
+                else {
+                    throw new ExStudentNotFound();
                 }
             }
             else if (cmdParts[3].charAt(0) == 'e' && cmdParts[3].length() == 9) {

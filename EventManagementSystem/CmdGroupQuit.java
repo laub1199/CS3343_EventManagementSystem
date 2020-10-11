@@ -26,6 +26,9 @@ public class CmdGroupQuit implements Command {
                         ((EventGroup)event).quitGroup(group);
                         System.out.println("Group" + cmdParts[2] + " has quited event " + cmdParts[3]);
                     }
+                    else {
+                        throw new ExGroupNotFound();
+                    }
                 }
                 else  {
                     throw new ExInvalidGroupQuitCommand();

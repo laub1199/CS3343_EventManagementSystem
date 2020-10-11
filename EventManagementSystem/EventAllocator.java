@@ -103,13 +103,13 @@ public class EventAllocator {
 		return eventMajorList;
 	}
 	
-	public Event findEventByGroup(Group group) throws ExEventNotFound, ExGroupNotFound {
+	public Event findEventByGroup(Group group) {
 		for (Event e: getEventList()) {
 			if (((EventGroup) e).foundGroup(group)) {
 				return e;
 			}
 		}
-		throw new ExEventNotFound();
+		return null;
 	}
 	
 	public ArrayList<Event> getEventList() {

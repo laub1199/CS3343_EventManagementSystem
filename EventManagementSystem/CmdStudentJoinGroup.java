@@ -20,28 +20,30 @@ public class CmdStudentJoinGroup implements Command {
 			GroupHandler groupHandler = GroupHandler.getInstance();
 			Group group = groupHandler.getGroup(groupID);
 
+
 			EventAllocator eventAllocator = EventAllocator.getInstance();
 			Event groupJoinedEvent;
+
 			//check student is in that group already or not
 			if (group.isFoundStudentById(studentID) == true) {
 				throw new ExStudentAlreadyJoinedGroup();
 			}
 
 			//check group is full or not
-			if (group.getNumOfStudent() < group.getMaxNumOfStudent()) {
+			if (group.getNumOfStudent() >= group.getMaxNumOfStudent()) {
 				throw new ExGroupIsFull();
 			}
 
 			//if the group have joined a event, need to consider the event required group max number
-				groupJoinedEvent = eventAllocator.findEventByGroup(group);
+			groupJoinedEvent = eventAllocator.findEventByGroup(group);
 			if (groupJoinedEvent == null) {
 				group.addStudent(student);
-				System.out.print("You joined the group successfully.");
+				System.out.println("You joined the group successfully.");
 			} else {
-				System.out.print("Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.");
+				System.out.println("Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.");
 			}
 		} catch (ExStudentNotFound | ExWrongCommand | ExGroupNotFound | ExStudentAlreadyJoinedGroup |
-				ExEventNotFound | ExGroupIsFull e) {
+				ExGroupIsFull e) {
 			System.out.println(e.getMessage());
 		}
 	}
