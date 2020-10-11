@@ -13,9 +13,6 @@ public class CmdCreateStudent implements Command {
             String studentID = cmdParts[2], firstName = cmdParts[4], lastName = cmdParts[5];
             int age = Integer.parseInt(cmdParts[7]);
             Major major = Major.getMajor(cmdParts[3]);
-            if(major == null) {
-            	throw new ExMajorNotFound();
-            }
             try {
             	if (studentID.length() != 9 || studentID.charAt(0) != 's' || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();

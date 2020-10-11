@@ -93,10 +93,10 @@ public class EventAllocator {
 		throw new ExEventNotFound();
 	}
 	
-	public ArrayList<Event> findEventByMajor(String major) {
+	public ArrayList<Event> findEventByMajor(Major major) {
 		ArrayList<Event> eventMajorList = new ArrayList<>();
 		for (Event e: getEventList()) {
-			if (e.getMajor().equals(major)) {
+			if (e.getMajor().equals(major.getMajorFullTitle())) {
 				eventMajorList.add(e);
 			}
 		}

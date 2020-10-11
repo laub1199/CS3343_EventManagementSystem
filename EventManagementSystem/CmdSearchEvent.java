@@ -37,7 +37,7 @@ public class CmdSearchEvent implements Command {
     		
     		//search event by major
     		else if (cmdParts[2].equals("major")){	
-		    	String major = cmdParts[3];
+    			Major major = Major.getMajor(cmdParts[3]);
 		    	ArrayList<Event> foundEventList = eventAllocator.findEventByMajor(major);
 		    	if (foundEventList.size() == 0) {
 		    		throw new ExEventNotFound();
@@ -56,7 +56,7 @@ public class CmdSearchEvent implements Command {
     		
     		
     	}
-    	catch (ExEventNotFound | ExInvalidEventID e){
+    	catch (ExEventNotFound | ExInvalidEventID | ExMajorNotFound e){
 			System.out.println(e.getMessage());
     	}
     	catch (ExWrongCommand e){

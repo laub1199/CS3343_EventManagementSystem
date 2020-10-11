@@ -16,9 +16,6 @@ public class CmdCreateEvent implements Command {
             String eName = cmdParts[2], eID = cmdParts[3];
             int eCap = Integer.parseInt(cmdParts[4]);
             Major eMaj = Major.getMajor(cmdParts[6]);
-            if(eMaj == null) {
-            	throw new ExMajorNotFound();
-            }
             Day eDate = new Day(cmdParts[5]);
             if (eName.length() > 30)
             	throw new ExFirstNameTooLong();

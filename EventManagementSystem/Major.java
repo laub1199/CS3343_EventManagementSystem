@@ -21,12 +21,12 @@ public enum Major {
 		return major;
 	}
 	
-	public static Major getMajor(String major) {
-		for (Major _enum : values()) {
-			if(_enum.getName().equals(major)) {
-				return _enum;
+	public static Major getMajor(String major) throws ExMajorNotFound {
+		for (Major m : values()) {
+			if(m.getName().equals(major)) {
+				return m;
 			}
 		}
-		return null;
+		throw new ExMajorNotFound();
 	}
 }
