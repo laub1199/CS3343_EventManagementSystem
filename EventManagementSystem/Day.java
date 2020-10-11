@@ -8,7 +8,8 @@ public class Day implements Cloneable{
     private int year;
     private int month;
     private int day;
-    private static final String MonthNames = "JanFebMarAprMayJunJulAugSepOctNovDec";
+    private static final String[] MonthNamesArr =
+        new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     //Constructor
     public Day(int y, int m, int d) {
         this.year=y;
@@ -30,9 +31,7 @@ public class Day implements Cloneable{
     }
 
     // check if y,m,d valid
-    static public boolean valid(int y, int m, int d)
-    {
-        if (m<1 || m>12 || d<1) return false;
+    static public boolean valid(int y, int m, int d) throws ExInvalidDate {
         switch(m){
             case 1: case 3: case 5: case 7:
             case 8: case 10: case 12:
@@ -45,25 +44,35 @@ public class Day implements Cloneable{
                 else
                     return d<=28;
         }
-        return false;
+        throw new ExInvalidDate();
     }
 
-    public void set(String sDay) //Set year,month,day based on a string like 01-Mar-2019
+    //Set year,month,day based on a string like 01-Mar-2019
+    public void set(String sDay) throws ExDateFormatDay, ExDateFormatMonth, ExDateFormatYear, ExInvalidDate
     {
         String[] sDayParts = sDay.split("-");
-        this.day = Integer.parseInt(sDayParts[0]); //Apply Integer.parseInt for sDayParts[0];
-        this.year = Integer.parseInt(sDayParts[2]);
-        this.month = MonthNames.indexOf(sDayParts[1])/3+1;
+        if (this.isValidDay(sDayParts[0]) && this.isValidMonth(sDayParts[1]) && this.isValidYear(sDayParts[2])) {
+            int month = this.strMonthToInt(sDayParts[1]);
+            if(this.valid(Integer.parseInt(sDayParts[2]), month,
+                    Integer.parseInt(sDayParts[0]))) {
+                this.day = Integer.parseInt(sDayParts[0]); //Apply Integer.parseInt for sDayParts[0];
+                this.year = Integer.parseInt(sDayParts[2]);
+                this.month = month;
+            }
+            else {
+                throw new ExInvalidDate();
+            }
+        }
     }
 
-    public Day(String sDay) {
+    public Day(String sDay) throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
         set(sDay);
     } //Constructor, simply call set(sDay)
 
     @Override
     public String toString()
     {
-        return day+"-"+ MonthNames.substring((month-1)*3, (month)*3) + "-"+ year; // (month-1)*3,(month)*3
+        return day+"-"+ MonthNamesArr[month-1] + "-"+ year;
     }
     @Override
     public Day clone() throws CloneNotSupportedException {
@@ -118,5 +127,39 @@ public class Day implements Cloneable{
         else {
             return -1;
         }
+    }
+
+    public boolean isValidDay(String day) throws ExDateFormatDay {
+        if(Integer.parseInt(day) > 0 && Integer.parseInt(day) <=31) {
+            return true;
+        }
+        throw new ExDateFormatDay();
+    }
+
+    public boolean isValidMonth(String month) throws ExDateFormatMonth {
+        for (String m : MonthNamesArr) {
+            if(m.toLowerCase().equals(month.toLowerCase())) {
+                return true;
+            }
+        }
+        throw new ExDateFormatMonth();
+    }
+
+    public boolean isValidYear(String year) throws ExDateFormatYear {
+        if(Integer.parseInt(year) > 0) {
+            return true;
+        }
+        throw new ExDateFormatYear();
+    }
+
+    public int strMonthToInt(String month) {
+        int index = 1;
+        for (String m : MonthNamesArr) {
+            if(m.toLowerCase().equals(month.toLowerCase())) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 }
