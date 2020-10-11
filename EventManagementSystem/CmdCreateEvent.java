@@ -22,9 +22,15 @@ public class CmdCreateEvent implements Command {
     		try {
     			eventFound = eventAllocator.findEventByID(eID);
     		} catch (ExEventNotFound e) {	//if event id not found then enter the catch block to add new event
-	            if (eID.length() != 9 || eID.charAt(0) != 'e') {
-					throw new ExInvalidEventID();
-				}
+	            try {	//this try... catch... block is checking event id format
+	    			if (eID.length() != 9 || eID.charAt(0) != 'e' || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+						throw new ExInvalidEventID();
+					}
+	            }
+	            catch (NumberFormatException ex) {
+	            	throw new ExInvalidEventID();
+	            }
+	            
 				if (eDate.compareTo(SystemDate.getInstance()) < 0) {
 					throw new ExInvalidEventDate();
 				}
@@ -57,9 +63,7 @@ public class CmdCreateEvent implements Command {
             
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |
-				ExInvalidEventGroupSize | ExFirstNameTooLong | ExDateFormatDay | ExDateFormatMonth |
-				ExDateFormatYear | ExInvalidDate e) {
+        } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |ExInvalidEventGroupSize | ExFirstNameTooLong e) {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());

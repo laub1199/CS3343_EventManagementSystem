@@ -12,10 +12,9 @@ public class CmdCreateGroup implements Command {
             int numOfStudent = Integer.parseInt(cmdParts[3]);
             try {
             	groupId = cmdParts[2];
-            	if (groupId.length() != 9 || groupId.charAt(0) != 'g') {
+            	if (groupId.length() != 9 || groupId.charAt(0) != 'g' || Integer.parseInt(groupId.substring(1,8)) < 0 || Integer.parseInt(groupId.substring(1,8)) > 99999999) {
             		throw new ExInvalidGroupID();
             	}
-            	Integer.parseInt(groupId.substring(1,8));
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidGroupID();

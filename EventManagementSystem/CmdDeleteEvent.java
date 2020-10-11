@@ -9,10 +9,9 @@ public class CmdDeleteEvent implements Command {
             }
             try {
             	String eID = cmdParts[2];
-            	if (eID.length() != 9 || eID.charAt(0) != 'e') {
+            	if (eID.length() != 9 || eID.charAt(0) != 'e' || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
             		throw new ExInvalidEventID();
             	}
-            	Integer.parseInt(eID.substring(1,8));
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidEventID();

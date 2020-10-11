@@ -9,10 +9,9 @@ public class CmdDeleteGroup implements Command {
             }
             try {
             	String gID = cmdParts[2];
-            	if (gID.length() != 9 || gID.charAt(0) != 'g') {
+            	if (gID.length() != 9 || gID.charAt(0) != 'g' || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
             		throw new ExInvalidGroupID();
             	}
-            	Integer.parseInt(gID.substring(1,8));
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidGroupID();

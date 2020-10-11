@@ -10,8 +10,17 @@ public class CmdRecommend implements Command {
 
 
         try{
-            if (cmdParts[1].length() != 9 || cmdParts[1].charAt(0) != 's') {
-                throw new ExInvalidStudentID();
+        	if (cmdParts.length != 2) {
+                throw new ExWrongCommand();
+            }
+            try {
+            	String sID = cmdParts[2];
+            	if (sID.length() != 9 || sID.charAt(0) != 's' || Integer.parseInt(sID.substring(1,8)) <0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
+            		throw new ExInvalidStudentID();
+            	}
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
             }
 
             StudentHandler studentHandler = StudentHandler.getInstance();
@@ -69,12 +78,11 @@ public class CmdRecommend implements Command {
             }
 
 
-        }catch(ExNoSuitableEvent e){
+        }catch(ExNoSuitableEvent | ExStudentNotFound | ExInvalidStudentID e){
             System.out.println(e.getMessage());
-        }catch(ExStudentNotFound e){
-            System.out.println(e.getMessage());
-        }catch(ExInvalidStudentID e){
-            System.out.println(e.getMessage());
+        }catch(ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Delete student command should be \"recommend sXXXXXXXXX\"");
         }
     }
 }

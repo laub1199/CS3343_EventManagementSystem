@@ -11,10 +11,9 @@ public class CmdSearchStudent implements Command {
     		String studentID = null;
     		try {
     			studentID = cmdParts[2];
-            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's' || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
-            	Integer.parseInt(studentID.substring(1,8));
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidStudentID();

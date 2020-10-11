@@ -14,10 +14,9 @@ public class CmdCreateStudent implements Command {
             int age = Integer.parseInt(cmdParts[7]);
             
             try {
-            	if (studentID.length() != 9 || studentID.charAt(0) != 's') {
+            	if (studentID.length() != 9 || studentID.charAt(0) != 's' || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
-            	Integer.parseInt(studentID.substring(1,8));
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidStudentID();
