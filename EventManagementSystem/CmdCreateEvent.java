@@ -63,7 +63,9 @@ public class CmdCreateEvent implements Command {
             
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |ExInvalidEventGroupSize | ExFirstNameTooLong e) {
+        } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |
+				ExInvalidEventGroupSize | ExFirstNameTooLong | ExDateFormatDay | ExDateFormatMonth |
+				ExDateFormatYear | ExInvalidDate e) {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
