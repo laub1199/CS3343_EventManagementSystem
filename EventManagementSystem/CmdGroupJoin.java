@@ -24,34 +24,34 @@ public class CmdGroupJoin implements Command {
     		
     		//does the event allow group join
     		if(groupEvent instanceof EventGroup==false){
-    			throw new ExNotGroupEvent();}
+    			throw new ExNotGroupEvent();
+    		}
     			
-    			//does the event full already
-    			if(groupEvent.isFull()==true){
-    				throw new ExEventGroupIsFull();}
-    			
-    				//already joined the event or not
-    				try { groupExist = ((EventGroup) groupEvent).foundGroup(groupJoin);}
-    				catch (ExGroupNotFound e) {// if catch this error, continue to validate 
-    					System.out.println(e.getMessage());
-    		    	}
-    				
-    				if(groupExist ==true){
-    					throw new ExGroupAlreadyJoinEvent();}
-    				
-    					if(((EventGroup) groupEvent).getMinNumInOneJoin()>groupJoin.getNumOfStudent()){ 
-    						throw new ExEventGroupMinNum();}
-    					
-    		       			if(((EventGroup) groupEvent).getMaxNumInOneJoin()<groupJoin.getMaxNumOfStudent()){
-    		       				throw new ExEventGroupMaxNum();}
-    		       			
-    		       			        eventAllocator.groupJoinEvent(groupJoin,((EventGroup) groupEvent));
-    		       					System.out.print("Your group join the event successfully.");}
+			//does the event full already
+			if(groupEvent.isFull()==true){
+				throw new ExEventGroupIsFull();
+			}
+
+			//already joined the event or not
+			groupExist = ((EventGroup) groupEvent).foundGroup(groupJoin);
+
+			if(groupExist ==true){
+				throw new ExGroupAlreadyJoinEvent();
+			}
+			if(((EventGroup) groupEvent).getMinNumInOneJoin()>groupJoin.getNumOfStudent()){
+				throw new ExEventGroupMinNum();
+			}
+			if(((EventGroup) groupEvent).getMaxNumInOneJoin()<groupJoin.getMaxNumOfStudent()){
+				throw new ExEventGroupMaxNum();
+			}
+
+			eventAllocator.groupJoinEvent(groupJoin,((EventGroup) groupEvent));
+			System.out.print("Your group join the event successfully.");}
     		
-    		       				
-    		    
+
 		//if the event not exist, group cant join the event
-		catch(ExEventNotFound e) {
+		catch(ExEventNotFound | ExWrongCommand | ExNotGroupEvent | ExEventGroupIsFull | ExGroupAlreadyJoinEvent |
+				ExEventGroupMinNum | ExEventGroupMaxNum | ExGroupNotFound e) {
 			System.out.println(e.getMessage());
 		}
 	
