@@ -10,9 +10,9 @@ public class CmdCreateStudent implements Command {
 
             StudentHandler studentHandler = StudentHandler.getInstance();
             
-            String studentID = cmdParts[2], major = cmdParts[3], firstName = cmdParts[4], lastName = cmdParts[5];
+            String studentID = cmdParts[2], firstName = cmdParts[4], lastName = cmdParts[5];
             int age = Integer.parseInt(cmdParts[7]);
-            
+            Major major = Major.getMajor(cmdParts[3]);
             try {
             	if (studentID.length() != 9 || studentID.charAt(0) != 's' || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
@@ -20,10 +20,6 @@ public class CmdCreateStudent implements Command {
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidStudentID();
-            }
-            
-            if (major.length() > 10) {
-                throw new ExMajorTooLong();
             }
             if (firstName.length() > 20) {
                 throw new ExFirstNameTooLong();
@@ -54,11 +50,11 @@ public class CmdCreateStudent implements Command {
             System.out.println("Wrong number format!");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Sex should be 1 character(M/F)!");
-        } catch (ExMajorTooLong | ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID e) {
+        } catch (ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID |ExMajorNotFound e) {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
 			System.out.println("Create student command should be \"create student sXXXXXXXXX\".");
-    	} 
+    	}
     }
 }

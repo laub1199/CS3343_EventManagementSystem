@@ -20,7 +20,7 @@ public class CmdSearchStudent implements Command {
             }
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		Student student = studentHandler.getStudent(cmdParts[2]);
-        	System.out.printf("|%s|%-20s|%-20s|%s|%-10s|%s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+	        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
         	System.out.println(student.printString());
     	}
     	catch (ExStudentNotFound | ExInvalidStudentID e) {

@@ -21,13 +21,12 @@ public class CmdSearchEvent implements Command {
                 }
     		}
     		
-    		System.out.printf("|%-10s|%-30s|%-28s|%-8s|%-25s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
-    				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
-    		
     		//search event by id
 	    	EventAllocator eventAllocator = EventAllocator.getInstance();
     		if (cmdParts[2].equals("id")) {
 		    	Event event = eventAllocator.findEventByID(cmdParts[3]);
+		    	System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+	    				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 				if (event instanceof EventIndividual) {
 					((EventIndividual)event).printDetail();
 				}
@@ -38,12 +37,13 @@ public class CmdSearchEvent implements Command {
     		
     		//search event by major
     		else if (cmdParts[2].equals("major")){	
-		    	String major = cmdParts[3];
+    			Major major = Major.getMajor(cmdParts[3]);
 		    	ArrayList<Event> foundEventList = eventAllocator.findEventByMajor(major);
 		    	if (foundEventList.size() == 0) {
 		    		throw new ExEventNotFound();
 		    	}
-		    	
+		    	System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+	    				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 		    	for (Event e:foundEventList) {
 		    		if (e instanceof EventIndividual) {
 						((EventIndividual)e).printDetail();
@@ -56,7 +56,7 @@ public class CmdSearchEvent implements Command {
     		
     		
     	}
-    	catch (ExEventNotFound | ExInvalidEventID e){
+    	catch (ExEventNotFound | ExInvalidEventID | ExMajorNotFound e){
 			System.out.println(e.getMessage());
     	}
     	catch (ExWrongCommand e){

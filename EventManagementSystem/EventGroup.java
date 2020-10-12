@@ -10,7 +10,7 @@ public class EventGroup extends Event {
 	private int minNumInOneJoin;
 	private int maxNumInOneJoin;
 	
-	public EventGroup(String eName, String eID, int cap, Day eDate, String maj, int gpCap, int min, int max) {
+	public EventGroup(String eName, String eID, int cap, Day eDate, Major maj, int gpCap, int min, int max) {
 		super(eName, eID, cap, eDate, maj);
 		groupCapacity = gpCap;
 		minNumInOneJoin = min;
