@@ -4,7 +4,7 @@ public class CmdCreateGroup implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length != 4) {
+            if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g') {
                 throw new ExWrongCommand();
             }
             GroupHandler instance = GroupHandler.getInstance();
@@ -12,7 +12,7 @@ public class CmdCreateGroup implements Command {
             int numOfStudent = Integer.parseInt(cmdParts[3]);
             try {
             	groupId = cmdParts[2];
-            	if (groupId.length() != 9 || groupId.charAt(0) != 'g' || Integer.parseInt(groupId.substring(1,8)) < 0 || Integer.parseInt(groupId.substring(1,8)) > 99999999) {
+            	if (groupId.length() != 9 || Integer.parseInt(groupId.substring(1,8)) < 0 || Integer.parseInt(groupId.substring(1,8)) > 99999999) {
             		throw new ExInvalidGroupID();
             	}
             } 

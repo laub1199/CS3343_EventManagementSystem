@@ -8,7 +8,7 @@ public class CmdCreateEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (!(cmdParts.length == 7  || cmdParts.length == 10)) {
+            if (!(cmdParts.length == 7  || cmdParts.length == 10) || cmdParts[3].charAt(0) != 'e') {
                 throw new ExWrongCommand();
             }
             EventAllocator eventAllocator = EventAllocator.getInstance();
@@ -24,7 +24,7 @@ public class CmdCreateEvent implements Command {
     			eventFound = eventAllocator.findEventByID(eID);
     		} catch (ExEventNotFound e) {	//if event id not found then enter the catch block to add new event
 	            try {	//this try... catch... block is checking event id format
-	    			if (eID.length() != 9 || eID.charAt(0) != 'e' || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+	    			if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
 						throw new ExInvalidEventID();
 					}
 	            }

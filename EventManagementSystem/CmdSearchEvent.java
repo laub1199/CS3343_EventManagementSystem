@@ -6,13 +6,13 @@ public class CmdSearchEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	try {
-    		if (cmdParts.length != 4 || !(cmdParts[2].equals("id")||cmdParts[2].equals("major"))) {
+    		if (cmdParts.length != 4 || !((cmdParts[2].equals("id") && cmdParts[3].charAt(0) == 'e') ||cmdParts[2].equals("major"))) {
     			throw new ExWrongCommand();
     		}
     		if (cmdParts[2].equals("id")) {
     			try {
                 	String eID = cmdParts[3];
-                	if (eID.length() != 9 || eID.charAt(0) != 'e' || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+                	if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
                 		throw new ExInvalidEventID();
                 	}
                 } 

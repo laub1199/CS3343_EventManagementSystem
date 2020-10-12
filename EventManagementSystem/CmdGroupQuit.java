@@ -6,12 +6,12 @@ public class CmdGroupQuit implements Command {
         GroupHandler groupHandler = GroupHandler.getInstance();
         EventAllocator eventAllocator = EventAllocator.getInstance();
         try {
-            if (cmdParts.length != 4) {
+            if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g') {
                 throw new ExWrongCommand();
             }
             try {
             	String gID = cmdParts[2];
-            	if (gID.length() != 9 || gID.charAt(0) != 'g' || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
+            	if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
             		throw new ExInvalidGroupID();
             	}
             } 

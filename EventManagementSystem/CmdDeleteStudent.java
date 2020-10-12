@@ -4,12 +4,12 @@ public class CmdDeleteStudent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length != 3) {
+            if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 's') {
                 throw new ExWrongCommand();
             }
             try {
             	String sID = cmdParts[2];
-            	if (sID.length() != 9 || sID.charAt(0) != 's' || Integer.parseInt(sID.substring(1,8)) <0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
+            	if (sID.length() != 9 || Integer.parseInt(sID.substring(1,8)) <0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
             } 

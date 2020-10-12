@@ -4,7 +4,7 @@ public class CmdCreateStudent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length != 8) {
+            if (cmdParts.length != 8 || cmdParts[2].charAt(0) != 's') {
                 throw new ExWrongCommand();
             }
 
@@ -14,7 +14,7 @@ public class CmdCreateStudent implements Command {
             int age = Integer.parseInt(cmdParts[7]);
             Major major = Major.getMajor(cmdParts[3]);
             try {
-            	if (studentID.length() != 9 || studentID.charAt(0) != 's' || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
+            	if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
             } 

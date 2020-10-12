@@ -5,12 +5,12 @@ public class CmdSearchGroup implements Command {
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	
     	try {
-    		if (cmdParts.length != 3) {
+    		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'g') {
     			throw new ExWrongCommand();
     		}
     		try {
             	String gID = cmdParts[2];
-            	if (gID.length() != 9 || gID.charAt(0) != 'g' || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
+            	if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
             		throw new ExInvalidGroupID();
             	}
             } 

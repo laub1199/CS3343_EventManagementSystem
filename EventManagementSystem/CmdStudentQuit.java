@@ -7,16 +7,29 @@ public class CmdStudentQuit implements Command {
         EventAllocator eventAllocator = EventAllocator.getInstance();
         StudentHandler studentHandler = StudentHandler.getInstance();
         try {
-            if (cmdParts.length != 3) {
+            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 's' || cmdParts[2].charAt(0) != 'g' || cmdParts[2].charAt(0) != 'e') {
                 throw new ExWrongCommand();
             }
             String studentID = null;
             studentID = cmdParts[1];
-            if (studentID.length() != 9 || studentID.charAt(0) != 's') {
-                throw new ExInvalidStudentID();
-            }
+            try {
+	    		 if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
+					 throw new ExInvalidStudentID();
+				 }
+	        }
+	        catch (NumberFormatException ex) {
+	            throw new ExInvalidStudentID();
+	        }
             Student student = studentHandler.getStudent(studentID);
-            if (cmdParts[2].charAt(0) == 'g' && cmdParts[2].length() == 9) {
+            if (cmdParts[2].charAt(0) == 'g') {
+            	try {
+  	    		  if (cmdParts[2].length() != 9 || Integer.parseInt(cmdParts[2].substring(1,8)) <0 || Integer.parseInt(cmdParts[2].substring(1,8)) > 99999999) {
+  					 throw new ExInvalidGroupID();
+  				 }
+	  	         }
+	  	         catch (NumberFormatException ex) {
+	  	           	 throw new ExInvalidGroupID();
+	  	         }
                 Group group = groupHandler.getGroup(cmdParts[2]);
                 if (group.isFoundStudentById(studentID)) {
                     group.deleteStudent(student);
@@ -36,7 +49,15 @@ public class CmdStudentQuit implements Command {
                     throw new ExStudentNotFound();
                 }
             }
-            else if (cmdParts[2].charAt(0) == 'e' && cmdParts[2].length() == 9) {
+            else if (cmdParts[2].charAt(0) == 'e') {
+            	try {
+                	if (cmdParts[2].length() != 9 || Integer.parseInt(cmdParts[2].substring(1,8)) <0 || Integer.parseInt(cmdParts[2].substring(1,8)) > 99999999) {
+                		throw new ExInvalidEventID();
+                	}
+                } 
+                catch (NumberFormatException ex) {
+                	throw new ExInvalidEventID();
+                }
                 Event event = eventAllocator.findEventByID(cmdParts[2]);
                 if (event instanceof EventIndividual) {
                     boolean studentFound = false;
@@ -64,8 +85,8 @@ public class CmdStudentQuit implements Command {
 
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format!");
-        } catch (ExInvalidStudentQuitCommand | ExInvalidID | ExStudentNotFound | ExGroupNotFound |
-                ExEventNotFound | ExInvalidEventGroupQuitCommand | ExInvalidStudentID e) {
+        } catch (ExInvalidStudentQuitCommand | ExInvalidID | ExStudentNotFound | ExGroupNotFound | ExInvalidGroupID |
+        		ExInvalidEventID | ExEventNotFound | ExInvalidEventGroupQuitCommand | ExInvalidStudentID e) {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());

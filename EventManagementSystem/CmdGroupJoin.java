@@ -6,12 +6,29 @@ public class CmdGroupJoin implements Command {
     public void execute(String[] cmdParts) {
 		//command: groupJoin event (group id) (event id)
 		try {
-	    		if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g' || cmdParts[2].length() != 9 
-	    				|| cmdParts[3].charAt(0) != 'e' || cmdParts[3].length() != 9) {
-	    			throw new ExWrongCommand();
-	    		}
-		String groupID = cmdParts[2];
-		String eventID = cmdParts[3];
+	    	if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g' || cmdParts[3].charAt(0) != 'e') {
+	    		throw new ExWrongCommand();
+	    	}
+			String groupID = cmdParts[2];
+			String eventID = cmdParts[3];
+			
+			 try {
+	    		  if (eventID.length() != 9 || Integer.parseInt(eventID.substring(1,8)) <0 || Integer.parseInt(eventID.substring(1,8)) > 99999999) {
+					 throw new ExInvalidEventID();
+				 }
+	         }
+	         catch (NumberFormatException ex) {
+	           	 throw new ExInvalidEventID();
+	         }
+			 
+			 try {
+	    		  if (groupID.length() != 9 || Integer.parseInt(groupID.substring(1,8)) <0 || Integer.parseInt(groupID.substring(1,8)) > 99999999) {
+					 throw new ExInvalidGroupID();
+				 }
+	         }
+	         catch (NumberFormatException ex) {
+	           	 throw new ExInvalidGroupID();
+	         }
 		
 		//if the group not exist, user cant join the event
 		
@@ -50,9 +67,12 @@ public class CmdGroupJoin implements Command {
     		
 
 		//if the event not exist, group cant join the event
-		catch(ExEventNotFound | ExWrongCommand | ExNotGroupEvent | ExEventGroupIsFull | ExGroupAlreadyJoinEvent |
-				ExEventGroupMinNum | ExEventGroupMaxNum | ExGroupNotFound e) {
+		catch(ExEventNotFound | ExNotGroupEvent | ExEventGroupIsFull | ExGroupAlreadyJoinEvent | ExInvalidEventID |
+				ExInvalidGroupID | ExEventGroupMinNum | ExEventGroupMaxNum | ExGroupNotFound e) {
 			System.out.println(e.getMessage());
+		} catch (ExWrongCommand e) {
+			System.out.println(e.getMessage());
+			System.out.println("Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"");
 		}
 	
 	}}

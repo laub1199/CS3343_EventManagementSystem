@@ -4,12 +4,12 @@ public class CmdDeleteEvent implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
         try {
-            if (cmdParts.length != 3) {
+            if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'e') {
                 throw new ExWrongCommand();
             }
             try {
             	String eID = cmdParts[2];
-            	if (eID.length() != 9 || eID.charAt(0) != 'e' || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+            	if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
             		throw new ExInvalidEventID();
             	}
             } 

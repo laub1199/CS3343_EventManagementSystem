@@ -4,13 +4,13 @@ public class CmdListStudentJoinedGroup implements Command {
     @Override
     public void execute(String[] cmdParts) throws CloneNotSupportedException {
     	try {
-    		if(cmdParts.length != 3 || !(cmdParts[2] instanceof String)) {
+    		if(cmdParts.length != 3 || cmdParts[2].charAt(0) != 's') {
     			throw new ExWrongCommand();
     		}
     		String studentID = null;
     		try {
     			studentID = cmdParts[2];
-            	if (studentID.length() != 9 || studentID.charAt(0) != 's' || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
+            	if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
             } 
