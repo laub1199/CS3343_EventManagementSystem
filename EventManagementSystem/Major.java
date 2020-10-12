@@ -2,6 +2,7 @@ package EventManagementSystem;
 
 public enum Major {
 	cs("cs", "Computer Science"),
+	ds("ds", "Data Science"),
 	ee("ee", "Electrical Engineering"),
 	sci("sci", "Science"),
 	is("is", "Information System"),

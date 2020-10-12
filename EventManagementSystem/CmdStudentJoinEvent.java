@@ -21,7 +21,7 @@ public class CmdStudentJoinEvent implements Command {
             Event individualEvent = eventAllocator.findEventByID(eventID);
 
             //does the event allow individual join
-            if (individualEvent instanceof EventIndividual == true) {
+            if (individualEvent instanceof EventIndividual != true) {
                 throw new ExNotIndividualEvent();
             }
             //does the event full already
@@ -36,7 +36,7 @@ public class CmdStudentJoinEvent implements Command {
 
 
             ((EventIndividual) individualEvent).addStudent(student);
-            System.out.print("You join the event successfully.");
+            System.out.println("You join the event successfully.");
 
         }
         //no this student

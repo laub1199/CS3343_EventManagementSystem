@@ -105,9 +105,12 @@ public class EventAllocator {
 	
 	public Event findEventByGroup(Group group) {
 		for (Event e: getEventList()) {
-			if (((EventGroup) e).foundGroup(group)) {
-				return e;
+			if(e instanceof EventGroup) {
+				if (((EventGroup) e).foundGroup(group)) {
+					return e;
+				}
 			}
+
 		}
 		return null;
 	}
