@@ -3,8 +3,16 @@ package EventManagementSystem;
 public enum Major {
 	cs("cs", "Computer Science"),
 	ee("ee", "Electrical Engineering"),
-	sci("sci", "Science");
-	
+	sci("sci", "Science"),
+	is("is", "Information System"),
+	acc("acc", "Accounting"),
+	mkt("mkt", "Marketing"),
+	cm("cm", "Creative Media"),
+	law("law", "Law"),
+	eng("eng", "English"),
+	vm("vm", "Veterinary Medicine");
+
+
 	private final String major;  
 	private final String majorFullTitle;
 	
