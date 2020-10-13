@@ -28,7 +28,11 @@ public abstract class Event {
 		return this.eventName;
 	}
 	
-	public String getMajor() {
+	public Major getMajor() {
+		return this.major;
+	}
+	
+	public String getMajorFullTitle(){
 		return this.major.getMajorFullTitle();
 	}
 	
@@ -43,7 +47,7 @@ public abstract class Event {
 	public abstract ArrayList<Student> getStudentList();
 
 	public void printDetail() {
-		System.out.printf("|%-10s|%-30s|%-12s|%-8d|%-30s|",eventID,eventName,eventDate.toString(),capacity,getMajor());
+		System.out.printf("|%-10s|%-30s|%-12s|%-8d|%-30s|",eventID,eventName,eventDate.toString(),capacity,getMajorFullTitle());
 		//System.out.printf("%s\t%s\t%s\t%d\t%s\t", eventID, eventName, eventDate.toString(), capacity, major);
 	}
 	

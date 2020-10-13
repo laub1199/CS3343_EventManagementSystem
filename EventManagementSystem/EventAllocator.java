@@ -96,7 +96,7 @@ public class EventAllocator {
 	public ArrayList<Event> findEventByMajor(Major major) {
 		ArrayList<Event> eventMajorList = new ArrayList<>();
 		for (Event e: getEventList()) {
-			if (e.getMajor().equals(major.getMajorFullTitle())) {
+			if (e.getMajor().equals(major)) {
 				eventMajorList.add(e);
 			}
 		}
