@@ -7,7 +7,7 @@ public class CmdStudentQuit implements Command {
         EventAllocator eventAllocator = EventAllocator.getInstance();
         StudentHandler studentHandler = StudentHandler.getInstance();
         try {
-            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 's' || cmdParts[2].charAt(0) != 'g' || cmdParts[2].charAt(0) != 'e') {
+            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 's' || !(cmdParts[2].charAt(0) != 'g' || cmdParts[2].charAt(0) != 'e')) {
                 throw new ExWrongCommand();
             }
             String studentID = null;
