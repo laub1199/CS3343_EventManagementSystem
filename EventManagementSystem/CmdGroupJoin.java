@@ -58,7 +58,7 @@ public class CmdGroupJoin implements Command {
 			if(((EventGroup) groupEvent).getMinNumInOneJoin()>groupJoin.getNumOfStudent()){
 				throw new ExEventGroupMinNum();
 			}
-			if(((EventGroup) groupEvent).getMaxNumInOneJoin()<groupJoin.getMaxNumOfStudent()){
+			if(((EventGroup) groupEvent).getMaxNumInOneJoin()<groupJoin.getNumOfStudent()){
 				throw new ExEventGroupMaxNum();
 			}
 

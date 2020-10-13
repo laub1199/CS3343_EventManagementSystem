@@ -19,7 +19,7 @@ public class Group{
     }       
 	public void listStudentInGroup(){
         for(Student student:studentList){
-            student.printString();
+            System.out.println(student.printString());
         }
     }
     public int getMaxNumOfStudent() {
