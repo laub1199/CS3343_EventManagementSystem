@@ -20,6 +20,9 @@ public class Main {
             catch (ExDateFormatYear | ExDateFormatMonth | ExDateFormatDay | ExInvalidDate e) {
                 System.out.println(e.getMessage());
             }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid Date Format: dd-mmm-yyyy");
+            }
         } while (!isValidSystemDate);
 
         String command;

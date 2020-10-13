@@ -51,7 +51,8 @@ public class Day implements Cloneable{
     public void set(String sDay) throws ExDateFormatDay, ExDateFormatMonth, ExDateFormatYear, ExInvalidDate
     {
         String[] sDayParts = sDay.split("-");
-        if (this.isValidDay(sDayParts[0]) && this.isValidMonth(sDayParts[1]) && this.isValidYear(sDayParts[2])) {
+        if (this.isValidDay(sDayParts[0]) && this.isValidMonth(sDayParts[1]) && this.isValidYear(sDayParts[2]) &&
+            sDayParts.length == 3 ) {
             int month = this.strMonthToInt(sDayParts[1]);
             if(this.valid(Integer.parseInt(sDayParts[2]), month,
                     Integer.parseInt(sDayParts[0]))) {
