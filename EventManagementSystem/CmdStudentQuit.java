@@ -7,7 +7,7 @@ public class CmdStudentQuit implements Command {
         EventAllocator eventAllocator = EventAllocator.getInstance();
         StudentHandler studentHandler = StudentHandler.getInstance();
         try {
-            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 's' || cmdParts[2].charAt(0) != 'g' || cmdParts[2].charAt(0) != 'e') {
+            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 's' || (cmdParts[2].charAt(0) != 'g' && cmdParts[2].charAt(0) != 'e')) {
                 throw new ExWrongCommand();
             }
             String studentID = null;
@@ -39,7 +39,7 @@ public class CmdStudentQuit implements Command {
                         if (group.getNumOfStudent() < event.getMinNumInOneJoin()) {
                             event.quitGroup(group);
                             System.out.println("Group " + cmdParts[2] + " with a number of " + group.getNumOfStudent() +
-                                    " does not meet the minimum number of " + event.getMinNumInOneJoin() +
+                                    " member does not meet the minimum number of " + event.getMinNumInOneJoin() +
                                     " student for join event " + event.getEventID());
                             System.out.println("Group " + cmdParts[2] + " is forced to quit event " + event.getEventID());
                         }

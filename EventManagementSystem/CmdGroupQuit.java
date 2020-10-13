@@ -6,11 +6,11 @@ public class CmdGroupQuit implements Command {
         GroupHandler groupHandler = GroupHandler.getInstance();
         EventAllocator eventAllocator = EventAllocator.getInstance();
         try {
-            if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g') {
+            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 'g') {
                 throw new ExWrongCommand();
             }
             try {
-            	String gID = cmdParts[2];
+            	String gID = cmdParts[1];
             	if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
             		throw new ExInvalidGroupID();
             	}
@@ -18,13 +18,13 @@ public class CmdGroupQuit implements Command {
             catch (NumberFormatException ex) {
             	throw new ExInvalidGroupID();
             }
-            Group group = groupHandler.getGroup(cmdParts[2]);
-            if (cmdParts[3].charAt(0) == 'e' && cmdParts[3].length() == 9) {
-                Event event = eventAllocator.findEventByID(cmdParts[3]);
+            Group group = groupHandler.getGroup(cmdParts[1]);
+            if (cmdParts[2].charAt(0) == 'e' && cmdParts[2].length() == 9) {
+                Event event = eventAllocator.findEventByID(cmdParts[2]);
                 if(event instanceof EventGroup) {
                     if(((EventGroup)event).foundGroup(group)) {
                         ((EventGroup)event).quitGroup(group);
-                        System.out.println("Group" + cmdParts[2] + " has quited event " + cmdParts[3]);
+                        System.out.println("Group " + cmdParts[1] + " has quited event " + cmdParts[2]);
                     }
                     else {
                         throw new ExGroupNotFound();
@@ -43,7 +43,7 @@ public class CmdGroupQuit implements Command {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
-			System.out.println("Group quit command should be \"quit group gXXXXXXXXX\"");
+			System.out.println("Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"");
     	} 
     }
 }

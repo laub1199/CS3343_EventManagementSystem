@@ -63,7 +63,7 @@ public class CmdGroupJoin implements Command {
 			}
 
 			eventAllocator.groupJoinEvent(groupJoin,((EventGroup) groupEvent));
-			System.out.print("Your group join the event successfully.");}
+			System.out.println("Your group join the event successfully.");}
     		
 
 		//if the event not exist, group cant join the event
