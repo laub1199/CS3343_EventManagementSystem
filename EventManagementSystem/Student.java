@@ -20,11 +20,15 @@ public class Student {
         return studentID;
     }
 
-    public String getMajor() {
+    public Major getMajor() {
+        return major;
+    }
+    
+    public String getMajorFullTitle() {
         return major.getMajorFullTitle();
     }
 
     public String printString() {
-    	return String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|", studentID, firstName, lastName, sex, getMajor(), age);
+    	return String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|", studentID, firstName, lastName, sex, getMajorFullTitle(), age);
     }
 }

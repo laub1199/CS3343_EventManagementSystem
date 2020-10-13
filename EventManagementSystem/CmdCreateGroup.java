@@ -42,7 +42,7 @@ public class CmdCreateGroup implements Command {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
-			System.out.println("Create group command should be \"create group gXXXXXXXXX\".");
+			System.out.println("Create group command should be \"create group gXXXXXXXXX <max no. in one group>\".");
     	} 
         
     }

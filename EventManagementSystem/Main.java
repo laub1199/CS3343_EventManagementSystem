@@ -125,10 +125,11 @@ public class Main {
                 (new CmdGroupQuit()).execute(cmdParts);
             }
             else if (cmdParts[0].equals("help")) {
-
-            }
-            else if(cmdParts[0].equals("recommend")){
-                (new CmdRecommend()).execute(cmdParts); }
+            	
+            } 
+            else if(cmdParts[0].equals("recommend")){ 
+            	(new CmdRecommend()).execute(cmdParts); 
+            }     
             else
                 throw new ExWrongCommand();
             }

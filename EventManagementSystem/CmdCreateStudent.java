@@ -54,7 +54,7 @@ public class CmdCreateStudent implements Command {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
-			System.out.println("Create student command should be \"create student sXXXXXXXXX\".");
+			System.out.println("Create student command should be \"create student sXXXXXXXXX\" <major> <first name> <last name> <gender> <age>.");
     	}
     }
 }
