@@ -70,7 +70,9 @@ public class CmdCreateEvent implements Command {
             System.out.println(e.getMessage());
         } catch (ExWrongCommand e) {
 			System.out.println(e.getMessage());
-			System.out.println("Create event command should be \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".");
-    	} 
+			System.out.println("There are two ways for create event command.");
+			System.out.println("Create individual event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".");
+			System.out.println("Create group event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".");
+        } 
     }
 }
