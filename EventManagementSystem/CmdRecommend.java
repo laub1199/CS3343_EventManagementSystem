@@ -10,11 +10,12 @@ public class CmdRecommend implements Command {
 
 
         try{
-        	if (cmdParts.length != 2 || cmdParts[2].charAt(0) != 's') {
+        	if (cmdParts.length != 2 || cmdParts[1].charAt(0) != 's') {
                 throw new ExWrongCommand();
             }
+        	String sID = null;
             try {
-            	String sID = cmdParts[2];
+            	sID = cmdParts[1];
             	if (sID.length() != 9 || Integer.parseInt(sID.substring(1,8)) <0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
@@ -24,7 +25,7 @@ public class CmdRecommend implements Command {
             }
 
             StudentHandler studentHandler = StudentHandler.getInstance();
-            Student student = studentHandler.getStudent(cmdParts[1]);
+            Student student = studentHandler.getStudent(sID);
             EventAllocator eventallocator = EventAllocator.getInstance();
 
             ArrayList<Event> events = new ArrayList<>();
