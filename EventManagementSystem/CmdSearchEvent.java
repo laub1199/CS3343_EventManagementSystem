@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class CmdSearchEvent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if (cmdParts.length != 4 || !((cmdParts[2].equals("id") && cmdParts[3].charAt(0) == 'e') ||cmdParts[2].equals("major"))) {
     			throw new ExWrongCommand();
@@ -25,13 +26,13 @@ public class CmdSearchEvent implements Command {
 	    	EventAllocator eventAllocator = EventAllocator.getInstance();
     		if (cmdParts[2].equals("id")) {
 		    	Event event = eventAllocator.findEventByID(cmdParts[3]);
-		    	System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+		    	str += String.format("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
 	    				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 				if (event instanceof EventIndividual) {
-					((EventIndividual)event).printDetail();
+					str += ((EventIndividual)event).printDetail();
 				}
 				else if ((event instanceof EventGroup)) {
-					((EventGroup)event).printDetail();
+					str += ((EventGroup)event).printDetail();
 				}
     		}
     		
@@ -42,27 +43,28 @@ public class CmdSearchEvent implements Command {
 		    	if (foundEventList.size() == 0) {
 		    		throw new ExEventNotFound();
 		    	}
-		    	System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+		    	str += String.format("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
 	    				"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 		    	for (Event e:foundEventList) {
 		    		if (e instanceof EventIndividual) {
-						((EventIndividual)e).printDetail();
+		    			str += ((EventIndividual)e).printDetail();
 					}
 					else if ((e instanceof EventGroup)) {
-						((EventGroup)e).printDetail();
+						str += ((EventGroup)e).printDetail();
 					}
 		    	}
     		}
-    		
-    		
-    	}
-    	catch (ExEventNotFound | ExInvalidEventID | ExMajorNotFound e){
-			System.out.println(e.getMessage());
-    	}
-    	catch (ExWrongCommand e){
-			System.out.println(e.getMessage());
-			System.out.println("Search event command should be \"search event id eXXXXXXXXX\" or \"search event major XXXXXXXXX\"");
     	}
     	
+    	catch (ExEventNotFound | ExInvalidEventID | ExMajorNotFound e){
+    		str = e.getMessage();
+    	}
+    	catch (ExWrongCommand e){
+    		str = e.getMessage();
+    		str += "Search event command should be \"search event id eXXXXXXXXX\" or \"search event major XXXXXXXXX\"\n";
+    	}
+    	finally {
+    		return str;
+    	}
     }
 }

@@ -3,8 +3,8 @@ package EventManagementSystem;
 public class CmdStudentJoinEvent implements Command {
     //the student type the event name to join
     //command: studentJoin event (studentID) (eventID)
-    public void execute(String[] cmdParts) {
-
+    public String execute(String[] cmdParts) {
+    	String str = ""; 
         try {
 
             if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 's' || cmdParts[3].charAt(0) != 'e') {
@@ -54,16 +54,18 @@ public class CmdStudentJoinEvent implements Command {
 
 
             ((EventIndividual) individualEvent).addStudent(student);
-            System.out.println("You join the event successfully.");
+            str += "You join the event successfully.\n";
 
         }
         //no this student
         catch (ExStudentNotFound | ExEventNotFound | ExNotIndividualEvent | ExEventIndividualIsFull |
         		ExInvalidStudentID | ExInvalidEventID | ExIndividualAlreadyJoinEvent e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Student join event command should be \"studentJoin event sXXXXXXXXX eXXXXXXXX\"");
+        	str = e.getMessage();
+        	str += "Student join event command should be \"studentJoin event sXXXXXXXXX eXXXXXXXX\"\n";
+		} finally {
+			return str;
 		}
     }
 

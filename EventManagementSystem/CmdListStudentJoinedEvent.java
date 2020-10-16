@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdListStudentJoinedEvent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if(cmdParts.length != 4 || cmdParts[2].charAt(0) != 's') {
     			throw new ExWrongCommand();
@@ -25,40 +26,42 @@ public class CmdListStudentJoinedEvent implements Command {
     		System.out.println(studentHandler.getStudent(studentID).printString());
     		
     		if(cmdParts[3] == "all") {
-    			System.out.println("All events: ");
-				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
+    			str = "All events:\n";
+    			str += String.format("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(studentID))) {
-    					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
+    					str += String.format("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
 				// can use listEventFunction - laub
     		}else if(cmdParts[3] == "pending") {
-    			System.out.println("Pending events: ");
+    			str = "Pending events:\n";
 				//need add header - laub
-				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
+    			str += String.format("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().compareTo(SystemDate.getInstance()) > 0) {
-    					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
+    					str += String.format("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
     		}else if(cmdParts[3] == "end") {
 				//need add header - laub
-    			System.out.println("End events: ");
-				System.out.printf("|%-12s|%-30s|\n", "Event ID","Event Name");
+    			str = "End events:\n";
+    			str += String.format("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
     				if(event.getStudentList().contains(studentHandler.getStudent(cmdParts[2])) && event.getEventDate().compareTo(SystemDate.getInstance()) < 0) {
-    					System.out.printf("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
+    					str += String.format("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
     		}else {
     			throw new ExWrongCommand();
     		}
     	}catch(ExInvalidStudentID | ExStudentNotFound e) {
-    		System.out.println(e.getMessage());
+    		str = e.getMessage();
     	} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("List student joined event command should be \"list studentJoinedEvent sXXXXXXXX all\" or \"list studentJoinedEvent sXXXXXXXX pending\" or \"list studentJoinedEvent sXXXXXXXX end\" ");
-    	} 
+    		str = e.getMessage();
+    		str += "List student joined event command should be \"list studentJoinedEvent sXXXXXXXX all\" or \"list studentJoinedEvent sXXXXXXXX pending\" or \"list studentJoinedEvent sXXXXXXXX end\"\n";
+    	} finally {
+    		return str;
+    	}
     }
 }

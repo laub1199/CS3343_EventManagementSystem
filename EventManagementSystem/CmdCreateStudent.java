@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdCreateStudent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         try {
             if (cmdParts.length != 8 || cmdParts[2].charAt(0) != 's') {
                 throw new ExWrongCommand();
@@ -37,7 +38,7 @@ public class CmdCreateStudent implements Command {
             } catch (ExStudentNotFound e) {
             	char sex = cmdParts[6].charAt(0);
             	studentHandler.createStudent(new Student(studentID, major, firstName, lastName, sex, age));
-            	System.out.println("Created student " + firstName + " " + lastName + " with StudentID: " + studentID + ".");
+            	str = "Created student " + firstName + " " + lastName + " with StudentID: " + studentID + ".";
             }
             finally {
             	if (student != null) {
@@ -47,14 +48,17 @@ public class CmdCreateStudent implements Command {
             
             
         } catch (NumberFormatException e) {
-            System.out.println("Wrong number format!");
+        	str = "Wrong number format!\n";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Sex should be 1 character(M/F)!");
+        	str = "Sex should be 1 character(M/F)!\n";
         } catch (ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID |ExMajorNotFound e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Create student command should be \"create student sXXXXXXXXX\" <major> <first name> <last name> <gender> <age>.");
+        	str = e.getMessage();
+			str += "Create student command should be \"create student sXXXXXXXXX\" <major> <first name> <last name> <gender> <age>.\n";
     	}
+        finally {
+        	return str;
+        }
     }
 }

@@ -29,6 +29,6 @@ public class Student {
     }
 
     public String printString() {
-    	return String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|", studentID, firstName, lastName, sex, getMajorFullTitle(), age);
+    	return String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|\n", studentID, firstName, lastName, sex, getMajorFullTitle(), age);
     }
 }

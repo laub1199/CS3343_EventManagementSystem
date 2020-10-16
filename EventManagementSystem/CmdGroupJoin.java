@@ -3,7 +3,8 @@ package EventManagementSystem;
 public class CmdGroupJoin implements Command {
 	// represent a group to join a event
 	@Override
-    public void execute(String[] cmdParts) {
+    public String execute(String[] cmdParts) {
+    	String str = ""; 
 		//command: groupJoin event (group id) (event id)
 		try {
 	    	if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g' || cmdParts[3].charAt(0) != 'e') {
@@ -63,16 +64,20 @@ public class CmdGroupJoin implements Command {
 			}
 
 			eventAllocator.groupJoinEvent(groupJoin,((EventGroup) groupEvent));
-			System.out.println("Your group join the event successfully.");}
+			str = "Your group join the event successfully.";
+			}
     		
 
 		//if the event not exist, group cant join the event
 		catch(ExEventNotFound | ExNotGroupEvent | ExEventGroupIsFull | ExGroupAlreadyJoinEvent | ExInvalidEventID |
 				ExInvalidGroupID | ExEventGroupMinNum | ExEventGroupMaxNum | ExGroupNotFound e) {
-			System.out.println(e.getMessage());
+			str = e.getMessage();
 		} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"");
+			str = e.getMessage();
+			str += "Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"\n";
+		}
+		finally {
+			return str;
 		}
 	
 	}}

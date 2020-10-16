@@ -2,8 +2,8 @@ package EventManagementSystem;
 
 public class CmdSearchStudent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
-    	
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 's') {
     			throw new ExWrongCommand();
@@ -20,15 +20,17 @@ public class CmdSearchStudent implements Command {
             }
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		Student student = studentHandler.getStudent(cmdParts[2]);
-	        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
-        	System.out.println(student.printString());
+    		str += String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+    		str += student.printString();
     	}
     	catch (ExStudentNotFound | ExInvalidStudentID e) {
-			System.out.println(e.getMessage());
+    		str = e.getMessage();
     	}
     	catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Search student command should be \"search student sXXXXXXXXX\"");
+    		str = e.getMessage();
+    		str += "Search student command should be \"search student sXXXXXXXXX\"\n";
+    	} finally {
+    		return str;
     	}
     	
     }

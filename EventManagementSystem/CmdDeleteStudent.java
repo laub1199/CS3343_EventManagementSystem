@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdDeleteStudent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         try {
             if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 's') {
                 throw new ExWrongCommand();
@@ -19,12 +20,15 @@ public class CmdDeleteStudent implements Command {
             StudentHandler studentHandler = StudentHandler.getInstance();
             Student student = studentHandler.getStudent(cmdParts[2]);
             studentHandler.deleteStudent(student);
-            System.out.println("Deleted student with StudentID: " + cmdParts[2] + ".");
+            str = "Deleted student with StudentID: " + cmdParts[2] + ".";
         } catch (ExStudentNotFound | ExInvalidStudentID e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Delete student command should be \"delete student sXXXXXXXXX\"");
+        	str = e.getMessage();
+        	str += "Delete student command should be \"delete student sXXXXXXXXX\"\n";
     	} 
+        finally {
+        	return str;
+        }
     }
 }

@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdStudentQuit implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         GroupHandler groupHandler = GroupHandler.getInstance();
         EventAllocator eventAllocator = EventAllocator.getInstance();
         StudentHandler studentHandler = StudentHandler.getInstance();
@@ -33,15 +34,15 @@ public class CmdStudentQuit implements Command {
                 Group group = groupHandler.getGroup(cmdParts[2]);
                 if (group.isFoundStudentById(studentID)) {
                     group.deleteStudent(student);
-                    System.out.println("Student" + studentID + " has quited group " + cmdParts[2]);
+                    str += "Student" + studentID + " has quited group " + cmdParts[2];
                     EventGroup event = (EventGroup) (eventAllocator.findEventByGroup(group));
                     if (event != null) {
                         if (group.getNumOfStudent() < event.getMinNumInOneJoin()) {
                             event.quitGroup(group);
-                            System.out.println("Group " + cmdParts[2] + " with a number of " + group.getNumOfStudent() +
+                            str += "Group " + cmdParts[2] + " with a number of " + group.getNumOfStudent() +
                                     " member does not meet the minimum number of " + event.getMinNumInOneJoin() +
-                                    " student for join event " + event.getEventID());
-                            System.out.println("Group " + cmdParts[2] + " is forced to quit event " + event.getEventID());
+                                    " student for join event " + event.getEventID() + "\n";
+                            str += "Group " + cmdParts[2] + " is forced to quit event " + event.getEventID() + "\n";
                         }
                     }
                 }
@@ -70,7 +71,7 @@ public class CmdStudentQuit implements Command {
                         throw new ExStudentNotFound();
                     }
                     ((EventIndividual)event).quitStudent(student);
-                    System.out.println("Student" + cmdParts[2] + " has quited event " + cmdParts[2]);
+                    str += "Student" + cmdParts[2] + " has quited event " + cmdParts[2] + "\n";
                 }
                 else {
                     throw new ExInvalidEventGroupQuitCommand();
@@ -84,13 +85,15 @@ public class CmdStudentQuit implements Command {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("Wrong number format!");
+        	str = "Wrong number format!\n";
         } catch (ExInvalidStudentQuitCommand | ExInvalidID | ExStudentNotFound | ExGroupNotFound | ExInvalidGroupID |
         		ExInvalidEventID | ExEventNotFound | ExInvalidEventGroupQuitCommand | ExInvalidStudentID e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"");
-    	} 
+        	str = e.getMessage();
+        	str += "Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"\n";
+    	} finally {
+    		return str;
+    	}
     }
 }

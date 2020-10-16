@@ -17,10 +17,12 @@ public class Group{
 	public int getNumOfStudent(){
         return studentList.size();
     }       
-	public void listStudentInGroup(){
+	public String listStudentInGroup(){
+		String str = "";
         for(Student student:studentList){
-            System.out.println(student.printString());
+        	str += student.printString();
         }
+        return str;
     }
     public int getMaxNumOfStudent() {
         return maxNumOfStudent;
@@ -45,7 +47,7 @@ public class Group{
         studentList.remove(student);
     }
     public String toString() {
-    	return String.format("|%-10s|%-18s|%-23s|",groupID, getNumOfStudent(), maxNumOfStudent);
+    	return String.format("|%-10s|%-18s|%-23s|\n",groupID, getNumOfStudent(), maxNumOfStudent);
     	//return groupID + "\t" + getNumOfStudent() + "\t" +maxNumOfStudent;
     }
 }

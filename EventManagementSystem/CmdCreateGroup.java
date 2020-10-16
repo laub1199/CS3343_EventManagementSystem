@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdCreateGroup implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         try {
             if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 'g') {
                 throw new ExWrongCommand();
@@ -29,7 +30,7 @@ public class CmdCreateGroup implements Command {
 	                throw new ExGroupStudentTooLess();
 	            }
 	            instance.createGroup(new Group(groupId, numOfStudent));
-	            System.out.println("Created group with GroupID: " + groupId + ".");
+	            str = "Created group with GroupID: " + groupId + ".";
             }
             finally {
             	if (group != null)
@@ -37,13 +38,15 @@ public class CmdCreateGroup implements Command {
             }
             
         } catch (NumberFormatException e) {
-            System.out.println("Wrong number format!");
+        	str = "Wrong number format!\n";
         } catch (ExInvalidGroupID | ExGroupStudentTooLess e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Create group command should be \"create group gXXXXXXXXX <max no. in one group>\".");
+        	str = e.getMessage();
+        	str += "Create group command should be \"create group gXXXXXXXXX <max no. in one group>\".\n";
     	} 
-        
+        finally {
+        	return str;
+        }
     }
 }

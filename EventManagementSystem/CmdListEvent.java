@@ -2,16 +2,20 @@ package EventManagementSystem;
 
 public class CmdListEvent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if (cmdParts.length != 2) {
     			throw new ExWrongCommand();
     		}
     		EventAllocator eventallocator = EventAllocator.getInstance();
-    		eventallocator.listEvent();
+        	str = eventallocator.listEvent();
     	} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("List event command should be \"list event\"");
+    		str = e.getMessage();
+    		str += "List event command should be \"list event\"\n";
     	} 
+    	finally {
+    		return str;
+    	}
     }
 }

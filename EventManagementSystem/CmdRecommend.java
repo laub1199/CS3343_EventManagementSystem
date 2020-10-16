@@ -6,9 +6,8 @@ import java.util.ArrayList;
 
 public class CmdRecommend implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
-
-
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         try{
         	if (cmdParts.length != 2 || cmdParts[1].charAt(0) != 's') {
                 throw new ExWrongCommand();
@@ -47,48 +46,50 @@ public class CmdRecommend implements Command {
             
             int count = 0;
             if(emaj.isEmpty()){
-                System.out.println("There is no recommended event from your department! \n" );
+            	str = "There is no recommended event from your department!\n";
             }else{
-                System.out.println("Here are the recommended events from your department: \n");
-                System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+            	str += "Here are the recommended events from your department:\n";
+            	str += String.format("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
                         "Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
                 count = 0;
                 for(Event e: emaj){
                 	count++;
                     if (e instanceof EventIndividual) {
-                        ((EventIndividual)e).printDetail();
+                    	str += ((EventIndividual)e).printDetail();
                     }
                     else if (e instanceof EventGroup) {
-                        ((EventGroup)e).printDetail();
+                    	str += ((EventGroup)e).printDetail();
                     }
                     if (count >= 2) break;
                 }
             }
             
             if(eothers.isEmpty()){
-                System.out.println("There is no recommended event from other department! \n");
+            	str += "There is no recommended event from other department!\n";
             }else{
-                System.out.println("Here are the recommended events outside your department \n");
-                System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+            	str += "Here are the recommended events outside your department:\n";
+            	str += String.format("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
                         "Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
                 count = 0;
                 for(Event e: eothers){
                 	count++;
                     if (e instanceof EventIndividual) {
-                        ((EventIndividual)e).printDetail();
+                    	str += ((EventIndividual)e).printDetail();
                     }
                     else if (e instanceof EventGroup) {
-                        ((EventGroup)e).printDetail();
+                    	str += ((EventGroup)e).printDetail();
                     }
                     if (count >= 2) break;
                 }
             }
 
         }catch(ExNoSuitableEvent | ExStudentNotFound | ExInvalidStudentID e){
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         }catch(ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Delete student command should be \"recommend sXXXXXXXXX\"");
+        	str = e.getMessage();
+        	str += "Recommend command should be \"recommend sXXXXXXXXX\"\n";
+        } finally {
+        	return str;
         }
     }
 }

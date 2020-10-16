@@ -10,16 +10,18 @@ public class StudentHandler {
         return instance;
     }
 
-    public void listStudent() {
+    public String listStudent() {
+    	String str = "";
     	if (studentList.size() > 0) {
-	        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+    		str = String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
 	        for (Student s: studentList) {
-	            System.out.println(s.printString());
+	        	str += s.printString();
 	        }
 	    }
         else {
-			System.out.println("There are no student.");
+        	str = "There are no student.";
         }
+    	return str;
     }
 
     public Student getStudent(String studentID) throws ExStudentNotFound {

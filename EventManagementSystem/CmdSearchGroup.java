@@ -2,8 +2,8 @@ package EventManagementSystem;
 
 public class CmdSearchGroup implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
-    	
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'g') {
     			throw new ExWrongCommand();
@@ -24,28 +24,30 @@ public class CmdSearchGroup implements Command {
     		Event event = eventAllocator.findEventByGroup(group);
     		
     		if (event != null) {
-    			System.out.printf("|%-10s|%-18s|%-23s|%-10s|%-30s|\n","GroupID","Number Of Students","Max Number Of Students","EventID","Event Name");
+    			str += String.format("|%-10s|%-18s|%-23s|%-10s|%-30s|\n","GroupID","Number Of Students","Max Number Of Students","EventID","Event Name");
 	        	//System.out.println("GroupID\tNumber Of Students\tMaximum Number Of Students\tEventID\tEvent Name");
-		        System.out.print(group.toString());
-		        System.out.printf("%-10s|%-30s|\n",event.getEventID() ,event.getEventName());
+    			str += group.toString();
+    			str += String.format("%-10s|%-30s|\n",event.getEventID() ,event.getEventName());
 		        //System.out.println(event.getEventID() + "\t" + event.getEventName());
     		}
     		else {
-    			System.out.printf("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
-    			System.out.println(group.toString());
+    			str += String.format("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
+    			str += group.toString();
     		}
     		
-        	System.out.println("Students in group:");
-	        System.out.printf("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
-        	group.listStudentInGroup();
-    		
+    		str += ("Students in group:\n");
+    		str += String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+    		str += group.listStudentInGroup();
     	}
     	catch (ExGroupNotFound | ExInvalidGroupID e) {
-			System.out.println(e.getMessage());
+    		str = e.getMessage();
     	} 
     	catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Search group command should be \"search group gXXXXXXXXX\"");
+    		str = e.getMessage();
+    		str += "Search group command should be \"search group gXXXXXXXXX\"\n";
 		}
+    	finally {
+    		return str;
+    	}
     }
 }

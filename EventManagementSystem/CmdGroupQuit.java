@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdGroupQuit implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         GroupHandler groupHandler = GroupHandler.getInstance();
         EventAllocator eventAllocator = EventAllocator.getInstance();
         try {
@@ -24,7 +25,7 @@ public class CmdGroupQuit implements Command {
                 if(event instanceof EventGroup) {
                     if(((EventGroup)event).foundGroup(group)) {
                         ((EventGroup)event).quitGroup(group);
-                        System.out.println("Group " + cmdParts[1] + " has quited event " + cmdParts[2]);
+                        str += "Group " + cmdParts[1] + " has quited event " + cmdParts[2] + "\n";
                     }
                     else {
                         throw new ExGroupNotFound();
@@ -38,12 +39,15 @@ public class CmdGroupQuit implements Command {
                 throw new ExInvalidGroupQuitCommand();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Wrong number format!");
+        	str = "Wrong number format!\n";
         } catch (ExInvalidGroupQuitCommand | ExGroupNotFound | ExEventNotFound | ExInvalidGroupID e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"");
+        	str = e.getMessage();
+        	str += "Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"\n";
     	} 
+        finally {
+        	return str;
+        }
     }
 }

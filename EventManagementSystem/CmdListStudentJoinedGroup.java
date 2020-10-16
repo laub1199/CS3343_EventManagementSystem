@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdListStudentJoinedGroup implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if(cmdParts.length != 3 || cmdParts[2].charAt(0) != 's') {
     			throw new ExWrongCommand();
@@ -20,21 +21,23 @@ public class CmdListStudentJoinedGroup implements Command {
     		GroupHandler groupHandler = GroupHandler.getInstance();
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		
-    		System.out.println(studentHandler.getStudent(studentID).printString());
-    		System.out.println("Joined Group: ");
+    		str = studentHandler.getStudent(studentID).printString();
+    		str += "Joined Group:\n";
     		
     		for(Group group:groupHandler.getGroupList()) {
     			if(group.getStudentList().contains(studentHandler.getStudent(studentID))) {
-    				System.out.println(group.toString());
+    				str += group.toString();
     			}
     		}
     		
     		groupHandler.listGroupByStudentId(cmdParts[2]);
     	}catch(ExInvalidStudentID | ExStudentNotFound e) {
-    		System.out.println(e.getMessage());
+    		str = e.getMessage();
     	} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("List student joined group command should be \"list studentJoinedGroup sXXXXXXXX\"");
-    	} 
+    		str = e.getMessage();
+    		str += "List student joined group command should be \"list studentJoinedGroup sXXXXXXXX\"\n";
+    	} finally {
+    		return str;
+    	}
     }
 }

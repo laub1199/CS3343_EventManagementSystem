@@ -6,7 +6,8 @@ import java.text.SimpleDateFormat;
 
 public class CmdCreateEvent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = "";    	
         try {
             if (!(cmdParts.length == 7  || cmdParts.length == 10) || cmdParts[3].charAt(0) != 'e') {
                 throw new ExWrongCommand();
@@ -55,7 +56,7 @@ public class CmdCreateEvent implements Command {
 					event = new EventGroup(eName, eID, eCap, eDate, eMaj, gpCap, gpMin, gpMax);
 				}
 					eventAllocator.addEvent(event);
-					System.out.println("Created " + eName + " event with EventID: " + eID + ".");
+					str = "Created " + eName + " event with EventID: " + eID + ".";
     		} finally {
     			if (eventFound != null)
     				throw new ExInvalidEventID();
@@ -63,16 +64,19 @@ public class CmdCreateEvent implements Command {
     		
             
         } catch (NumberFormatException e) {
-            System.out.println("Wrong number format!");
+        	str = "Wrong number format!";
         } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |
 				ExInvalidEventGroupSize | ExFirstNameTooLong | ExDateFormatDay | ExDateFormatMonth | ExMajorNotFound|
 				ExDateFormatYear | ExInvalidDate e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("There are two ways for create event command.");
-			System.out.println("Create individual event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".");
-			System.out.println("Create group event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".");
+        	str = e.getMessage();
+        	str += "\nThere are two ways for create event command.";
+        	str += "Create individual event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".";
+        	str += "Create group event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".\n";
         } 
+        finally {
+        	return str;
+        }
     }
 }

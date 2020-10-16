@@ -18,7 +18,7 @@ public class Main {
                 isValidSystemDate = true;
             }
             catch (ExDateFormatYear | ExDateFormatMonth | ExDateFormatDay | ExInvalidDate e) {
-                System.out.println(e.getMessage());
+                System.out.print(e.getMessage());
             }
             catch (NumberFormatException e) {
                 System.out.println("Invalid Date Format: dd-mmm-yyyy");
@@ -26,6 +26,7 @@ public class Main {
         } while (!isValidSystemDate);
 
         String command;
+        String returnstr = "";
         boolean exit = false;
         do {
             try {
@@ -33,19 +34,18 @@ public class Main {
 
             command = in.nextLine(); // get command from user
             String[] cmdParts = command.split(" "); // split the command by ' '
-
             if (cmdParts[0].equals("exit")) {
                 exit = true;
             }
             else if (cmdParts[0].equals("create")) {
                 if (cmdParts[1].equals("student")) {
-                    (new CmdCreateStudent()).execute(cmdParts);
+                	returnstr = (new CmdCreateStudent()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("group")) {
-                    (new CmdCreateGroup()).execute(cmdParts);
+                	returnstr = (new CmdCreateGroup()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("event")) {
-                    (new CmdCreateEvent()).execute(cmdParts);
+                	returnstr = (new CmdCreateEvent()).execute(cmdParts);
                 }
                 else {
                     throw new ExWrongCommand();
@@ -53,13 +53,13 @@ public class Main {
             }
             else if (cmdParts[0].equals("delete")) {
                 if (cmdParts[1].equals("student")) {
-                    (new CmdDeleteStudent()).execute(cmdParts);
+                	returnstr = (new CmdDeleteStudent()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("group")) {
                     (new CmdDeleteGroup()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("event")) {
-                    (new CmdDeleteEvent()).execute(cmdParts);
+                	returnstr = (new CmdDeleteEvent()).execute(cmdParts);
                 }
                 else {
                     throw new ExWrongCommand();
@@ -67,19 +67,19 @@ public class Main {
             }
             else if (cmdParts[0].equals("list")) {
                 if (cmdParts[1].equals("student")) {
-                    (new CmdListStudent()).execute(cmdParts);
+                	returnstr = (new CmdListStudent()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("event")) {
-                    (new CmdListEvent()).execute(cmdParts);
+                	returnstr = (new CmdListEvent()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("group")) {
-                    (new CmdListGroup()).execute(cmdParts);
+                	returnstr = (new CmdListGroup()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("studentJoinedEvent")) {
-                    (new CmdListStudentJoinedEvent()).execute(cmdParts);
+                	returnstr = (new CmdListStudentJoinedEvent()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("studentJoinedGroup")) {
-                    (new CmdListStudentJoinedGroup()).execute(cmdParts);
+                	returnstr = (new CmdListStudentJoinedGroup()).execute(cmdParts);
                 }
                 else {
                     throw new ExWrongCommand();
@@ -87,10 +87,10 @@ public class Main {
             }
             else if (cmdParts[0].equals("studentJoin")) {
                 if (cmdParts[1].equals("group")) {
-                    (new CmdStudentJoinGroup()).execute(cmdParts);
+                	returnstr = (new CmdStudentJoinGroup()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("event")) {
-                    (new CmdStudentJoinEvent()).execute(cmdParts);
+                	returnstr = (new CmdStudentJoinEvent()).execute(cmdParts);
                 }
                 else {
                     throw new ExWrongCommand();
@@ -98,7 +98,7 @@ public class Main {
             }
             else if (cmdParts[0].equals("groupJoin")) {
                 if (cmdParts[1].equals("event")) {
-                    (new CmdGroupJoin()).execute(cmdParts);
+                	returnstr = (new CmdGroupJoin()).execute(cmdParts);
                 }
                 else {
                     throw new ExWrongCommand();
@@ -106,35 +106,38 @@ public class Main {
             }
             else if (cmdParts[0].equals("search")) {
                 if (cmdParts[1].equals("student")) {
-                    (new CmdSearchStudent()).execute(cmdParts);
+                	returnstr = (new CmdSearchStudent()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("group")) {
-                    (new CmdSearchGroup()).execute(cmdParts);
+                	returnstr = (new CmdSearchGroup()).execute(cmdParts);
                 }
                 else if (cmdParts[1].equals("event")) {
-                    (new CmdSearchEvent()).execute(cmdParts);
+                	returnstr = (new CmdSearchEvent()).execute(cmdParts);
                 }
                 else {
                     throw new ExWrongCommand();
                 }
             }
             else if (cmdParts[0].equals("studentQuit")) {
-                (new CmdStudentQuit()).execute(cmdParts);
+            	returnstr = (new CmdStudentQuit()).execute(cmdParts);
             }
             else if (cmdParts[0].equals("groupQuit")) {
-                (new CmdGroupQuit()).execute(cmdParts);
+            	returnstr = (new CmdGroupQuit()).execute(cmdParts);
             }
             else if (cmdParts[0].equals("help")) {
             	
             } 
             else if(cmdParts[0].equals("recommend")){ 
-            	(new CmdRecommend()).execute(cmdParts); 
+            	returnstr = (new CmdRecommend()).execute(cmdParts); 
             }     
             else
                 throw new ExWrongCommand();
             }
             catch (ExWrongCommand e) {
-                System.out.println("Unknown command - ignored!");
+            	returnstr = "Unknown command - ignored!";
+            } 
+            finally {
+            	System.out.print(returnstr);
             }
         } while (!exit);
     }

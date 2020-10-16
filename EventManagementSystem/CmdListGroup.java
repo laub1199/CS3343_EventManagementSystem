@@ -2,17 +2,21 @@ package EventManagementSystem;
 
 public class CmdListGroup implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if(cmdParts.length != 2) {
     			throw new ExWrongCommand(); 
     		}
     		
     		GroupHandler groupHandler = GroupHandler.getInstance();
-    		groupHandler.listGroup();
+    		str = groupHandler.listGroup();
     	} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("List group command should be \"list group\"");
+    		str = e.getMessage();
+    		str += "List group command should be \"list group\"\n";
     	} 
+    	finally {
+    		return str;
+    	}
     }
 }

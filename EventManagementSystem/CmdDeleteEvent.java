@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdDeleteEvent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         try {
             if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'e') {
                 throw new ExWrongCommand();
@@ -19,12 +20,15 @@ public class CmdDeleteEvent implements Command {
             EventAllocator eventAllocator = EventAllocator.getInstance();
             Event event = eventAllocator.findEventByID(cmdParts[2]);
             eventAllocator.deleteEvent(event);
-            System.out.println("Deleted event with EventID: " + cmdParts[2] + ".");
+            str = "Deleted event with EventID: " + cmdParts[2] + ".";
         } catch (ExEventNotFound | ExInvalidEventID e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Delete event command should be \"delete event eXXXXXXXXX\"");
+        	str = e.getMessage();
+        	str += "Delete event command should be \"delete event eXXXXXXXXX\"\n";
     	} 
+        finally {
+        	return str;
+        }
     }
 }

@@ -4,8 +4,8 @@ public class CmdStudentJoinGroup implements Command {
 	//command: studentJoin Group (student id) (groupid)
 
 	@Override
-	public void execute(String[] cmdParts) {
-
+	public String execute(String[] cmdParts) {
+    	String str = ""; 
 		try {
 			if (cmdParts.length != 4 || cmdParts[2].charAt(0) != 's' || cmdParts[3].charAt(0) != 'g') {
 				throw new ExWrongCommand();
@@ -56,15 +56,17 @@ public class CmdStudentJoinGroup implements Command {
 			groupJoinedEvent = eventAllocator.findEventByGroup(group);
 			if (groupJoinedEvent == null) {
 				group.addStudent(student);
-				System.out.println("You joined the group successfully.");
+				str += "You joined the group successfully.\n";
 			} else {
-				System.out.println("Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.");
+				str += "Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.\n";
 			}
 		} catch (ExStudentNotFound | ExGroupNotFound | ExStudentAlreadyJoinedGroup | ExInvalidStudentID | ExInvalidGroupID | ExGroupIsFull e) {
-			System.out.println(e.getMessage());
+			str = e.getMessage();
 		} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Student join group command should be \"studentJoin group sXXXXXXXXX gXXXXXXXX\"");
+			str = e.getMessage();
+			str += "Student join group command should be \"studentJoin group sXXXXXXXXX gXXXXXXXX\"\n";
+		} finally {
+			return str;
 		}
 	}
 }

@@ -2,7 +2,8 @@ package EventManagementSystem;
 
 public class CmdDeleteGroup implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
         try {
             if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'g') {
                 throw new ExWrongCommand();
@@ -19,12 +20,15 @@ public class CmdDeleteGroup implements Command {
             GroupHandler groupHandler = GroupHandler.getInstance();
             Group group = groupHandler.getGroup(cmdParts[2]);
             groupHandler.deleteGroup(group);
-            System.out.println("Deleted group with GroupID: " + cmdParts[2] + ".");
+            str = "Deleted group with GroupID: " + cmdParts[2] + ".";
         } catch (ExGroupNotFound | ExInvalidGroupID e) {
-            System.out.println(e.getMessage());
+        	str = e.getMessage();
         } catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("Delete group command should be \"delete group gXXXXXXXXX\"");
+        	str = e.getMessage();
+        	str += "Delete group command should be \"delete group gXXXXXXXXX\"\n";
     	} 
+        finally {
+        	return str;
+        }
     }
 }

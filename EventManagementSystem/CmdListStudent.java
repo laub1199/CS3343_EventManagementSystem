@@ -2,17 +2,21 @@ package EventManagementSystem;
 
 public class CmdListStudent implements Command {
     @Override
-    public void execute(String[] cmdParts) throws CloneNotSupportedException {
+    public String execute(String[] cmdParts) throws CloneNotSupportedException {
+    	String str = ""; 
     	try {
     		if(cmdParts.length != 2) {
     			throw new ExWrongCommand();
     		}
     		
     		StudentHandler studentHandler = StudentHandler.getInstance();
-    		studentHandler.listStudent();
+    		str = studentHandler.listStudent();
     	} catch (ExWrongCommand e) {
-			System.out.println(e.getMessage());
-			System.out.println("List student command should be \"list student\"");
+    		str = e.getMessage();
+    		str += "List student command should be \"list student\"\n";
     	} 
+    	finally {
+    		return str;
+    	}
     }
 }

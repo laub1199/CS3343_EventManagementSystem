@@ -59,23 +59,24 @@ public class EventAllocator {
 		event.quitStudent(student);
 	}
 	
-	public void listEvent() {
-		
+	public String listEvent() {
+    	String str = ""; 
 		if (eventList.size() > 0) {
-			System.out.printf("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
+			str = String.format("|%-10s|%-30s|%-12s|%-8s|%-30s|%-5s|%-10s|%-15s|%-11s|%-16s|%-16s|\n",
 					"Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
 			for (Event e: getEventList()) {
 				if (e instanceof EventIndividual) {
-					((EventIndividual)e).printDetail();
+					str += ((EventIndividual)e).printDetail();
 				}
 				else if ((e instanceof EventGroup)) {
-					((EventGroup)e).printDetail();
+					str += ((EventGroup)e).printDetail();
 				}
 			}
 		}
 		else {
-			System.out.println("There are no event.");
+			str = "There are no event.";
 		}
+		return str;
 	}
 	
 	public void listEventApplicans() {

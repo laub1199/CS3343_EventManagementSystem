@@ -11,17 +11,18 @@ public class GroupHandler {
     
     public static GroupHandler getInstance(){return instance;}
     
-    public void listGroup(){
+    public String listGroup(){
+    	String str = "";
     	if (groupList.size() > 0) {
-    		System.out.printf("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
-	    	//System.out.println("GroupID\tNumber Of Student");
+    		str = String.format("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
 	        for(Group group:groupList){
-	            System.out.println(group);
+	        	str += group.toString();
 	        }
     	}
     	else {
-    		System.out.println("There are no group.");
+    		str = "There are no group.";
     	}
+    	return str;
     }
     
     public Group getGroup(String groupID) throws ExGroupNotFound{
