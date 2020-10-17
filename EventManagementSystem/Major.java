@@ -13,7 +13,6 @@ public enum Major {
 	eng("eng", "English"),
 	vm("vm", "Veterinary Medicine");
 
-
 	private final String major;  
 	private final String majorFullTitle;
 	

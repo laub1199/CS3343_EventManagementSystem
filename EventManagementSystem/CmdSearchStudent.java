@@ -22,14 +22,15 @@ public class CmdSearchStudent implements Command {
     		Student student = studentHandler.getStudent(cmdParts[2]);
     		str += String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
     		str += student.printString();
+    		return str;
     	}
     	catch (ExStudentNotFound | ExInvalidStudentID e) {
     		str = e.getMessage();
+    		return str;
     	}
     	catch (ExWrongCommand e) {
     		str = e.getMessage();
     		str += "Search student command should be \"search student sXXXXXXXXX\"\n";
-    	} finally {
     		return str;
     	}
     	

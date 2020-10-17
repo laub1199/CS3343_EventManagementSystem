@@ -25,29 +25,29 @@ public class CmdSearchGroup implements Command {
     		
     		if (event != null) {
     			str += String.format("|%-10s|%-18s|%-23s|%-10s|%-30s|\n","GroupID","Number Of Students","Max Number Of Students","EventID","Event Name");
-	        	//System.out.println("GroupID\tNumber Of Students\tMaximum Number Of Students\tEventID\tEvent Name");
-    			str += group.toString();
+    			str += String.format("|%-10s|%-18s|%-23s|",group.getGroupID(), group.getNumOfStudent(), group.getMaxNumOfStudent());
     			str += String.format("%-10s|%-30s|\n",event.getEventID() ,event.getEventName());
-		        //System.out.println(event.getEventID() + "\t" + event.getEventName());
     		}
     		else {
-    			str += String.format("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Student", "Max Number Of Student");
+    			str += String.format("|%-10s|%-18s|%-23s|\n","GroupID", "Number Of Students", "Max Number Of Students");
     			str += group.toString();
     		}
     		
-    		str += ("Students in group:\n");
-    		str += String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
-    		str += group.listStudentInGroup();
+    		if (group.getNumOfStudent() > 0) {
+	    		str += ("Students in group:\n");
+	    		str += String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");
+	    		str += group.listStudentInGroup();
+    		}
+    		return str;
     	}
     	catch (ExGroupNotFound | ExInvalidGroupID e) {
     		str = e.getMessage();
+    		return str;
     	} 
     	catch (ExWrongCommand e) {
     		str = e.getMessage();
     		str += "Search group command should be \"search group gXXXXXXXXX\"\n";
-		}
-    	finally {
     		return str;
-    	}
+		}
     }
 }

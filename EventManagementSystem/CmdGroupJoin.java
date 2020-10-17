@@ -76,8 +76,7 @@ public class CmdGroupJoin implements Command {
 			str = e.getMessage();
 			str += "Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"\n";
 		}
-		finally {
-			return str;
-		}
+		return str;
+		
 	
 	}}

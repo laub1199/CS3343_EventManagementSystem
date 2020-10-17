@@ -137,7 +137,7 @@ public class Main {
             	returnstr = "Unknown command - ignored!";
             } 
             finally {
-            	System.out.print(returnstr);
+            	System.out.println(returnstr);
             }
         } while (!exit);
     }

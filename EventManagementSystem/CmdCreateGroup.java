@@ -45,8 +45,7 @@ public class CmdCreateGroup implements Command {
         	str = e.getMessage();
         	str += "Create group command should be \"create group gXXXXXXXXX <max no. in one group>\".\n";
     	} 
-        finally {
-        	return str;
-        }
+        return str;
+        
     }
 }

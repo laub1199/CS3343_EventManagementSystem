@@ -26,9 +26,8 @@ public class CmdDeleteEvent implements Command {
         } catch (ExWrongCommand e) {
         	str = e.getMessage();
         	str += "Delete event command should be \"delete event eXXXXXXXXX\"\n";
-    	} 
-        finally {
-        	return str;
-        }
+    	}
+        return str;
+        
     }
 }

@@ -5,7 +5,7 @@ public class GroupHandler {
     private static GroupHandler instance = new GroupHandler();
     private ArrayList<Group> groupList;
     
-    private GroupHandler() {
+    GroupHandler() {
         groupList = new ArrayList<>();
     }
     

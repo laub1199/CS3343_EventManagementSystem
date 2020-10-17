@@ -15,8 +15,7 @@ public class CmdListStudent implements Command {
     		str = e.getMessage();
     		str += "List student command should be \"list student\"\n";
     	} 
-    	finally {
-    		return str;
-    	}
+    	return str;
+    	
     }
 }

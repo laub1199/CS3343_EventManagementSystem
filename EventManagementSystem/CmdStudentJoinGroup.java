@@ -65,8 +65,8 @@ public class CmdStudentJoinGroup implements Command {
 		} catch (ExWrongCommand e) {
 			str = e.getMessage();
 			str += "Student join group command should be \"studentJoin group sXXXXXXXXX gXXXXXXXX\"\n";
-		} finally {
-			return str;
-		}
+		} 
+		return str;
+		
 	}
 }

@@ -55,7 +55,6 @@ public class CmdSearchEvent implements Command {
 		    	}
     		}
     	}
-    	
     	catch (ExEventNotFound | ExInvalidEventID | ExMajorNotFound e){
     		str = e.getMessage();
     	}
@@ -63,8 +62,7 @@ public class CmdSearchEvent implements Command {
     		str = e.getMessage();
     		str += "Search event command should be \"search event id eXXXXXXXXX\" or \"search event major XXXXXXXXX\"\n";
     	}
-    	finally {
-    		return str;
-    	}
+		return str;
+
     }
 }

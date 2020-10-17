@@ -92,8 +92,8 @@ public class CmdStudentQuit implements Command {
         } catch (ExWrongCommand e) {
         	str = e.getMessage();
         	str += "Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"\n";
-    	} finally {
-    		return str;
-    	}
+    	} 
+    	return str;
+    	
     }
 }

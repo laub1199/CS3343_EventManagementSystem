@@ -27,8 +27,7 @@ public class CmdDeleteGroup implements Command {
         	str = e.getMessage();
         	str += "Delete group command should be \"delete group gXXXXXXXXX\"\n";
     	} 
-        finally {
-        	return str;
-        }
+        return str;
+        
     }
 }

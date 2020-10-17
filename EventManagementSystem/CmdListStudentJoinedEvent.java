@@ -60,8 +60,8 @@ public class CmdListStudentJoinedEvent implements Command {
     	} catch (ExWrongCommand e) {
     		str = e.getMessage();
     		str += "List student joined event command should be \"list studentJoinedEvent sXXXXXXXX all\" or \"list studentJoinedEvent sXXXXXXXX pending\" or \"list studentJoinedEvent sXXXXXXXX end\"\n";
-    	} finally {
-    		return str;
-    	}
+    	} 
+    	return str;
+    	
     }
 }

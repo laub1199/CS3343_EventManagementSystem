@@ -27,8 +27,7 @@ public class CmdDeleteStudent implements Command {
         	str = e.getMessage();
         	str += "Delete student command should be \"delete student sXXXXXXXXX\"\n";
     	} 
-        finally {
-        	return str;
-        }
+        return str;
+        
     }
 }

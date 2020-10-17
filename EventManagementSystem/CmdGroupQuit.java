@@ -45,9 +45,8 @@ public class CmdGroupQuit implements Command {
         } catch (ExWrongCommand e) {
         	str = e.getMessage();
         	str += "Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"\n";
-    	} 
-        finally {
-        	return str;
-        }
+    	}         
+        return str;
+        
     }
 }

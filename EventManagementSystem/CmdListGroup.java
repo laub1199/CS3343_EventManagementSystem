@@ -15,8 +15,7 @@ public class CmdListGroup implements Command {
     		str = e.getMessage();
     		str += "List group command should be \"list group\"\n";
     	} 
-    	finally {
-    		return str;
-    	}
+    	return str;
+    	
     }
 }

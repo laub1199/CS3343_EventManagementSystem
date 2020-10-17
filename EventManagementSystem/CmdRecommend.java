@@ -1,6 +1,5 @@
 package EventManagementSystem;
 
-import java.beans.EventHandler;
 import java.util.ArrayList;
 
 
@@ -88,8 +87,8 @@ public class CmdRecommend implements Command {
         }catch(ExWrongCommand e) {
         	str = e.getMessage();
         	str += "Recommend command should be \"recommend sXXXXXXXXX\"\n";
-        } finally {
-        	return str;
-        }
+        } 
+        return str;
+        
     }
 }

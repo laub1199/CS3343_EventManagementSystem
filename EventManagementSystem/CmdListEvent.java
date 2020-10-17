@@ -14,8 +14,7 @@ public class CmdListEvent implements Command {
     		str = e.getMessage();
     		str += "List event command should be \"list event\"\n";
     	} 
-    	finally {
-    		return str;
-    	}
+    	return str;
+    	
     }
 }

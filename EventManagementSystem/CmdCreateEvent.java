@@ -1,9 +1,5 @@
 package EventManagementSystem;
 
-import java.text.ParseException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-
 public class CmdCreateEvent implements Command {
     @Override
     public String execute(String[] cmdParts) throws CloneNotSupportedException {
@@ -75,8 +71,6 @@ public class CmdCreateEvent implements Command {
         	str += "Create individual event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".";
         	str += "Create group event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".\n";
         } 
-        finally {
-        	return str;
-        }
+        return str;
     }
 }

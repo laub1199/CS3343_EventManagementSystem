@@ -10,6 +10,10 @@ public class StudentHandler {
         return instance;
     }
 
+    public ArrayList<Student> getStudentList(){
+    	return studentList;
+    }
+    
     public String listStudent() {
     	String str = "";
     	if (studentList.size() > 0) {

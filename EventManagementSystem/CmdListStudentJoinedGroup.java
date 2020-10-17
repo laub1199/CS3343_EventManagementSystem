@@ -36,8 +36,8 @@ public class CmdListStudentJoinedGroup implements Command {
     	} catch (ExWrongCommand e) {
     		str = e.getMessage();
     		str += "List student joined group command should be \"list studentJoinedGroup sXXXXXXXX\"\n";
-    	} finally {
-    		return str;
-    	}
+    	} 
+    	return str;
+    	
     }
 }

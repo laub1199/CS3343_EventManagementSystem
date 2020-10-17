@@ -64,9 +64,9 @@ public class CmdStudentJoinEvent implements Command {
         } catch (ExWrongCommand e) {
         	str = e.getMessage();
         	str += "Student join event command should be \"studentJoin event sXXXXXXXXX eXXXXXXXX\"\n";
-		} finally {
-			return str;
-		}
+		} 
+		return str;
+		
     }
 
 }

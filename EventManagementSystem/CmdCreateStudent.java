@@ -57,8 +57,7 @@ public class CmdCreateStudent implements Command {
         	str = e.getMessage();
 			str += "Create student command should be \"create student sXXXXXXXXX\" <major> <first name> <last name> <gender> <age>.\n";
     	}
-        finally {
-        	return str;
-        }
+        return str;
+        
     }
 }
