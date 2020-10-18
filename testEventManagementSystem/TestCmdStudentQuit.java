@@ -125,7 +125,7 @@ public class TestCmdStudentQuit {
 		String[] cmd = {"studentQuit", "e00000001", "g00000002"};
 		String result = (new CmdStudentQuit()).execute(cmd);
 		String expected = "Wrong Command\n";
-		expected += "Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"\n";
+		expected += "Student quit command should be \"studentQuit sXXXXXXXXX gXXXXXXXXX\"\n";
 		assertEquals(expected, result);
 	}
 
@@ -160,7 +160,6 @@ public class TestCmdStudentQuit {
 		String[] cmd = {"studentQuit", "s00000002", "g00000001"};
 		String result = (new CmdStudentQuit()).execute(cmd);
 		String expected = "Student not found!\n";
-		System.out.println(result);
 		assertEquals(expected, result);
 	}
 

@@ -67,7 +67,7 @@ public class CmdStudentQuit implements Command {
             str = e.getMessage();
         } catch (ExWrongCommand e) {
             str = e.getMessage();
-            str += "Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"\n";
+            str += "Student quit command should be \"studentQuit sXXXXXXXXX gXXXXXXXXX\"\n";
         }
         return str;
 
