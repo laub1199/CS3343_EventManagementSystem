@@ -209,7 +209,6 @@ public class TestCmdStudentQuit {
 		String[] cmd = {"studentQuit", "s00000001", "e00000002"};
 		String result = (new CmdStudentQuit()).execute(cmd);
 		String expected = "As the select event is a group event, please quit the group instead!\n";
-		System.out.println(result);
 		assertEquals(expected, result);
 	}
 }
