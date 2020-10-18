@@ -7,17 +7,12 @@ public class CmdGroupQuit implements Command {
         GroupHandler groupHandler = GroupHandler.getInstance();
         EventAllocator eventAllocator = EventAllocator.getInstance();
         try {
-            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 'g') {
+            if (cmdParts.length != 3 || cmdParts[1].charAt(0) != 'g' || cmdParts[2].charAt(0) != 'e') {
                 throw new ExWrongCommand();
             }
-            try {
-            	String gID = cmdParts[1];
-            	if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
-            		throw new ExInvalidGroupID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidGroupID();
+            String gID = cmdParts[1];
+            if (gID.length() != 9) {
+                throw new ExInvalidGroupID();
             }
             Group group = groupHandler.getGroup(cmdParts[1]);
             if (cmdParts[2].charAt(0) == 'e' && cmdParts[2].length() == 9) {
@@ -32,20 +27,15 @@ public class CmdGroupQuit implements Command {
                     }
                 }
                 else  {
-                    throw new ExInvalidGroupQuitCommand();
+                    throw new ExInvalidGroupQuitIndividualEvent();
                 }
             }
-            else {
-                throw new ExInvalidGroupQuitCommand();
-            }
-        } catch (NumberFormatException e) {
-        	str = "Wrong number format!\n";
-        } catch (ExInvalidGroupQuitCommand | ExGroupNotFound | ExEventNotFound | ExInvalidGroupID e) {
+        } catch (ExGroupNotFound | ExEventNotFound | ExInvalidGroupID | ExInvalidGroupQuitIndividualEvent e) {
         	str = e.getMessage();
         } catch (ExWrongCommand e) {
         	str = e.getMessage();
         	str += "Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"\n";
-    	}         
+    	}
         return str;
         
     }
