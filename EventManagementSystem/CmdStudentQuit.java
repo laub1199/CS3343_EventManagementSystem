@@ -13,22 +13,12 @@ public class CmdStudentQuit implements Command {
             }
             String studentID = null;
             studentID = cmdParts[1];
-            try {
-                if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
-                    throw new ExInvalidStudentID();
-                }
-            }
-            catch (NumberFormatException ex) {
+            if (studentID.length() != 9) {
                 throw new ExInvalidStudentID();
             }
             Student student = studentHandler.getStudent(studentID);
             if (cmdParts[2].charAt(0) == 'g') {
-                try {
-                    if (cmdParts[2].length() != 9 || Integer.parseInt(cmdParts[2].substring(1,8)) <0 || Integer.parseInt(cmdParts[2].substring(1,8)) > 99999999) {
-                        throw new ExInvalidGroupID();
-                    }
-                }
-                catch (NumberFormatException ex) {
+                if (cmdParts[2].length() != 9) {
                     throw new ExInvalidGroupID();
                 }
                 Group group = groupHandler.getGroup(cmdParts[2]);
@@ -51,12 +41,7 @@ public class CmdStudentQuit implements Command {
                 }
             }
             else if (cmdParts[2].charAt(0) == 'e') {
-                try {
-                    if (cmdParts[2].length() != 9 || Integer.parseInt(cmdParts[2].substring(1,8)) <0 || Integer.parseInt(cmdParts[2].substring(1,8)) > 99999999) {
-                        throw new ExInvalidEventID();
-                    }
-                }
-                catch (NumberFormatException ex) {
+                if (cmdParts[2].length() != 9) {
                     throw new ExInvalidEventID();
                 }
                 Event event = eventAllocator.findEventByID(cmdParts[2]);
@@ -77,16 +62,7 @@ public class CmdStudentQuit implements Command {
                     throw new ExInvalidEventGroupQuitCommand();
                 }
             }
-            else if (cmdParts[2].charAt(0) == 's' && cmdParts[2].length() == 9) {
-                throw new ExInvalidStudentQuitCommand();
-            }
-            else {
-                throw new ExInvalidID();
-            }
-
-        } catch (NumberFormatException e) {
-            str = "Wrong number format!\n";
-        } catch (ExInvalidStudentQuitCommand | ExInvalidID | ExStudentNotFound | ExGroupNotFound | ExInvalidGroupID |
+        } catch (ExStudentNotFound | ExGroupNotFound | ExInvalidGroupID |
                 ExInvalidEventID | ExEventNotFound | ExInvalidEventGroupQuitCommand | ExInvalidStudentID e) {
             str = e.getMessage();
         } catch (ExWrongCommand e) {

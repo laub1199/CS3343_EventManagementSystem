@@ -118,4 +118,98 @@ public class TestCmdStudentQuit {
 		expected += "Group g00000002 is forced to quit event e00000002\n";
 		assertEquals(expected, result);
 	}
+
+	@Test
+	public void testWrongInputA() throws Exception {
+		// wrong input on line 12
+		String[] cmd = {"studentQuit", "e00000001", "g00000002"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Wrong Command\n";
+		expected += "Student quit command should be \"quit sXXXXXXXXX gXXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputB() throws Exception {
+		// wrong input on line 17
+		String[] cmd = {"studentQuit", "s000000011", "g00000002"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Invalid student ID\n";
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputC() throws Exception {
+		// wrong input on line 22
+		String[] cmd = {"studentQuit", "s00000001", "g000000021"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Invalid group ID!\n";
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputD() throws Exception {
+		// wrong input on line 40
+		EventAllocator eventAllocator = EventAllocator.getInstance();
+		StudentHandler studentHandler = StudentHandler.getInstance();
+		GroupHandler groupHandler = GroupHandler.getInstance();
+
+		Group group = groupHandler.getGroup("g00000001");
+		group.addStudent(studentHandler.getStudent("s00000001"));
+
+		String[] cmd = {"studentQuit", "s00000002", "g00000001"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Student not found!\n";
+		System.out.println(result);
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputE() throws Exception {
+		// wrong input on line 46
+		EventAllocator eventAllocator = EventAllocator.getInstance();
+		StudentHandler studentHandler = StudentHandler.getInstance();
+		GroupHandler groupHandler = GroupHandler.getInstance();
+
+		Group group = groupHandler.getGroup("g00000001");
+		group.addStudent(studentHandler.getStudent("s00000001"));
+
+		String[] cmd = {"studentQuit", "s00000002", "g00000001"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Student not found!\n";
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputF() throws Exception {
+		// wrong input on line 45
+		String[] cmd = {"studentQuit", "s00000001", "e000000021"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Invalid event ID!\n";
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputG() throws Exception {
+		// wrong input on line 56
+		EventAllocator eventAllocator = EventAllocator.getInstance();
+		StudentHandler studentHandler = StudentHandler.getInstance();
+		GroupHandler groupHandler = GroupHandler.getInstance();
+		eventAllocator.studentJoinEvent(studentHandler.getStudent("s00000001"), (EventIndividual)eventAllocator.findEventByID("e00000001"));
+
+		String[] cmd = {"studentQuit", "s00000002", "e00000001"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Student not found!\n";
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void testWrongInputH() throws Exception {
+		// wrong input on line 62
+		String[] cmd = {"studentQuit", "s00000001", "e00000002"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "As the select event is a group event, please quit the group instead!\n";
+		System.out.println(result);
+		assertEquals(expected, result);
+	}
 }
