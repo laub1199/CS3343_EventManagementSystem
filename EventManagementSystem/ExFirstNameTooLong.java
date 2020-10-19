@@ -1,5 +1,5 @@
 package EventManagementSystem;
 
 public class ExFirstNameTooLong extends Exception {
-    public ExFirstNameTooLong() { super("Event name cannot exceed 30 characters!\n"); }
+    public ExFirstNameTooLong() { super("First name cannot exceed 20 characters!\n"); }
 }
