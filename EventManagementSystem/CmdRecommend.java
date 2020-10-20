@@ -45,10 +45,10 @@ public class CmdRecommend implements Command {
                 for(int j=0; j<2;j++){
 
                     if (emaj.get(j) instanceof EventIndividual) {
-                        ((EventIndividual)emaj.get(j)).printDetail();
+                        emaj.get(j).printDetail();
                     }
                     else if ((emaj.get(j) instanceof EventGroup)) {
-                        ((EventGroup)emaj.get(j)).printDetail();
+                        emaj.get(j).printDetail();
                     }
                 }
             }
@@ -60,10 +60,10 @@ public class CmdRecommend implements Command {
                         "Event ID","Event Name","Date","Capacity","Major","Quota","Type","Group Capacity","Group Quota","Min No. In Group","Max No. In Group");
                 for(int k=0; k<2;k++){
                     if (eothers.get(k) instanceof EventIndividual) {
-                        ((EventIndividual)eothers.get(k)).printDetail();
+                        eothers.get(k).printDetail();
                     }
                     else if ((eothers.get(k) instanceof EventGroup)) {
-                        ((EventGroup)eothers.get(k)).printDetail();
+                        eothers.get(k).printDetail();
                     }
                 }
             }
