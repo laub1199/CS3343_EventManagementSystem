@@ -14,6 +14,7 @@ public class CmdListStudentJoinedEvent implements Command {
             	if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
             		throw new ExInvalidStudentID();
             	}
+
             } 
             catch (NumberFormatException ex) {
             	throw new ExInvalidStudentID();
@@ -23,9 +24,9 @@ public class CmdListStudentJoinedEvent implements Command {
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		//eventAllocator.findEventByStudent();
     		
-    		System.out.println(studentHandler.getStudent(studentID).printString());
+    		str += studentHandler.getStudent(studentID).printString();
     		
-    		if(cmdParts[3] == "all") {
+    		if(cmdParts[3].equals("all")) {
     			str = "All events:\n";
     			str += String.format("|%-12s|%-30s|\n", "Event ID","Event Name");
     			for(Event event:eventAllocator.getEventList()) {
@@ -34,7 +35,7 @@ public class CmdListStudentJoinedEvent implements Command {
     				}
     			}
 				// can use listEventFunction - laub
-    		}else if(cmdParts[3] == "pending") {
+    		}else if(cmdParts[3].equals("pending")) {
     			str = "Pending events:\n";
 				//need add header - laub
     			str += String.format("|%-12s|%-30s|\n", "Event ID","Event Name");
@@ -43,7 +44,7 @@ public class CmdListStudentJoinedEvent implements Command {
     					str += String.format("|%-12s|%-30s|\n", event.getEventID(), event.getEventName());
     				}
     			}
-    		}else if(cmdParts[3] == "end") {
+    		}else if(cmdParts[3].equals("end")) {
 				//need add header - laub
     			str = "End events:\n";
     			str += String.format("|%-12s|%-30s|\n", "Event ID","Event Name");
