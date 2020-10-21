@@ -29,6 +29,7 @@ public class TestCmdGroupJoin {
 		// create groups
 		groupHandler.createGroup(new Group("g00000001", 4));
 		groupHandler.createGroup(new Group("g00000002", 3));
+		groupHandler.createGroup(new Group("g00000003", 3));
 
 		// create events
 		eventAllocator.addEvent((Event)new EventIndividual("a-game", "e00000001", 11, new Day("13-oct-2020"), Major.getMajor("cs")));
@@ -80,18 +81,28 @@ public class TestCmdGroupJoin {
 		assertEquals(expected, result);
 	}
 
-	/*@Test
-	  public void testGroupEventNotFull() throws Exception {
-		class StubEvent extends Event{
-			public StubEvent() {
-			}
-		}
-		StubEventGroup stubEventGroup = new StubEventGroup("c-game", "e00000003", 6, new Day("13-oct-2020"), Major.getMajor("cs"), 2, 2, 3));
-		EventAllocator eventAllocator = EventAllocator.getInstance();
-		Event groupEvent = eventAllocator.findEventByID("e00000003");
-		boolean result = groupEvent.isFull();
+	@Test
+	  public void testGroupEventIsFull() throws Exception {
+		StudentHandler studentHandler = StudentHandler.getInstance();
+		GroupHandler groupHandler = GroupHandler.getInstance();
+		Group group1 = groupHandler.getGroup("g00000001");
+		group1.addStudent(studentHandler.getStudent("s00000001"));
+		String[] cmd1 = {"groupJoin", "event", "g00000001", "e00000002"};
+		(new CmdGroupJoin()).execute(cmd1);
+		
+		Group group2 = groupHandler.getGroup("g00000002");
+		group2.addStudent(studentHandler.getStudent("s00000002"));
+		String[] cmd2 = {"groupJoin", "event", "g00000002", "e00000002"};
+		(new CmdGroupJoin()).execute(cmd2);
+		
+		Group group3 = groupHandler.getGroup("g00000003");
+		group3.addStudent(studentHandler.getStudent("s00000003"));	
+		String[] cmd = {"groupJoin", "event", "g00000003", "e00000002"};
+		String result = (new CmdGroupJoin()).execute(cmd);
+		
+		String expected = "Fail to join the event. The number of participated group of this event has reached its maximum.\n";
 		assertEquals(expected, result);
-	}*/
+	}
 
 	@Test
 	public void testGroupAlreadyJoinedEvent() throws Exception {
@@ -152,7 +163,7 @@ public class TestCmdGroupJoin {
 
 	@Test
 	public void testInvalidGroupInput() throws Exception {
-		String[] cmd = {"groupJoin", "event", "g00000003", "e00000002"};
+		String[] cmd = {"groupJoin", "event", "g00000005", "e00000002"};
 		String result = (new CmdGroupJoin()).execute(cmd);
 		String expected = "Group not found!\n";
 		assertEquals(expected, result);
