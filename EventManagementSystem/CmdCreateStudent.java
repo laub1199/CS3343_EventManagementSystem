@@ -3,7 +3,7 @@ package EventManagementSystem;
 public class CmdCreateStudent implements Command {
     @Override
     public String execute(String[] cmdParts) throws CloneNotSupportedException {
-    	String str = ""; 
+    	String str = "";
         try {
             if (cmdParts.length != 8 || cmdParts[2].charAt(0) != 's') {
                 throw new ExWrongCommand();
@@ -49,8 +49,6 @@ public class CmdCreateStudent implements Command {
             
         } catch (NumberFormatException e) {
         	str = "Wrong number format!\n";
-        } catch (IndexOutOfBoundsException e) {
-        	str = "Sex should be 1 character(M/F)!\n";
         } catch (ExFirstNameTooLong | ExLastNameTooLong | ExWrongSexInput | ExInvalidStudentID |ExMajorNotFound e) {
         	str = e.getMessage();
         } catch (ExWrongCommand e) {

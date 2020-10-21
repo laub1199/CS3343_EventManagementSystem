@@ -15,7 +15,7 @@ public class CmdCreateEvent implements Command {
             Major eMaj = Major.getMajor(cmdParts[6]);
             Day eDate = new Day(cmdParts[5]);
             if (eName.length() > 30)
-            	throw new ExFirstNameTooLong();
+            	throw new ExEventNameTooLong();
             Event eventFound = null;
     		try {
     			eventFound = eventAllocator.findEventByID(eID);
@@ -62,7 +62,7 @@ public class CmdCreateEvent implements Command {
         } catch (NumberFormatException e) {
         	str = "Wrong number format!";
         } catch (ExInvalidEventID | ExInvalidEventDate | ExInvalidEventCapacity | ExInvalidEventGroupCapacity |
-				ExInvalidEventGroupSize | ExFirstNameTooLong | ExDateFormatDay | ExDateFormatMonth | ExMajorNotFound|
+				ExInvalidEventGroupSize | ExEventNameTooLong | ExDateFormatDay | ExDateFormatMonth | ExMajorNotFound|
 				ExDateFormatYear | ExInvalidDate e) {
         	str = e.getMessage();
         } catch (ExWrongCommand e) {
