@@ -31,7 +31,7 @@ public class TestCmdStudentJoinEvent {
 		groupHandler.createGroup(new Group("g00000002", 3));
 
 		// create events
-		eventAllocator.addEvent((Event)new EventIndividual("a-game", "e00000001", 11, new Day("13-oct-2020"), Major.getMajor("cs")));
+		eventAllocator.addEvent((Event)new EventIndividual("a-game", "e00000001", 3, new Day("13-oct-2020"), Major.getMajor("cs")));
 		eventAllocator.addEvent((Event)new EventGroup("b-game", "e00000002", 6, new Day("13-oct-2020"), Major.getMajor("cs"), 2, 1, 2));
 	}
 	/**
@@ -80,18 +80,21 @@ public class TestCmdStudentJoinEvent {
 		assertEquals(expected, result);
 	}
 
-	/*@Test
+	@Test
 	  public void testIndividualEventIsFull() throws Exception {
-		class StubEvent extends Event{
-			public StubEvent() {
-			}
-		}
-		StubEventGroup stubEventGroup = new StubEventGroup("c-game", "e00000003", 6, new Day("13-oct-2020"), Major.getMajor("cs"), 2, 2, 3));
-		EventAllocator eventAllocator = EventAllocator.getInstance();
-		Event groupEvent = eventAllocator.findEventByID("e00000003");
-		boolean result = groupEvent.isFull();
+		StudentHandler studentHandler = StudentHandler.getInstance();
+		String[] cmd1 = {"studentJoin", "event", "s00000001", "e00000001"};
+		(new CmdStudentJoinEvent()).execute(cmd1);
+		String[] cmd2 = {"studentJoin", "event", "s00000002", "e00000001"};
+		(new CmdStudentJoinEvent()).execute(cmd2);
+		String[] cmd3 = {"studentJoin", "event", "s00000003", "e00000001"};
+		(new CmdStudentJoinEvent()).execute(cmd3);
+		
+		String[] cmd = {"studentJoin", "event", "s00000004", "e00000001"};
+		String result = (new CmdStudentJoinEvent()).execute(cmd);
+		String expected = "Fail to join the event. The number of participant of this event has reached its maximum.\n";
 		assertEquals(expected, result);
-	}*/
+	}
 
 	@Test
 	public void testIndividualAlreadyJoinedEvent() throws Exception {
@@ -122,5 +125,7 @@ public class TestCmdStudentJoinEvent {
 		String expected = "Event not found!\n";
 		assertEquals(expected, result);
 	}
+	
+	
 
 }
