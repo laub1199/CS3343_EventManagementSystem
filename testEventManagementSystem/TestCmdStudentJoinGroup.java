@@ -135,7 +135,7 @@ public class TestCmdStudentJoinGroup {
 		
 		String[] cmd = {"studentJoin", "group", "s00000003", "g00000002"};
 		String result = (new CmdStudentJoinGroup()).execute(cmd);
-		String expected = "Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.\n";
+		String expected = "Fail to join the group. The group have joined a event already, and the group have reached maximum number requirement of the event.\n";
 		assertEquals(expected, result);
 	}
 	

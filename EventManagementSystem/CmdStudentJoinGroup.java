@@ -56,7 +56,7 @@ public class CmdStudentJoinGroup implements Command {
 			groupJoinedEvent = eventAllocator.findEventByGroup(group);
 			if (groupJoinedEvent != null) {
 				if(((EventGroup) groupJoinedEvent).getMaxNumInOneJoin() == group.getNumOfStudent()){
-					str += "Fail to join the group. The group have joined a event already, and the group have reached maximum number requirment of the event.\n";
+					str += "Fail to join the group. The group have joined a event already, and the group have reached maximum number requirement of the event.\n";
 				}
 				else {
 					group.addStudent(student);
