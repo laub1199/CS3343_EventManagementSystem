@@ -43,8 +43,8 @@ public class TestCmdCreateEvent {
         String result = new CmdCreateEvent().execute(cmd);
         String expected = "Wrong Command\n";
         expected += "\nThere are two ways for create event command.";
-        expected += "Create individual event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".";
-        expected += "Create group event: \"create event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".\n";
+        expected += "Create individual event: \"create <name> event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".";
+        expected += "Create group event: \"create <name> event eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".\n";
         assertEquals(expected, result);
     }
 
