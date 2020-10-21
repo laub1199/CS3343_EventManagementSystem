@@ -65,7 +65,7 @@ public class TestCmdSearchStudent {
 		String[] command = {"search", "student", "s123456"};
 		String returnstr = null;
 		String expected = "";
-		expected += "Invalid student ID\n";
+		expected += "Invalid student ID!\n";
 		returnstr = (new CmdSearchStudent()).execute(command);	
 		assertEquals(expected, returnstr);
 	}
@@ -75,7 +75,7 @@ public class TestCmdSearchStudent {
 		String[] command = {"search", "student", "s-2345678"};
 		String returnstr = null;
 		String expected = "";
-		expected +="Invalid student ID\n";
+		expected +="Invalid student ID!\n";
 		returnstr = (new CmdSearchStudent()).execute(command);	
 		assertEquals(expected, returnstr);
 	}
@@ -85,7 +85,7 @@ public class TestCmdSearchStudent {
 		String[] command = {"search", "student", "stesttest"};
 		String returnstr = null;
 		String expected = "";
-		expected += "Invalid student ID\n";
+		expected += "Invalid student ID!\n";
 		returnstr = (new CmdSearchStudent()).execute(command);	
 		assertEquals(expected, returnstr);
 	}

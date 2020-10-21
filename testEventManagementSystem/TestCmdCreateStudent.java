@@ -45,14 +45,14 @@ public class TestCmdCreateStudent {
     public void testWrongInput_WrongStudentIDFormat() throws Exception {
         String[] cmd = {"create", "student", "ss0000005", "cm", "Mary", "Lam", "F", "20"};
         String result = new CmdCreateStudent().execute(cmd);
-        assertEquals("Invalid student ID\n", result);
+        assertEquals("Invalid student ID!\n", result);
     }
 
     @Test
     public void testWrongInput_InvalidStudentID() throws Exception {
         String[] cmd = {"create", "student", "s05", "cm", "Mary", "Lam", "F", "20"};
         String result = new CmdCreateStudent().execute(cmd);
-        assertEquals("Invalid student ID\n", result);
+        assertEquals("Invalid student ID!\n", result);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class TestCmdCreateStudent {
     public void testWrongInput_StudentFound() throws Exception {
         String[] cmd = {"create", "student", "s00000001", "cm", "Mary", "Lam", "F", "20"};
         String result = new CmdCreateStudent().execute(cmd);
-        assertEquals("Invalid student ID\n", result);
+        assertEquals("Invalid student ID!\n", result);
     }
 
     @Test

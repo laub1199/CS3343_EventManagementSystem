@@ -73,7 +73,7 @@ public class TestCmdRecommend {
     public void testcmdRecommend003() throws Exception { //SID length >9
         String[] cmd = {"recommend", "s000000011"};
         String result = (new CmdRecommend()).execute(cmd);
-        String expected = "Invalid student ID\n";
+        String expected = "Invalid student ID!\n";
         assertEquals(expected, result);
     }
 
