@@ -26,6 +26,10 @@ public class EventGroup extends Event {
 		joinedGroupList.remove(group);
 	}
 	
+	public ArrayList<Group> getJoinedGroupList(){
+		return joinedGroupList;
+	}
+	
 	@Override
 	public ArrayList<Student> getStudentList(){
 		ArrayList<Student> allStudentList = new ArrayList<Student>();
@@ -35,12 +39,12 @@ public class EventGroup extends Event {
 		return allStudentList;
 	}
 	
-	@Override
-	public void listJoinedStudent() {		
-		for (Group g:joinedGroupList) {
-			g.listStudentInGroup();
-		}
-	}
+//	@Override
+//	public void listJoinedStudent() {		
+//		for (Group g:joinedGroupList) {
+//			g.listStudentInGroup();
+//		}
+//	}
 
 	@Override
 	public boolean isFull() {

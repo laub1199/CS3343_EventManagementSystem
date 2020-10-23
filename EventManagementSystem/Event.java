@@ -42,7 +42,7 @@ public abstract class Event {
 	
 	public abstract boolean isFull();
 
-	public abstract void listJoinedStudent();
+	//public abstract void listJoinedStudent();
 	
 	public abstract ArrayList<Student> getStudentList();
 

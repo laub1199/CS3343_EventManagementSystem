@@ -58,11 +58,11 @@ public class EventAllocator {
 		return str;
 	}
 	
-	public void listEventApplicans() {
-		for (Event e: getEventList()) {
-			((EventGroup) e).listJoinedStudent();
-		}
-	}
+//	public void listEventApplicans() {
+//		for (Event e: getEventList()) {
+//			((EventGroup) e).listJoinedStudent();
+//		}
+//	}
 	
 	public Event findEventByID(String eventID)  throws ExEventNotFound {
 		for (Event e: getEventList()) {
