@@ -34,12 +34,17 @@ public class GroupHandler {
         throw new ExGroupNotFound();
     }
     
-    public void listGroupByStudentId(String studentId) throws ExStudentNotFound {
+    public String listGroupByStudentId(String studentId) throws ExStudentNotJoined {
+    	String str = "";
     	for(Group group:groupList) {
     		if(group.isFoundStudentById(studentId)) {
-    			System.out.println(group.toString());
+    			str += group.toString();
     		}
     	}
+    	if (str.equals("")) {
+    		throw new ExStudentNotJoined();
+    	}
+    	else return str;
     }
     
     public ArrayList<Group> getGroupList(){
@@ -52,9 +57,9 @@ public class GroupHandler {
     public void deleteGroup(Group group){
         groupList.remove(group);
     }
-    
-    public void deleteGroup(String groupID) throws ExGroupNotFound{
-        groupList.remove(getGroup(groupID));
-    }
+//    
+//    public void deleteGroup(String groupID) throws ExGroupNotFound{
+//        groupList.remove(getGroup(groupID));
+//    }
 }
 

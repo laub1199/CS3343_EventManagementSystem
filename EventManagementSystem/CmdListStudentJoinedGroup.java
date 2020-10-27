@@ -23,15 +23,10 @@ public class CmdListStudentJoinedGroup implements Command {
     		
     		str = studentHandler.getStudent(studentID).printString();
     		str += "Joined Group:\n";
+
+    		str += groupHandler.listGroupByStudentId(cmdParts[2]);
     		
-    		for(Group group:groupHandler.getGroupList()) {
-    			if(group.getStudentList().contains(studentHandler.getStudent(studentID))) {
-    				str += group.toString();
-    			}
-    		}
-    		
-    		groupHandler.listGroupByStudentId(cmdParts[2]);
-    	}catch(ExInvalidStudentID | ExStudentNotFound e) {
+    	}catch(ExInvalidStudentID | ExStudentNotFound | ExStudentNotJoined e) {
     		str = e.getMessage();
     	} catch (ExWrongCommand e) {
     		str = e.getMessage();

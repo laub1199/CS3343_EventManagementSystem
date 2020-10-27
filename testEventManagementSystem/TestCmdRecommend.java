@@ -21,11 +21,14 @@ import EventManagementSystem.SystemDate;
 
 public class TestCmdRecommend {
 
+	EventAllocator eventAllocator;
+	StudentHandler studentHandler;
+	
     @BeforeEach
     public void setUp() throws Exception {
         SystemDate.createTheInstance("01-jan-2020");
-        EventAllocator eventAllocator = EventAllocator.getInstance();
-        StudentHandler studentHandler = StudentHandler.getInstance();
+        eventAllocator = EventAllocator.getInstance();
+        studentHandler = StudentHandler.getInstance();
 
 
         // create student
@@ -45,9 +48,7 @@ public class TestCmdRecommend {
 
     @AfterEach
     public void tearDown() throws Exception {
-        EventAllocator eventAllocator = EventAllocator.getInstance();
         eventAllocator.getEventList().clear();
-        StudentHandler studentHandler = StudentHandler.getInstance();
         studentHandler.getStudentList().clear();
     }
 

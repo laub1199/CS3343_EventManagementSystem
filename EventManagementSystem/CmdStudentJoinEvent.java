@@ -14,23 +14,15 @@ public class CmdStudentJoinEvent implements Command {
             String studentID = cmdParts[2];
             String eventID = cmdParts[3];
             
-            try {
-	    		  if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
-					 throw new ExInvalidStudentID();
-				 }
-	         }
-	         catch (NumberFormatException ex) {
-	           	 throw new ExInvalidStudentID();
-	         }
-			 
-			 try {
-	    		  if (eventID.length() != 9 || Integer.parseInt(eventID.substring(1,8)) <0 || Integer.parseInt(eventID.substring(1,8)) > 99999999) {
-					 throw new ExInvalidEventID();
-				 }
-	         }
-	         catch (NumberFormatException ex) {
-	           	 throw new ExInvalidEventID();
-	         }
+            if (studentID.length() != 9) {
+				 throw new ExInvalidStudentID();
+			 }
+        
+        
+            if (eventID.length() != 9) {
+				 throw new ExInvalidEventID();
+			 }
+	         
             
             StudentHandler studentHandler = StudentHandler.getInstance();
             Student student = studentHandler.getStudent(studentID);

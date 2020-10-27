@@ -25,6 +25,8 @@ public class TestCmdListStudentJoinedGroup {
 
     @AfterEach
     public void tearDown(){
+    	studentHandler.getStudentList().clear();
+    	groupHandler.getGroupList().clear();
     }
 
     @Test   //test if cmd length is not equal to 3
@@ -67,8 +69,7 @@ public class TestCmdListStudentJoinedGroup {
         String[] cmdPart = {"list", "studentJoinedGroup", "s11111111"};
         CmdListStudentJoinedGroup cmdListStudentJoinedGroup = new CmdListStudentJoinedGroup();
         String result = cmdListStudentJoinedGroup.execute(cmdPart);
-        assertEquals("|s11111111|fn                  |ln                  |f  |Computer Science              |19 |\nJoined Group:\n", result);
-        studentHandler.deleteStudent(student1);
+        assertEquals("Student did not join any group!\n", result);
     }
 
     @Test   //test if student join one group
@@ -83,8 +84,6 @@ public class TestCmdListStudentJoinedGroup {
         CmdListStudentJoinedGroup cmdListStudentJoinedGroup = new CmdListStudentJoinedGroup();
         String result = cmdListStudentJoinedGroup.execute(cmdPart);
         assertEquals("|s11111111|fn                  |ln                  |f  |Computer Science              |19 |\nJoined Group:\n|g11111111 |1                 |5                      |\n", result);
-        studentHandler.deleteStudent(student1);
-        groupHandler.deleteGroup(group1);
     }
 
     @Test   //test if student join three group
@@ -105,9 +104,14 @@ public class TestCmdListStudentJoinedGroup {
         CmdListStudentJoinedGroup cmdListStudentJoinedGroup = new CmdListStudentJoinedGroup();
         String result = cmdListStudentJoinedGroup.execute(cmdPart);
         assertEquals("|s11111111|fn                  |ln                  |f  |Computer Science              |19 |\nJoined Group:\n|g11111111 |1                 |5                      |\n|g22222222 |1                 |5                      |\n|g33333333 |1                 |5                      |\n", result);
-        studentHandler.deleteStudent(student1);
-        groupHandler.deleteGroup(group1);
-        groupHandler.deleteGroup(group2);
-        groupHandler.deleteGroup(group3);
     }
+    
+    @Test   //test if student id is invalid (length of student id is not equal to 9)
+    public void test_CmdListStudentJoinedGroup_08() throws CloneNotSupportedException {
+        String[] cmdPart = {"list", "studentJoinedGroup", "stesttest"};
+        CmdListStudentJoinedGroup cmdListStudentJoinedGroup = new CmdListStudentJoinedGroup();
+        String result = cmdListStudentJoinedGroup.execute(cmdPart);
+        assertEquals("Invalid student ID!\n", result);
+    }
+    
 }

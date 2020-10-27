@@ -14,23 +14,14 @@ public class CmdStudentJoinGroup implements Command {
 			String studentID = cmdParts[2];
 			String groupID = cmdParts[3];
 			
-			try {
-	    		  if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
-					 throw new ExInvalidStudentID();
-				 }
-	         }
-	         catch (NumberFormatException ex) {
-	           	 throw new ExInvalidStudentID();
-	         }
+	    	if (studentID.length() != 9) {
+				throw new ExInvalidStudentID();
+		    }
+	         
 			 
-			 try {
-	    		  if (groupID.length() != 9 || Integer.parseInt(groupID.substring(1,8)) <0 || Integer.parseInt(groupID.substring(1,8)) > 99999999) {
-					 throw new ExInvalidGroupID();
-				 }
-	         }
-	         catch (NumberFormatException ex) {
-	           	 throw new ExInvalidGroupID();
-	         }
+	    	 if (groupID.length() != 9) {
+				 throw new ExInvalidGroupID();
+			 }
 			
 			StudentHandler studentHandler = StudentHandler.getInstance();
 			Student student = studentHandler.getStudent(studentID);

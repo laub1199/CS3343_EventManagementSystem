@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import EventManagementSystem.*;
@@ -16,13 +17,17 @@ public class TestEvent {
 	Major m2;
     Day eDate;
     
+    @BeforeAll
+    public static void init() throws ExDateFormatDay, ExDateFormatMonth, ExInvalidDate, ExDateFormatYear {
+		SystemDate.createTheInstance("10-oct-2020");    
+	}
+    
     /**
      * Sets up the test fixture.
      * Called before every test case method.
      */
 	@BeforeEach
 	public void setUp() throws Exception {
-		SystemDate.createTheInstance("10-oct-2020");
 		eventAllocator = new EventAllocator();
 		m1 = Major.getMajor("cs");
 		m2 = Major.getMajor("ee");
@@ -66,11 +71,9 @@ public class TestEvent {
 		Event result = null;
 		Event event = new EventIndividual("Programming course", "e12345123", 50, eDate, m1);
 		eventAllocator.addEvent(event);
-		try {
-			result = eventAllocator.findEventByID("e13579123");
-		} catch (ExEventNotFound e) {
-			assertEquals(null, result);
-		}
+
+        Exception e = assertThrows(ExEventNotFound.class, () -> eventAllocator.findEventByID("e13579123"));
+        assertEquals("Event not found!\n", e.getMessage());
 	}
 
 	//test can find EventGroup by ID
@@ -89,11 +92,9 @@ public class TestEvent {
 		Event result = null;
 		Event event = new EventGroup("Basketball competition", "e54321123", 90, eDate, m1, 8, 5, 15);
 		eventAllocator.addEvent(event);
-		try {
-			result = eventAllocator.findEventByID("e13579123");
-		} catch (ExEventNotFound e) {
-			assertEquals(null, result);
-		}
+
+        Exception e = assertThrows(ExEventNotFound.class, () -> eventAllocator.findEventByID("e13579123"));
+        assertEquals("Event not found!\n", e.getMessage());
 	}
 
 	//test can find EventGroup by major
@@ -712,5 +713,4 @@ public class TestEvent {
 		assertEquals(student, result);
 	}
 		
-
 }

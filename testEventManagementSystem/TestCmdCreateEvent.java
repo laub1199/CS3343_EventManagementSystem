@@ -25,14 +25,14 @@ public class TestCmdCreateEvent {
 
     @Test
     public void testCmdCreateEvent_individual() throws Exception {
-        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "14-oct-2020", "cm"};
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm"};
         String result = new CmdCreateEvent().execute(cmd);
         assertEquals("Created c-game event with EventID: e00000003.", result);
     }
 
     @Test
     public void testCmdCreateEvent_group() throws Exception {
-        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "14-oct-2020", "cm", "3", "3", "5"};
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "3", "3", "5"};
         String result = new CmdCreateEvent().execute(cmd);
         assertEquals("Created c-game event with EventID: e00000003.", result);
     }
@@ -85,14 +85,14 @@ public class TestCmdCreateEvent {
 
     @Test
     public void testWrongInput_InvalidEventCapacity() throws Exception {
-        String[] cmd = {"create", "event", "c-game", "e00000003", "0", "14-oct-2020", "cm"};
+        String[] cmd = {"create", "event", "c-game", "e00000003", "0", "30-oct-2020", "cm"};
         String result = new CmdCreateEvent().execute(cmd);
         assertEquals("Event capacity should be at least 1.\n", result);
     }
 
     @Test
     public void testWrongInput_InvalidEventGroupSize() throws Exception {
-        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "14-oct-2020", "cm", "3", "0", "5"};
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "3", "0", "5"};
         String result = new CmdCreateEvent().execute(cmd);
         String expected = "Event Group maximum and minimum number in one group should be at least 1.\n";
         expected += "Maximum number in one group should be greater or equals than minimum number in one group.\n";
@@ -102,14 +102,14 @@ public class TestCmdCreateEvent {
 
     @Test
     public void testWrongInput_InvalidEventGroupCapacity() throws Exception {
-        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "14-oct-2020", "cm", "0", "3", "5"};
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "0", "3", "5"};
         String result = new CmdCreateEvent().execute(cmd);
         assertEquals("Event Group's group capacity should be at least 1 and less than capacity.\n", result);
     }
 
     @Test
     public void testWrongInput_EventFound() throws Exception {
-        String[] cmd = {"create", "event", "c-game", "e00000001", "10", "14-oct-2020", "cm"};
+        String[] cmd = {"create", "event", "c-game", "e00000001", "10", "10-oct-2020", "cm"};
         String result = new CmdCreateEvent().execute(cmd);
         assertEquals("Invalid event ID!\n", result);
     }

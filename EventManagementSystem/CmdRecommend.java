@@ -86,6 +86,5 @@ public class CmdRecommend implements Command {
         	str += "Recommend command should be \"recommend sXXXXXXXXX\"\n";
         } 
         return str;
-        
     }
 }

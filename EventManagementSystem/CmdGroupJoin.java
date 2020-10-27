@@ -13,24 +13,14 @@ public class CmdGroupJoin implements Command {
 			String groupID = cmdParts[2];
 			String eventID = cmdParts[3];
 			
-			 try {
-	    		  if (eventID.length() != 9 || Integer.parseInt(eventID.substring(1,8)) <0 || Integer.parseInt(eventID.substring(1,8)) > 99999999) {
-					 throw new ExInvalidEventID();
-				 }
-	         }
-	         catch (NumberFormatException ex) {
-	           	 throw new ExInvalidEventID();
-	         }
+			 if (eventID.length() != 9) {
+				 throw new ExInvalidEventID();
+			 }
 			 
-			 try {
-	    		  if (groupID.length() != 9 || Integer.parseInt(groupID.substring(1,8)) <0 || Integer.parseInt(groupID.substring(1,8)) > 99999999) {
-					 throw new ExInvalidGroupID();
-				 }
-	         }
-	         catch (NumberFormatException ex) {
-	           	 throw new ExInvalidGroupID();
-	         }
-		
+			 if (groupID.length() != 9) {
+				 throw new ExInvalidGroupID();
+			 }
+	         
 		//if the group not exist, user cant join the event
 		
     		GroupHandler groupHandler = GroupHandler.getInstance();
