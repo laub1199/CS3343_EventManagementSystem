@@ -134,7 +134,7 @@ public class TestCmdStudentQuit {
 		// wrong input on line 17
 		String[] cmd = {"studentQuit", "s000000011", "g00000002"};
 		String result = (new CmdStudentQuit()).execute(cmd);
-		String expected = "Invalid student ID\n";
+		String expected = "Invalid student ID!\n";
 		assertEquals(expected, result);
 	}
 

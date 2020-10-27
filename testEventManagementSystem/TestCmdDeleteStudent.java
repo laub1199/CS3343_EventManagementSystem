@@ -44,14 +44,14 @@ public class TestCmdDeleteStudent {
     public void testWrongInput_InvalidStudentID() throws Exception {
         String[] cmd = {"delete", "student", "s04"};
         String result = new CmdDeleteStudent().execute(cmd);
-        assertEquals("Invalid student ID\n", result);
+        assertEquals("Invalid student ID!\n", result);
     }
 
     @Test
     public void testWrongInput_WrongNumberFormat() throws Exception {
         String[] cmd = {"delete", "student", "ss0000004"};
         String result = new CmdDeleteStudent().execute(cmd);
-        assertEquals("Invalid student ID\n", result);
+        assertEquals("Invalid student ID!\n", result);
     }
 
     @Test
