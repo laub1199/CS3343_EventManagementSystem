@@ -139,9 +139,21 @@ public class TestCmdRecommend {
         assertEquals(expected, result);
     }
 
+    @Test
+    public void testcmdRecommend008() throws Exception { //SID < 0
+        String[] cmd = {"recommend", "stesttest"};
+        String result = (new CmdRecommend()).execute(cmd);
+        String expected = "Invalid student ID!\n";
+        assertEquals(expected, result);
+    }
 
-
-
+    @Test
+    public void testcmdRecommend009() throws Exception { //Student not found
+        String[] cmd = {"recommend", "s11111111"};
+        String result = (new CmdRecommend()).execute(cmd);
+        String expected = "Student not found!\n";
+        assertEquals(expected, result);
+    }
 
 
 

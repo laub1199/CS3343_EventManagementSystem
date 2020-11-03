@@ -54,7 +54,7 @@ public class CmdStudentJoinGroup implements Command {
 
 			//if the group have joined a event, need to consider the event required group max number
 			groupJoinedEvent = eventAllocator.findEventByGroup(group);
-			if (groupJoinedEvent != null) {
+			if (groupJoinedEvent != null)
 				if(((EventGroup) groupJoinedEvent).getMaxNumInOneJoin() == group.getNumOfStudent()){
 					str += "Fail to join the group. The group have joined a event already, and the group have reached maximum number requirement of the event.\n";
 				}
@@ -62,11 +62,11 @@ public class CmdStudentJoinGroup implements Command {
 					group.addStudent(student);
 					str += "You joined the group successfully.\n";
 				}
-			}
 			else {
 				group.addStudent(student);
 				str += "You joined the group successfully.\n";
-			}		
+			}
+				
 		} catch (ExStudentNotFound | ExGroupNotFound | ExStudentAlreadyJoinedGroup | ExInvalidStudentID | ExInvalidGroupID | ExGroupIsFull e) {
 			str = e.getMessage();
 		} catch (ExWrongCommand e) {

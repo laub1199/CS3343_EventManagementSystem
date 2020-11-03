@@ -104,4 +104,32 @@ public class TestCmdGroupQuit {
 		String expected = "Group can only quit Group Event!\n";
 		assertEquals(expected, result);
 	}
+	
+	@Test
+	public void testWrongInputE() throws Exception {
+		// wrong input on line 15
+		String[] cmd = {"groupQuit", "gtesttest", "e00000002"};
+		String result = (new CmdGroupQuit()).execute(cmd);
+		String expected = "Invalid group ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongInputF() throws Exception {
+		// wrong input on line 15
+		String[] cmd = {"groupQuit", "g00000001", "e000000022"};
+		String result = (new CmdGroupQuit()).execute(cmd);
+		String expected = "Invalid event ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongInputG() throws Exception {
+		// wrong input on line 15
+		String[] cmd = {"groupQuit", "g00000001", "etesttest"};
+		String result = (new CmdGroupQuit()).execute(cmd);
+		String expected = "Invalid event ID!\n";
+		assertEquals(expected, result);
+	}
+	
 }

@@ -67,6 +67,13 @@ public class TestCmdStudentJoinGroup {
 		assertEquals(expected, result);
 	}
 	
+	@Test
+	public void testInvalidGroupID2() throws Exception {
+		String[] cmd = {"studentJoin", "group", "s00000002", "gtesttest"};
+		String result = (new CmdStudentJoinGroup()).execute(cmd);
+		String expected = "Invalid group ID!\n";
+		assertEquals(expected, result);
+	}
 	
 	@Test
 	public void testInvalidStudentID() throws Exception {
@@ -76,6 +83,13 @@ public class TestCmdStudentJoinGroup {
 		assertEquals(expected, result);
 	}
 	
+	@Test
+	public void testInvalidStudentID2() throws Exception {
+		String[] cmd = {"studentJoin", "group", "stesttest", "g00000001"};
+		String result = (new CmdStudentJoinGroup()).execute(cmd);
+		String expected = "Invalid student ID!\n";
+		assertEquals(expected, result);
+	}
 	
 	@Test
 	public void testNoThisStudentID() throws Exception {

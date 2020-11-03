@@ -66,8 +66,24 @@ public class TestCmdGroupJoin {
 	}
 	
 	@Test
+	public void testInvalidEventID2() throws Exception {
+		String[] cmd = {"groupJoin", "event", "g00000002", "etesttest"};
+		String result = (new CmdGroupJoin()).execute(cmd);
+		String expected = "Invalid event ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
 	public void testInvalidGroupID() throws Exception {
 		String[] cmd = {"groupJoin", "event", "g2", "e00000003"};
+		String result = (new CmdGroupJoin()).execute(cmd);
+		String expected = "Invalid group ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testInvalidGroupID2() throws Exception {
+		String[] cmd = {"groupJoin", "event", "gtesttest", "e00000003"};
 		String result = (new CmdGroupJoin()).execute(cmd);
 		String expected = "Invalid group ID!\n";
 		assertEquals(expected, result);

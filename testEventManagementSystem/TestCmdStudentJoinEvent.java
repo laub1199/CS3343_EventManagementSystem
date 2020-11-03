@@ -65,8 +65,24 @@ public class TestCmdStudentJoinEvent {
 	}
 	
 	@Test
+	public void testInvalidEventID2() throws Exception {
+		String[] cmd = {"studentJoin", "event", "s00000002", "etesttest"};
+		String result = (new CmdStudentJoinEvent()).execute(cmd);
+		String expected = "Invalid event ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
 	public void testInvalidStudentID() throws Exception {
 		String[] cmd = {"studentJoin", "event", "s2", "e00000001"};
+		String result = (new CmdStudentJoinEvent()).execute(cmd);
+		String expected = "Invalid student ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testInvalidStudentID2() throws Exception {
+		String[] cmd = {"studentJoin", "event", "stesttest", "e00000001"};
 		String result = (new CmdStudentJoinEvent()).execute(cmd);
 		String expected = "Invalid student ID!\n";
 		assertEquals(expected, result);

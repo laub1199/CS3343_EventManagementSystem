@@ -210,4 +210,32 @@ public class TestCmdStudentQuit {
 		String expected = "As the select event is a group event, please quit the group instead!\n";
 		assertEquals(expected, result);
 	}
+	
+	@Test
+	public void testWrongInputI() throws Exception {
+		// wrong input on line 17
+		String[] cmd = {"studentQuit", "stesttest", "g00000002"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Invalid student ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongInputJ() throws Exception {
+		// wrong input on line 17
+		String[] cmd = {"studentQuit", "s00000001", "gtesttest"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Invalid group ID!\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongInputK() throws Exception {
+		// wrong input on line 17
+		String[] cmd = {"studentQuit", "s00000001", "etesttest"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Invalid event ID!\n";
+		assertEquals(expected, result);
+	}
+	
 }
