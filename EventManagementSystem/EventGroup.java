@@ -39,20 +39,9 @@ public class EventGroup extends Event {
 		return allStudentList;
 	}
 	
-//	@Override
-//	public void listJoinedStudent() {		
-//		for (Group g:joinedGroupList) {
-//			g.listStudentInGroup();
-//		}
-//	}
-
 	@Override
 	public boolean isFull() {
 		return capacity < getTotalNumOfStudent() + minNumInOneJoin || groupCapacity <= joinedGroupList.size();
-	}
-	
-	public boolean validToJoin(int numOfStudent) {
-		return capacity >= getTotalNumOfStudent() + numOfStudent && groupCapacity >= joinedGroupList.size() - 1;
 	}
 	
 	@Override

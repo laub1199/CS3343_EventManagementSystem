@@ -25,13 +25,6 @@ public class EventIndividual extends Event {
 		return joinedStudentList;
 	}
 	
-//	@Override
-//	public void listJoinedStudent() {
-//		for (Student s:joinedStudentList) {
-//			System.out.println(s.printString());
-//		}
-//	}
-
 	@Override
 	public boolean isFull() {
 		return capacity <= joinedStudentList.size();

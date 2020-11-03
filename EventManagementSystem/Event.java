@@ -9,7 +9,6 @@ public abstract class Event {
 	private String eventName;
 	protected int capacity;
 	private Day eventDate;
-	//private String major;
 	private Major major;
 
 	public Event(String eName, String eID, int cap, Day eDate, Major maj) {
@@ -41,8 +40,6 @@ public abstract class Event {
 	}
 	
 	public abstract boolean isFull();
-
-	//public abstract void listJoinedStudent();
 	
 	public abstract ArrayList<Student> getStudentList();
 
