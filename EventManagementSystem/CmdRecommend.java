@@ -12,12 +12,15 @@ public class CmdRecommend implements Command {
                 throw new ExWrongCommand();
             }
         	String sID = null;
-
-        	sID = cmdParts[1];
-        	if (sID.length() != 9) {
-        	    throw new ExInvalidStudentID();
-        	}
-
+        	try {
+        		sID = cmdParts[1];
+        		if (!Student.checkStudentID(sID)) {
+            		throw new ExInvalidStudentID();
+            	}
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
+            }
 
             StudentHandler studentHandler = StudentHandler.getInstance();
             Student student = studentHandler.getStudent(sID);

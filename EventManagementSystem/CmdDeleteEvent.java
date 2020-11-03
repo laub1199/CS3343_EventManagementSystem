@@ -10,7 +10,7 @@ public class CmdDeleteEvent implements Command {
             }
             try {
             	String eID = cmdParts[2];
-            	if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+            	if (!Event.checkEventID(eID)) {
             		throw new ExInvalidEventID();
             	}
             } 

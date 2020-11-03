@@ -27,6 +27,13 @@ public class Student {
     public String getMajorFullTitle() {
         return major.getMajorFullTitle();
     }
+    
+    public static boolean checkStudentID(String sID) {
+		if (sID.length() != 9 || Integer.parseInt(sID.substring(1,8)) < 0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
+			return false;
+		}
+		return true;
+	}
 
     public String printString() {
     	return String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|\n", studentID, firstName, lastName, sex, getMajorFullTitle(), age);

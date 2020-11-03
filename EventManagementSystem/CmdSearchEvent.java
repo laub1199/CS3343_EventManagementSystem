@@ -13,7 +13,7 @@ public class CmdSearchEvent implements Command {
     		if (cmdParts[2].equals("id")) {
     			try {
                 	String eID = cmdParts[3];
-                	if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+                	if (!Event.checkEventID(eID)) {
                 		throw new ExInvalidEventID();
                 	}
                 } 

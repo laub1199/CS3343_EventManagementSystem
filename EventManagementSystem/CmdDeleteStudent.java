@@ -10,7 +10,7 @@ public class CmdDeleteStudent implements Command {
             }
             try {
             	String sID = cmdParts[2];
-            	if (sID.length() != 9 || Integer.parseInt(sID.substring(1,8)) <0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
+            	if (!Student.checkStudentID(sID)) {
             		throw new ExInvalidStudentID();
             	}
             } 

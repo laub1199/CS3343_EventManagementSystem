@@ -9,11 +9,11 @@ public class CmdCreateGroup implements Command {
                 throw new ExWrongCommand();
             }
             GroupHandler instance = GroupHandler.getInstance();
-            String groupId = null;
+            String groupID = null;
             int numOfStudent = Integer.parseInt(cmdParts[3]);
             try {
-            	groupId = cmdParts[2];
-            	if (groupId.length() != 9 || Integer.parseInt(groupId.substring(1,8)) < 0 || Integer.parseInt(groupId.substring(1,8)) > 99999999) {
+            	groupID = cmdParts[2];
+            	if (!Group.checkGroupID(groupID)) {
             		throw new ExInvalidGroupID();
             	}
             } 
@@ -22,15 +22,15 @@ public class CmdCreateGroup implements Command {
             }
             Group group = null;
             try {
-            	group = instance.getGroup(groupId);
+            	group = instance.getGroup(groupID);
             }
             catch (ExGroupNotFound e) {
 	            
 	            if (numOfStudent <= 1) {
 	                throw new ExGroupStudentTooLess();
 	            }
-	            instance.createGroup(new Group(groupId, numOfStudent));
-	            str = "Created group with GroupID: " + groupId + ".";
+	            instance.createGroup(new Group(groupID, numOfStudent));
+	            str = "Created group with GroupID: " + groupID + ".";
             }
             finally {
             	if (group != null)

@@ -15,7 +15,7 @@ public class TestCmdListStudentJoinedEvent {
 
     @BeforeAll
     public static void init() throws ExDateFormatDay, ExDateFormatMonth, ExInvalidDate, ExDateFormatYear {
-        SystemDate.createTheInstance("20-Oct-2020");
+        SystemDate.createTheInstance("30-Oct-2020");
     }
 
     @BeforeEach
@@ -139,8 +139,8 @@ public class TestCmdListStudentJoinedEvent {
         Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
         studentHandler.createStudent(student1);
 
-        EventIndividual eventIndividual1 = new EventIndividual("e11111111", "event1", 10, new Day("22-Oct-2020"), Major.getMajor("cs"));
-        EventIndividual eventIndividual2 = new EventIndividual("e22222222", "event1", 10, new Day("17-Oct-2020"), Major.getMajor("cs"));
+        EventIndividual eventIndividual1 = new EventIndividual("e11111111", "event1", 10, new Day("22-Nov-2020"), Major.getMajor("cs"));
+        EventIndividual eventIndividual2 = new EventIndividual("e22222222", "event1", 10, new Day("7-Oct-2020"), Major.getMajor("cs"));
         eventAllocator.addEvent(eventIndividual1);
         eventAllocator.studentJoinEvent(student1, eventIndividual1);
         eventAllocator.addEvent(eventIndividual2);
@@ -157,7 +157,7 @@ public class TestCmdListStudentJoinedEvent {
         Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
         studentHandler.createStudent(student1);
 
-        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("10-Oct-2020"), Major.getMajor("cs"));
+        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("9-Oct-2020"), Major.getMajor("cs"));
         eventAllocator.addEvent(eventIndividual);
         eventAllocator.studentJoinEvent(student1, eventIndividual);
 
@@ -172,8 +172,8 @@ public class TestCmdListStudentJoinedEvent {
         Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
         studentHandler.createStudent(student1);
 
-        EventIndividual eventIndividual1 = new EventIndividual("e11111111", "event1", 10, new Day("22-Oct-2020"), Major.getMajor("cs"));
-        EventIndividual eventIndividual2 = new EventIndividual("e22222222", "event1", 10, new Day("17-Oct-2020"), Major.getMajor("cs"));
+        EventIndividual eventIndividual1 = new EventIndividual("e11111111", "event1", 10, new Day("22-Nov-2020"), Major.getMajor("cs"));
+        EventIndividual eventIndividual2 = new EventIndividual("e22222222", "event1", 10, new Day("5-Oct-2020"), Major.getMajor("cs"));
         eventAllocator.addEvent(eventIndividual1);
         eventAllocator.studentJoinEvent(student1, eventIndividual1);
         eventAllocator.addEvent(eventIndividual2);

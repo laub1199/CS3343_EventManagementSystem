@@ -39,6 +39,13 @@ public abstract class Event {
 		return eventDate;
 	}
 	
+	public static boolean checkEventID(String eID) {
+		if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) < 0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+			return false;
+		}
+		return true;
+	}
+	
 	public abstract boolean isFull();
 	
 	public abstract ArrayList<Student> getStudentList();

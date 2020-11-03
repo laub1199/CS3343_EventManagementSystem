@@ -13,26 +13,39 @@ public class CmdStudentQuit implements Command {
             }
             String studentID = null;
             studentID = cmdParts[1];
-            if (studentID.length() != 9) {
-                throw new ExInvalidStudentID();
+            try {
+            	if (!Student.checkStudentID(studentID)) {
+            		throw new ExInvalidStudentID();
+            	}
+            } 
+            catch (NumberFormatException ex) {
+            	throw new ExInvalidStudentID();
             }
+            
             Student student = studentHandler.getStudent(studentID);
             if (cmdParts[2].charAt(0) == 'g') {
-                if (cmdParts[2].length() != 9) {
-                    throw new ExInvalidGroupID();
+                String groupID = cmdParts[2];
+            	try {
+                	groupID = cmdParts[2];
+                	if (!Group.checkGroupID(groupID)) {
+                		throw new ExInvalidGroupID();
+                	}
+                } 
+                catch (NumberFormatException ex) {
+                	throw new ExInvalidGroupID();
                 }
-                Group group = groupHandler.getGroup(cmdParts[2]);
+                Group group = groupHandler.getGroup(groupID);
                 if (group.isFoundStudentById(studentID)) {
                     group.deleteStudent(student);
-                    str += "Student " + studentID + " has quited group " + cmdParts[2] + "\n";
+                    str += "Student " + studentID + " has quited group " + groupID + "\n";
                     EventGroup event = (EventGroup) (eventAllocator.findEventByGroup(group));
                     if (event != null) {
                         if (group.getNumOfStudent() < event.getMinNumInOneJoin()) {
                             event.quitGroup(group);
-                            str += "Group " + cmdParts[2] + " with a number of " + group.getNumOfStudent() +
+                            str += "Group " + groupID + " with a number of " + group.getNumOfStudent() +
                                     " member does not meet the minimum number of " + event.getMinNumInOneJoin() +
                                     " student for join event " + event.getEventID() + "\n";
-                            str += "Group " + cmdParts[2] + " is forced to quit event " + event.getEventID() + "\n";
+                            str += "Group " + groupID + " is forced to quit event " + event.getEventID() + "\n";
                         }
                     }
                 }
@@ -41,10 +54,16 @@ public class CmdStudentQuit implements Command {
                 }
             }
             else if (cmdParts[2].charAt(0) == 'e') {
-                if (cmdParts[2].length() != 9) {
-                    throw new ExInvalidEventID();
-                }
-                Event event = eventAllocator.findEventByID(cmdParts[2]);
+                String eventID = cmdParts[2];
+            	try {	
+	    			if (!Event.checkEventID(eventID)) {
+						throw new ExInvalidEventID();
+					}
+	            }
+	            catch (NumberFormatException ex) {
+	            	throw new ExInvalidEventID();
+	            }
+                Event event = eventAllocator.findEventByID(eventID);
                 if (event instanceof EventIndividual) {
                     boolean studentFound = false;
                     for(Student tempStudent : ((EventIndividual)event).getStudentList()) {
@@ -56,7 +75,7 @@ public class CmdStudentQuit implements Command {
                         throw new ExStudentNotFound();
                     }
                     ((EventIndividual)event).quitStudent(student);
-                    str += "Student " + cmdParts[1] + " has quited event " + cmdParts[2] + "\n";
+                    str += "Student " + studentID + " has quited event " + eventID + "\n";
                 }
                 else {
                     throw new ExInvalidEventGroupQuitCommand();

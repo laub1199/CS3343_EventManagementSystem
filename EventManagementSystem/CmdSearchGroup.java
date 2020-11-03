@@ -10,7 +10,7 @@ public class CmdSearchGroup implements Command {
     		}
     		try {
             	String gID = cmdParts[2];
-            	if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) <0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
+            	if (!Group.checkGroupID(gID)) {
             		throw new ExInvalidGroupID();
             	}
             } 

@@ -27,9 +27,18 @@ public class Group{
     public int getMaxNumOfStudent() {
         return maxNumOfStudent;
     }
+    
     public ArrayList<Student> getStudentList(){
         return studentList;
     }
+    
+    public static boolean checkGroupID(String gID) {
+		if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) < 0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
+			return false;
+		}
+		return true;
+	}
+    
 	public void addStudent(Student student){
         studentList.add(student);
     }

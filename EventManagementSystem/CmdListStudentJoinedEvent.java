@@ -11,7 +11,7 @@ public class CmdListStudentJoinedEvent implements Command {
     		String studentID = null;
     		try {
     			studentID = cmdParts[2];
-            	if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
+            	if (!Student.checkStudentID(studentID)) {
             		throw new ExInvalidStudentID();
             	}
             } 

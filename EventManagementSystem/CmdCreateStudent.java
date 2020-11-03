@@ -15,7 +15,7 @@ public class CmdCreateStudent implements Command {
             int age = Integer.parseInt(cmdParts[7]);
             Major major = Major.getMajor(cmdParts[3]);
             try {
-            	if (studentID.length() != 9 || Integer.parseInt(studentID.substring(1,8)) <0 || Integer.parseInt(studentID.substring(1,8)) > 99999999) {
+            	if (!Student.checkStudentID(studentID)) {
             		throw new ExInvalidStudentID();
             	}
             } 

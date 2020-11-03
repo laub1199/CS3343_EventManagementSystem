@@ -21,7 +21,7 @@ public class CmdCreateEvent implements Command {
     			eventFound = eventAllocator.findEventByID(eID);
     		} catch (ExEventNotFound e) {	//if event id not found then enter the catch block to add new event
 	            try {	//this try... catch... block is checking event id format
-	    			if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) <0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+	    			if (!Event.checkEventID(eID)) {
 						throw new ExInvalidEventID();
 					}
 	            }
