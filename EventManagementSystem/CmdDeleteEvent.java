@@ -8,15 +8,12 @@ public class CmdDeleteEvent implements Command {
             if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'e') {
                 throw new ExWrongCommand();
             }
-            try {
-            	String eID = cmdParts[2];
-            	if (!Event.checkEventID(eID)) {
-            		throw new ExInvalidEventID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidEventID();
-            }
+            
+            String eID = cmdParts[2];
+        	if (!Event.checkEventID(eID)) {
+        		throw new ExInvalidEventID();
+        	}
+            
             EventAllocator eventAllocator = EventAllocator.getInstance();
             Event event = eventAllocator.findEventByID(cmdParts[2]);
             eventAllocator.deleteEvent(event);

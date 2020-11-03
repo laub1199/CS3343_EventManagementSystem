@@ -9,16 +9,12 @@ public class CmdListStudentJoinedEvent implements Command {
     			throw new ExWrongCommand();
     		}
     		String studentID = null;
-    		try {
-    			studentID = cmdParts[2];
-            	if (!Student.checkStudentID(studentID)) {
-            		throw new ExInvalidStudentID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidStudentID();
-            }
     		
+    		studentID = cmdParts[2];
+        	if (!Student.checkStudentID(studentID)) {
+        		throw new ExInvalidStudentID();
+        	}
+            
     		EventAllocator eventAllocator = EventAllocator.getInstance();
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		//eventAllocator.findEventByStudent();

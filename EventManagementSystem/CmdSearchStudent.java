@@ -9,15 +9,12 @@ public class CmdSearchStudent implements Command {
     			throw new ExWrongCommand();
     		}
     		String studentID = null;
-    		try {
-    			studentID = cmdParts[2];
-            	if (!Student.checkStudentID(studentID)) {
-            		throw new ExInvalidStudentID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidStudentID();
-            }
+
+    		studentID = cmdParts[2];
+        	if (!Student.checkStudentID(studentID)) {
+        		throw new ExInvalidStudentID();
+        	}
+            
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		Student student = studentHandler.getStudent(cmdParts[2]);
     		str += String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3s|\n", "StudentID", "First Name", "Last Name", "Sex", "Major", "Age");

@@ -13,24 +13,13 @@ public class CmdGroupQuit implements Command {
             
             String gID = cmdParts[1];
             String eID = cmdParts[2];
-            try {
-            	if (!Group.checkGroupID(gID)) {
-            		throw new ExInvalidGroupID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidGroupID();
-            }
-            
-            try {
-            	 if (!Event.checkEventID(eID)) {
-    				 throw new ExInvalidEventID();
-    			 }
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidEventID();
-            }
-           
+          
+            if (!Group.checkGroupID(gID)) {
+        		throw new ExInvalidGroupID();
+        	}
+        	if (!Event.checkEventID(eID)) {
+			    throw new ExInvalidEventID();
+        	}
             Group group = groupHandler.getGroup(gID);
             Event event = eventAllocator.findEventByID(eID);
             if(event instanceof EventGroup) {

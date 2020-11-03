@@ -14,24 +14,14 @@ public class CmdStudentJoinGroup implements Command {
 			String studentID = cmdParts[2];
 			String groupID = cmdParts[3];
 			
-			try {
-            	if (!Student.checkStudentID(studentID)) {
-            		throw new ExInvalidStudentID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidStudentID();
-            }
-	         
-			try {
-            	if (!Group.checkGroupID(groupID)) {
-            		throw new ExInvalidGroupID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidGroupID();
-            }
-			
+			if (!Student.checkStudentID(studentID)) {
+        		throw new ExInvalidStudentID();
+        	}
+        
+        	if (!Group.checkGroupID(groupID)) {
+        		throw new ExInvalidGroupID();
+        	}
+        	
 			StudentHandler studentHandler = StudentHandler.getInstance();
 			Student student = studentHandler.getStudent(studentID);
 

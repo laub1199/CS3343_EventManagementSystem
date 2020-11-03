@@ -8,15 +8,10 @@ public class CmdSearchGroup implements Command {
     		if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 'g') {
     			throw new ExWrongCommand();
     		}
-    		try {
-            	String gID = cmdParts[2];
-            	if (!Group.checkGroupID(gID)) {
-            		throw new ExInvalidGroupID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidGroupID();
-            }
+    		String gID = cmdParts[2];
+        	if (!Group.checkGroupID(gID)) {
+        		throw new ExInvalidGroupID();
+        	}
     		GroupHandler groupHandler = GroupHandler.getInstance();
     		Group group = groupHandler.getGroup(cmdParts[2]);
     		

@@ -11,15 +11,10 @@ public class CmdSearchEvent implements Command {
     			throw new ExWrongCommand();
     		}
     		if (cmdParts[2].equals("id")) {
-    			try {
-                	String eID = cmdParts[3];
-                	if (!Event.checkEventID(eID)) {
-                		throw new ExInvalidEventID();
-                	}
-                } 
-                catch (NumberFormatException ex) {
-                	throw new ExInvalidEventID();
-                }
+    			String eID = cmdParts[3];
+            	if (!Event.checkEventID(eID)) {
+            		throw new ExInvalidEventID();
+            	}
     		}
     		
     		//search event by id

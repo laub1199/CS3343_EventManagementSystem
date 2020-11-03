@@ -13,27 +13,18 @@ public class CmdStudentQuit implements Command {
             }
             String studentID = null;
             studentID = cmdParts[1];
-            try {
-            	if (!Student.checkStudentID(studentID)) {
-            		throw new ExInvalidStudentID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidStudentID();
-            }
-            
+        	if (!Student.checkStudentID(studentID)) {
+        		throw new ExInvalidStudentID();
+        	}
             Student student = studentHandler.getStudent(studentID);
             if (cmdParts[2].charAt(0) == 'g') {
                 String groupID = cmdParts[2];
-            	try {
-                	groupID = cmdParts[2];
-                	if (!Group.checkGroupID(groupID)) {
-                		throw new ExInvalidGroupID();
-                	}
-                } 
-                catch (NumberFormatException ex) {
-                	throw new ExInvalidGroupID();
-                }
+            	
+                groupID = cmdParts[2];
+            	if (!Group.checkGroupID(groupID)) {
+            		throw new ExInvalidGroupID();
+            	}
+                
                 Group group = groupHandler.getGroup(groupID);
                 if (group.isFoundStudentById(studentID)) {
                     group.deleteStudent(student);
@@ -55,14 +46,9 @@ public class CmdStudentQuit implements Command {
             }
             else if (cmdParts[2].charAt(0) == 'e') {
                 String eventID = cmdParts[2];
-            	try {	
-	    			if (!Event.checkEventID(eventID)) {
-						throw new ExInvalidEventID();
-					}
-	            }
-	            catch (NumberFormatException ex) {
-	            	throw new ExInvalidEventID();
-	            }
+                if (!Event.checkEventID(eventID)) {
+					throw new ExInvalidEventID();
+				}
                 Event event = eventAllocator.findEventByID(eventID);
                 if (event instanceof EventIndividual) {
                     boolean studentFound = false;

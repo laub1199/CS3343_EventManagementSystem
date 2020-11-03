@@ -20,15 +20,10 @@ public class CmdCreateEvent implements Command {
     		try {
     			eventFound = eventAllocator.findEventByID(eID);
     		} catch (ExEventNotFound e) {	//if event id not found then enter the catch block to add new event
-	            try {	//this try... catch... block is checking event id format
-	    			if (!Event.checkEventID(eID)) {
-						throw new ExInvalidEventID();
-					}
-	            }
-	            catch (NumberFormatException ex) {
-	            	throw new ExInvalidEventID();
-	            }
 	            
+    			if (!Event.checkEventID(eID)) {
+					throw new ExInvalidEventID();
+				}
 				if (eDate.compareTo(SystemDate.getInstance()) < 0) {
 					throw new ExInvalidEventDate();
 				}

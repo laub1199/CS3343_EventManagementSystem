@@ -11,15 +11,10 @@ public class CmdCreateGroup implements Command {
             GroupHandler instance = GroupHandler.getInstance();
             String groupID = null;
             int numOfStudent = Integer.parseInt(cmdParts[3]);
-            try {
-            	groupID = cmdParts[2];
-            	if (!Group.checkGroupID(groupID)) {
-            		throw new ExInvalidGroupID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidGroupID();
-            }
+            groupID = cmdParts[2];
+        	if (!Group.checkGroupID(groupID)) {
+        		throw new ExInvalidGroupID();
+        	}
             Group group = null;
             try {
             	group = instance.getGroup(groupID);

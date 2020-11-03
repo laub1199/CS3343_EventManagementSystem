@@ -8,15 +8,10 @@ public class CmdDeleteStudent implements Command {
             if (cmdParts.length != 3 || cmdParts[2].charAt(0) != 's') {
                 throw new ExWrongCommand();
             }
-            try {
-            	String sID = cmdParts[2];
-            	if (!Student.checkStudentID(sID)) {
-            		throw new ExInvalidStudentID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidStudentID();
-            }
+            String sID = cmdParts[2];
+        	if (!Student.checkStudentID(sID)) {
+        		throw new ExInvalidStudentID();
+        	}
             StudentHandler studentHandler = StudentHandler.getInstance();
             Student student = studentHandler.getStudent(cmdParts[2]);
             studentHandler.deleteStudent(student);

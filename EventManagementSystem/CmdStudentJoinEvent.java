@@ -14,26 +14,14 @@ public class CmdStudentJoinEvent implements Command {
             String studentID = cmdParts[2];
             String eventID = cmdParts[3];
             
-            try {
-            	if (!Student.checkStudentID(studentID)) {
-            		throw new ExInvalidStudentID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidStudentID();
-            }
-        
-        
-            try {	//this try... catch... block is checking event id format
-    			if (!Event.checkEventID(eventID)) {
-					throw new ExInvalidEventID();
-				}
-            }
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidEventID();
-            }
-	         
-            
+            if (!Student.checkStudentID(studentID)) {
+        		throw new ExInvalidStudentID();
+        	}
+    
+			if (!Event.checkEventID(eventID)) {
+				throw new ExInvalidEventID();
+			}
+			
             StudentHandler studentHandler = StudentHandler.getInstance();
             Student student = studentHandler.getStudent(studentID);
 

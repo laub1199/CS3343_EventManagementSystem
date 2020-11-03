@@ -12,24 +12,15 @@ public class CmdGroupJoin implements Command {
 	    	}
 			String groupID = cmdParts[2];
 			String eventID = cmdParts[3];
-			try {
-            	if (!Group.checkGroupID(groupID)) {
-            		throw new ExInvalidGroupID();
-            	}
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidGroupID();
-            }
+			
+			if (!Group.checkGroupID(groupID)) {
+        		throw new ExInvalidGroupID();
+        	}
+        
+			if (!Event.checkEventID(eventID)) {
+				 throw new ExInvalidEventID();
+			 }
             
-            try {
-            	 if (!Event.checkEventID(eventID)) {
-    				 throw new ExInvalidEventID();
-    			 }
-            } 
-            catch (NumberFormatException ex) {
-            	throw new ExInvalidEventID();
-            }
-	         
 		//if the group not exist, user cant join the event
 		
     		GroupHandler groupHandler = GroupHandler.getInstance();

@@ -40,9 +40,14 @@ public abstract class Event {
 	}
 	
 	public static boolean checkEventID(String eID) {
-		if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) < 0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
-			return false;
-		}
+		try {	//this try... catch... block is checking event id format
+			if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) < 0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+				return false;
+			}
+        }
+        catch (NumberFormatException ex) {
+        	return false;
+        }
 		return true;
 	}
 	
