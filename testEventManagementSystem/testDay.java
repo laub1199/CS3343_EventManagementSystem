@@ -23,7 +23,7 @@ import EventManagementSystem.Student;
 import EventManagementSystem.StudentHandler;
 import EventManagementSystem.SystemDate;
 
-public class testDay {
+public class TestDay {
 	@BeforeAll
     public static void init() throws ExDateFormatDay, ExDateFormatMonth, ExInvalidDate, ExDateFormatYear {
 	}
