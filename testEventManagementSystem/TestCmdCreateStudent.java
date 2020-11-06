@@ -38,7 +38,15 @@ public class TestCmdCreateStudent {
         String expected = "Wrong Command\n";
         expected += "Create student command should be \"create student sXXXXXXXXX\" <major> <first name> <last name> <gender> <age>.\n";
         assertEquals(expected, result);
-
+    }
+    
+    @Test
+    public void testWrongCommand2() throws Exception {
+        String[] cmd = {"create", "student", "t00000005", "cm", "Mary", "Lam", "F", "20"};
+        String result = new CmdCreateStudent().execute(cmd);
+        String expected = "Wrong Command\n";
+        expected += "Create student command should be \"create student sXXXXXXXXX\" <major> <first name> <last name> <gender> <age>.\n";
+        assertEquals(expected, result);
     }
 
     @Test

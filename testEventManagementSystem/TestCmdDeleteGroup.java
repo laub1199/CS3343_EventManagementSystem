@@ -37,6 +37,15 @@ public class TestCmdDeleteGroup {
         expected += "Delete group command should be \"delete group gXXXXXXXXX\"\n";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testWrongInput_WrongCommand2() throws Exception {
+        String[] cmd = {"delete", "group", "t00000001"};
+        String result = new CmdDeleteGroup().execute(cmd);
+        String expected = "Wrong Command\n";
+        expected += "Delete group command should be \"delete group gXXXXXXXXX\"\n";
+        assertEquals(expected, result);
+    }
 
     @Test
     public void testWrongInput_InvalidGroupID() throws Exception {

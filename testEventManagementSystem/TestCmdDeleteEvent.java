@@ -38,6 +38,15 @@ public class TestCmdDeleteEvent {
         expected += "Delete event command should be \"delete event eXXXXXXXXX\"\n";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testWrongInput_WrongCommand2() throws Exception {
+        String[] cmd = {"delete", "event", "t00000001"};
+        String result = new CmdDeleteEvent().execute(cmd);
+        String expected = "Wrong Command\n";
+        expected += "Delete event command should be \"delete event eXXXXXXXXX\"\n";
+        assertEquals(expected, result);
+    }
 
     @Test
     public void testWrongInput_InvalidEventID() throws Exception {

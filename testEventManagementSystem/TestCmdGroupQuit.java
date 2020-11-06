@@ -132,4 +132,24 @@ public class TestCmdGroupQuit {
 		assertEquals(expected, result);
 	}
 	
+	@Test
+	public void testWrongInputH() throws Exception {
+		// wrong input on line 11
+		String[] cmd = {"groupQuit", "g00000001", "t00000002"};
+		String result = (new CmdGroupQuit()).execute(cmd);
+		String expected = "Wrong Command\n";
+		expected += "Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongInputI() throws Exception {
+		// wrong input on line 11
+		String[] cmd = {"groupQuit", "k00000001", "e00000002", "test"};
+		String result = (new CmdGroupQuit()).execute(cmd);
+		String expected = "Wrong Command\n";
+		expected += "Group quit command should be \"groupQuit gXXXXXXXXX eXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
 }

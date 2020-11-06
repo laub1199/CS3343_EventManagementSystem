@@ -39,6 +39,15 @@ public class TestCmdDeleteStudent {
         expected += "Delete student command should be \"delete student sXXXXXXXXX\"\n";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testWrongCommand2() throws Exception {
+        String[] cmd = {"delete", "student", "t00000004"};
+        String result = new CmdDeleteStudent().execute(cmd);
+        String expected = "Wrong Command\n";
+        expected += "Delete student command should be \"delete student sXXXXXXXXX\"\n";
+        assertEquals(expected, result);
+    }
 
     @Test
     public void testWrongInput_InvalidStudentID() throws Exception {

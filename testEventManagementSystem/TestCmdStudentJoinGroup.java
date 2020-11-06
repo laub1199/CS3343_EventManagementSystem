@@ -50,7 +50,7 @@ public class TestCmdStudentJoinGroup {
 
 	@Test
 	public void testWrongCommad() throws Exception {
-		String[] cmd = {"studentJoin", "group", "S00000001", "G00000002"};
+		String[] cmd = {"studentJoin", "group", "s00000001", "t00000002"};
 		String result = (new CmdStudentJoinGroup()).execute(cmd);
 		String expected = "Wrong Command\n" + "Student join group command should be \"studentJoin group sXXXXXXXXX gXXXXXXXX\"\n";
 		System.out.print(result);
@@ -58,6 +58,25 @@ public class TestCmdStudentJoinGroup {
 		assertEquals(expected, result);
 	}
 	
+	@Test
+	public void testWrongCommad2() throws Exception {
+		String[] cmd = {"studentJoin", "group", "t00000001", "g00000002"};
+		String result = (new CmdStudentJoinGroup()).execute(cmd);
+		String expected = "Wrong Command\n" + "Student join group command should be \"studentJoin group sXXXXXXXXX gXXXXXXXX\"\n";
+		System.out.print(result);
+		System.out.print(expected);
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongCommad3() throws Exception {
+		String[] cmd = {"studentJoin", "group", "s00000001", "g00000002", "test"};
+		String result = (new CmdStudentJoinGroup()).execute(cmd);
+		String expected = "Wrong Command\n" + "Student join group command should be \"studentJoin group sXXXXXXXXX gXXXXXXXX\"\n";
+		System.out.print(result);
+		System.out.print(expected);
+		assertEquals(expected, result);
+	}
 	
 	@Test
 	public void testInvalidGroupID() throws Exception {

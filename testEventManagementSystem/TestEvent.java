@@ -488,5 +488,29 @@ public class TestEvent {
 		result = ((EventGroup) event).foundGroup(gp1);
 		assertEquals(false, result);
 	}
+	
+	//test check Event ID is true
+	 @Test
+	 public void testCheckEventID01() {
+		assertEquals(true, Event.checkEventID("e00000001"));
+	 }
+	    
+	 //test check Event ID is false
+	 @Test
+	 public void testCheckEventID02() {
+		assertEquals(false, Event.checkEventID("e000000001"));
+	 }
+	 
+	 //test check Event ID is false
+	 @Test
+	 public void testCheckEventID03() {
+		 assertEquals(false, Event.checkEventID("e!0000001"));
+	 }
+	    
+	 //test check Event ID is false
+	 @Test
+	 public void testCheckEventID04() {
+		 assertEquals(false, Event.checkEventID("e0000000t"));
+	 }
 		
 }

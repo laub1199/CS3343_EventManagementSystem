@@ -33,14 +33,14 @@ public class Group{
     }
     
     public static boolean checkGroupID(String gID) {
-    	try {
-        	if (gID.length() != 9 || Integer.parseInt(gID.substring(1,8)) < 0 || Integer.parseInt(gID.substring(1,8)) > 99999999) {
-    			return false;
-    		}
-        } 
-        catch (NumberFormatException ex) {
-        	return false;
-        }
+    	if (gID.length() != 9) {
+			return false;
+		}
+		for (int i = 1; i < gID.length(); i++) {
+			if (gID.charAt(i) < '0' || gID.charAt(i) > '9') {
+				return false;
+			}
+		}
 		return true;
 	}
     

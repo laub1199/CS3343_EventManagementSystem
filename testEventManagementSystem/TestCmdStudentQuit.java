@@ -238,4 +238,24 @@ public class TestCmdStudentQuit {
 		assertEquals(expected, result);
 	}
 	
+	@Test
+	public void testWrongInputL() throws Exception {
+		// wrong input on line 12
+		String[] cmd = {"studentQuit", "s00000001", "t00000002"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Wrong Command\n";
+		expected += "Student quit command should be \"studentQuit sXXXXXXXXX gXXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongInputM() throws Exception {
+		// wrong input on line 12
+		String[] cmd = {"studentQuit", "e00000001", "g00000002", "test"};
+		String result = (new CmdStudentQuit()).execute(cmd);
+		String expected = "Wrong Command\n";
+		expected += "Student quit command should be \"studentQuit sXXXXXXXXX gXXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
 }

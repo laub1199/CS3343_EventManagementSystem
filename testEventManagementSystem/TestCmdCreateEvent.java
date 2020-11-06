@@ -47,6 +47,17 @@ public class TestCmdCreateEvent {
         expected += "Create group event: \"create event <name> eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".\n";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testWrongCommand2() throws Exception {
+        String[] cmd = {"create", "event", "c-game", "t00000003", "A", "14-oct-2020", "cm"};
+        String result = new CmdCreateEvent().execute(cmd);
+        String expected = "Wrong Command\n";
+        expected += "\nThere are two ways for create event command.";
+        expected += "Create individual event: \"create event <name> eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major>\".";
+        expected += "Create group event: \"create event <name> eXXXXXXXXX <capacity> <dd-mmm-yyyy> <major> <group capacity> <min no. in one group> <max no. in one group>\".\n";
+        assertEquals(expected, result);
+    }
 
     @Test
     public void testWrongInput_EventNameTooLong() throws Exception {
@@ -99,10 +110,47 @@ public class TestCmdCreateEvent {
         expected += "Capacity should be greater than minimum number in one group times group capacity.\n";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testWrongInput_InvalidEventGroupSize2() throws Exception {
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "3", "3", "0"};
+        String result = new CmdCreateEvent().execute(cmd);
+        String expected = "Event Group maximum and minimum number in one group should be at least 1.\n";
+        expected += "Maximum number in one group should be greater or equals than minimum number in one group.\n";
+        expected += "Capacity should be greater than minimum number in one group times group capacity.\n";
+        assertEquals(expected, result);
+    }
+    
+    @Test
+    public void testWrongInput_InvalidEventGroupSize3() throws Exception {
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "3", "3", "2"};
+        String result = new CmdCreateEvent().execute(cmd);
+        String expected = "Event Group maximum and minimum number in one group should be at least 1.\n";
+        expected += "Maximum number in one group should be greater or equals than minimum number in one group.\n";
+        expected += "Capacity should be greater than minimum number in one group times group capacity.\n";
+        assertEquals(expected, result);
+    }
+    
+    @Test
+    public void testWrongInput_InvalidEventGroupSize4() throws Exception {
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "3", "4", "5"};
+        String result = new CmdCreateEvent().execute(cmd);
+        String expected = "Event Group maximum and minimum number in one group should be at least 1.\n";
+        expected += "Maximum number in one group should be greater or equals than minimum number in one group.\n";
+        expected += "Capacity should be greater than minimum number in one group times group capacity.\n";
+        assertEquals(expected, result);
+    }
 
     @Test
     public void testWrongInput_InvalidEventGroupCapacity() throws Exception {
         String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "0", "3", "5"};
+        String result = new CmdCreateEvent().execute(cmd);
+        assertEquals("Event Group's group capacity should be at least 1 and less than capacity.\n", result);
+    }
+    
+    @Test
+    public void testWrongInput_InvalidEventGroupCapacity2() throws Exception {
+        String[] cmd = {"create", "event", "c-game", "e00000003", "10", "30-oct-2020", "cm", "10", "1", "5"};
         String result = new CmdCreateEvent().execute(cmd);
         assertEquals("Event Group's group capacity should be at least 1 and less than capacity.\n", result);
     }

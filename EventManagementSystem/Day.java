@@ -10,13 +10,7 @@ public class Day implements Cloneable{
     private int day;
     private static final String[] MonthNamesArr =
         new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    //Constructor
-    public Day(int y, int m, int d) {
-        this.year=y;
-        this.month=m;
-        this.day=d;
-    }
-
+    
     // check if a given year is a leap year
     static public boolean isLeapYear(int y)
     {
@@ -31,7 +25,7 @@ public class Day implements Cloneable{
     }
 
     // check if y,m,d valid
-    static public boolean valid(int y, int m, int d) throws ExInvalidDate {
+    static public boolean valid(int y, int m, int d) throws ExInvalidDate  {
         switch(m){
             case 1: case 3: case 5: case 7:
             case 8: case 10: case 12:
@@ -51,11 +45,9 @@ public class Day implements Cloneable{
     public void set(String sDay) throws ExDateFormatDay, ExDateFormatMonth, ExDateFormatYear, ExInvalidDate
     {
         String[] sDayParts = sDay.split("-");
-        if (this.isValidDay(sDayParts[0]) && this.isValidMonth(sDayParts[1]) && this.isValidYear(sDayParts[2]) &&
-            sDayParts.length == 3 ) {
+        if (this.isValidDay(sDayParts[0]) && this.isValidMonth(sDayParts[1]) && this.isValidYear(sDayParts[2]) && sDayParts.length == 3 ) {
             int month = this.strMonthToInt(sDayParts[1]);
-            if(this.valid(Integer.parseInt(sDayParts[2]), month,
-                    Integer.parseInt(sDayParts[0]))) {
+            if(this.valid(Integer.parseInt(sDayParts[2]), month, Integer.parseInt(sDayParts[0]))) {
                 this.day = Integer.parseInt(sDayParts[0]); //Apply Integer.parseInt for sDayParts[0];
                 this.year = Integer.parseInt(sDayParts[2]);
                 this.month = month;
@@ -74,12 +66,6 @@ public class Day implements Cloneable{
     public String toString()
     {
         return day+"-"+ MonthNamesArr[month-1] + "-"+ year;
-    }
-    @Override
-    public Day clone() throws CloneNotSupportedException {
-        Day copy = null;
-        copy = (Day) super.clone();
-        return copy;
     }
 
     public int getDay() {

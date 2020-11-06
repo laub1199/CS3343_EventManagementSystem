@@ -40,14 +40,14 @@ public abstract class Event {
 	}
 	
 	public static boolean checkEventID(String eID) {
-		try {	//this try... catch... block is checking event id format
-			if (eID.length() != 9 || Integer.parseInt(eID.substring(1,8)) < 0 || Integer.parseInt(eID.substring(1,8)) > 99999999) {
+		if (eID.length() != 9) {
+			return false;
+		}
+		for (int i = 1; i < eID.length(); i++) {
+			if (eID.charAt(i) < '0' || eID.charAt(i) > '9') {
 				return false;
 			}
-        }
-        catch (NumberFormatException ex) {
-        	return false;
-        }
+		}
 		return true;
 	}
 	

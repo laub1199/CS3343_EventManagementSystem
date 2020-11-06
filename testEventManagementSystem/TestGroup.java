@@ -117,4 +117,24 @@ public class TestGroup {
         assertEquals(expect, result);
     }
     
+    @Test
+    public void testCheckGroupID01() throws Exception {
+        assertEquals(true, Group.checkGroupID("g00000001"));
+    }
+    
+    @Test
+    public void testCheckGroupID02() throws Exception {
+        assertEquals(false, Group.checkGroupID("g000000001"));
+    }
+    
+    @Test
+    public void testCheckGroupID03() throws Exception {
+        assertEquals(false, Group.checkGroupID("g!0000001"));
+    }
+    
+    @Test
+    public void testCheckGroupID04() throws Exception {
+        assertEquals(false, Group.checkGroupID("g0000000t"));
+    }
+    
 }

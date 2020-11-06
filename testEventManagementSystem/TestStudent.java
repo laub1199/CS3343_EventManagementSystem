@@ -30,4 +30,25 @@ public class TestStudent {
         String result = String.format("|%-9s|%-20s|%-20s|%-3s|%-30s|%-3d|\n", "s00000001", "Sam", "Chow", "M", "Computer Science", 18);
         assertEquals(result, stu.printString());
     }
+    
+    @Test
+    public void testCheckStudentID01() throws Exception {
+        assertEquals(true, Student.checkStudentID("s00000001"));
+    }
+    
+    @Test
+    public void testCheckStudentID02() throws Exception {
+        assertEquals(false, Student.checkStudentID("s000000001"));
+    }
+    
+    @Test
+    public void testCheckStudentID03() throws Exception {
+        assertEquals(false, Student.checkStudentID("s!0000001"));
+    }
+    
+    @Test
+    public void testCheckStudentID04() throws Exception {
+        assertEquals(false, Student.checkStudentID("s0000000t"));
+    }
+    
 }

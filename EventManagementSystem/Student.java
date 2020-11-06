@@ -29,14 +29,14 @@ public class Student {
     }
     
     public static boolean checkStudentID(String sID) {
-    	try {
-    		if (sID.length() != 9 || Integer.parseInt(sID.substring(1,8)) < 0 || Integer.parseInt(sID.substring(1,8)) > 99999999) {
-    			return false;
-    		}
-        } 
-        catch (NumberFormatException ex) {
-        	return false;
-        }
+    	if (sID.length() != 9) {
+			return false;
+		}
+		for (int i = 1; i < sID.length(); i++) {
+			if (sID.charAt(i) < '0' || sID.charAt(i) > '9') {
+				return false;
+			}
+		}
 		return true;
 	}
 

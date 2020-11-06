@@ -51,7 +51,23 @@ public class TestCmdGroupJoin {
 
 	@Test
 	public void testWrongCommad() throws Exception {
-		String[] cmd = {"groupJoin", "event", "G00000002", "e00000003"};
+		String[] cmd = {"groupJoin", "event", "t00000002", "e00000003"};
+		String result = (new CmdGroupJoin()).execute(cmd);
+		String expected = "Wrong Command\n" + "Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongCommad2() throws Exception {
+		String[] cmd = {"groupJoin", "event", "g00000002", "t00000003"};
+		String result = (new CmdGroupJoin()).execute(cmd);
+		String expected = "Wrong Command\n" + "Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongCommad3() throws Exception {
+		String[] cmd = {"groupJoin", "event", "G00000002", "e00000003", "test"};
 		String result = (new CmdGroupJoin()).execute(cmd);
 		String expected = "Wrong Command\n" + "Group join event command should be \"groupJoin event gXXXXXXXXX eXXXXXXXX\"\n";
 		assertEquals(expected, result);

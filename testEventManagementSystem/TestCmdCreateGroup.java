@@ -37,6 +37,15 @@ public class TestCmdCreateGroup {
         expected += "Create group command should be \"create group gXXXXXXXXX <max no. in one group>\".\n";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testWrongCommand2() throws Exception {
+        String[] cmd = {"create", "group", "t00000003", "5"};
+        String result = new CmdCreateGroup().execute(cmd);
+        String expected = "Wrong Command\n";
+        expected += "Create group command should be \"create group gXXXXXXXXX <max no. in one group>\".\n";
+        assertEquals(expected, result);
+    }
 
     @Test
     public void testWrongInput_InvalidGroupID() throws Exception {

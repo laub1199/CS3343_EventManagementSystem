@@ -50,7 +50,23 @@ public class TestCmdStudentJoinEvent {
 
 	@Test
 	public void testWrongCommad() throws Exception {
-		String[] cmd = {"studentJoin", "event", "S00000002", "e00000001"};
+		String[] cmd = {"studentJoin", "event", "t00000002", "e00000001"};
+		String result = (new CmdStudentJoinEvent()).execute(cmd);
+		String expected = "Wrong Command\n" + "Student join event command should be \"studentJoin event sXXXXXXXXX eXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongCommad2() throws Exception {
+		String[] cmd = {"studentJoin", "event", "s00000002", "t00000001"};
+		String result = (new CmdStudentJoinEvent()).execute(cmd);
+		String expected = "Wrong Command\n" + "Student join event command should be \"studentJoin event sXXXXXXXXX eXXXXXXXX\"\n";
+		assertEquals(expected, result);
+	}
+	
+	@Test
+	public void testWrongCommad3() throws Exception {
+		String[] cmd = {"studentJoin", "event", "s00000002", "e00000001", "test"};
 		String result = (new CmdStudentJoinEvent()).execute(cmd);
 		String expected = "Wrong Command\n" + "Student join event command should be \"studentJoin event sXXXXXXXXX eXXXXXXXX\"\n";
 		assertEquals(expected, result);
