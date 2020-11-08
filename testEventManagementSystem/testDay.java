@@ -204,6 +204,14 @@ public class TestDay {
 	}
 	
 	@Test
+	public void testSet05() throws ExInvalidDate, ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth {
+		Day day = new Day("10-Dec-2020");
+        Exception e = assertThrows(ExInvalidDate.class, () -> day.set("10-Dec"));
+        assertEquals("Invalid Date\n", e.getMessage());	
+	}
+	
+	
+	@Test
 	public void testToString01() throws ExInvalidDate, ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth {
 		Day day = new Day("10-Dec-2020");
 		String result = day.toString();
