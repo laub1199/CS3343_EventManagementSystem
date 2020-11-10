@@ -50,7 +50,7 @@ public class CmdRecommend implements Command {
                     if (e instanceof EventIndividual) {
                     	str += ((EventIndividual)e).printDetail();
                     }
-                    else if (e instanceof EventGroup) {
+                    if (e instanceof EventGroup) {
                     	str += ((EventGroup)e).printDetail();
                     }
                     if (count >= 2) break;
@@ -69,7 +69,7 @@ public class CmdRecommend implements Command {
                     if (e instanceof EventIndividual) {
                     	str += ((EventIndividual)e).printDetail();
                     }
-                    else if (e instanceof EventGroup) {
+                    if (e instanceof EventGroup) {
                     	str += ((EventGroup)e).printDetail();
                     }
                     if (count >= 2) break;

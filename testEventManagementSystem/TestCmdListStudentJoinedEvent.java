@@ -124,7 +124,7 @@ public class TestCmdListStudentJoinedEvent {
         Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
         studentHandler.createStudent(student1);
 
-        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("22-Oct-2020"), Major.getMajor("cs"));
+        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("22-Nov-2020"), Major.getMajor("cs"));
         eventAllocator.addEvent(eventIndividual);
         eventAllocator.studentJoinEvent(student1, eventIndividual);
 
@@ -193,6 +193,48 @@ public class TestCmdListStudentJoinedEvent {
         CmdListStudentJoinedEvent cmdListStudentJoinedEvent = new CmdListStudentJoinedEvent();
         String result = cmdListStudentJoinedEvent.execute(cmdPart);
         assertEquals("Wrong Command\nList student joined event command should be \"list studentJoinedEvent sXXXXXXXX all\" or \"list studentJoinedEvent sXXXXXXXX pending\" or \"list studentJoinedEvent sXXXXXXXX end\"\n", result);
+    }
+    
+    @Test  
+    public void test_CmdListStudentJoinedEvent_15() throws CloneNotSupportedException, ExMajorNotFound, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate, ExDateFormatYear {
+        Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
+        studentHandler.createStudent(student1);
+
+        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("22-Oct-2020"), Major.getMajor("ee"));
+        eventAllocator.addEvent(eventIndividual);
+
+        String[] cmdPart = {"list", "studentJoinedEvent", "s11111111", "pending"};
+        CmdListStudentJoinedEvent cmdListStudentJoinedEvent = new CmdListStudentJoinedEvent();
+        String result = cmdListStudentJoinedEvent.execute(cmdPart);
+        assertEquals("Pending events:\n|Event ID    |Event Name                    |\n", result);
+    }
+    
+    @Test  
+    public void test_CmdListStudentJoinedEvent_16() throws CloneNotSupportedException, ExMajorNotFound, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate, ExDateFormatYear {
+        Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
+        studentHandler.createStudent(student1);
+
+        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("22-Oct-2020"), Major.getMajor("ee"));
+        eventAllocator.addEvent(eventIndividual);
+
+        String[] cmdPart = {"list", "studentJoinedEvent", "s11111111", "end"};
+        CmdListStudentJoinedEvent cmdListStudentJoinedEvent = new CmdListStudentJoinedEvent();
+        String result = cmdListStudentJoinedEvent.execute(cmdPart);
+        assertEquals("End events:\n|Event ID    |Event Name                    |\n", result);
+    }
+    
+    @Test  
+    public void test_CmdListStudentJoinedEvent_17() throws CloneNotSupportedException, ExMajorNotFound, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate, ExDateFormatYear {
+        Student student1 = new Student("s11111111", Major.getMajor("cs"), "fn", "ln", 'f', 19);
+        studentHandler.createStudent(student1);
+
+        EventIndividual eventIndividual = new EventIndividual("e11111111", "event1", 10, new Day("22-Oct-2020"), Major.getMajor("ee"));
+        eventAllocator.addEvent(eventIndividual);
+
+        String[] cmdPart = {"list", "studentJoinedEvent", "s11111111", "all"};
+        CmdListStudentJoinedEvent cmdListStudentJoinedEvent = new CmdListStudentJoinedEvent();
+        String result = cmdListStudentJoinedEvent.execute(cmdPart);
+        assertEquals("All events:\n|Event ID    |Event Name                    |\n", result);
     }
     
 }

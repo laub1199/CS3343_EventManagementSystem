@@ -26,13 +26,13 @@ public class CmdSearchEvent implements Command {
 				if (event instanceof EventIndividual) {
 					str += ((EventIndividual)event).printDetail();
 				}
-				else if ((event instanceof EventGroup)) {
+				if ((event instanceof EventGroup)) {
 					str += ((EventGroup)event).printDetail();
 				}
     		}
     		
     		//search event by major
-    		else if (cmdParts[2].equals("major")){	
+    		if (cmdParts[2].equals("major")){	
     			Major major = Major.getMajor(cmdParts[3]);
 		    	ArrayList<Event> foundEventList = eventAllocator.findEventByMajor(major);
 		    	if (foundEventList.size() == 0) {
@@ -44,7 +44,7 @@ public class CmdSearchEvent implements Command {
 		    		if (e instanceof EventIndividual) {
 		    			str += ((EventIndividual)e).printDetail();
 					}
-					else if ((e instanceof EventGroup)) {
+					if ((e instanceof EventGroup)) {
 						str += ((EventGroup)e).printDetail();
 					}
 		    	}

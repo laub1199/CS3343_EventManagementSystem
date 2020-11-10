@@ -155,6 +155,27 @@ public class TestCmdRecommend {
         assertEquals(expected, result);
     }
 
+    @Test
+    public void testcmdRecommend010() throws Exception { //no recommendation for other
+        EventAllocator eventAllocator = EventAllocator.getInstance();
+        Event event = new EventIndividual("c-game", "e12345678", 2, new Day("13-oct-2020"), Major.getMajor("cs"));
+        eventAllocator.addEvent(event);
+        Student student1 = new Student("s12345678", Major.getMajor("cs"), "Sam", "Chow", 'M', 18);
+        Student student2 = new Student("s87654321", Major.getMajor("cs"), "Mary", "Chan", 'F', 18);
+        ((EventIndividual)event).addStudent(student1);
+        ((EventIndividual)event).addStudent(student2);
+
+        eventAllocator.deleteEvent(eventAllocator.findEventByID("e00000002"));
+        eventAllocator.deleteEvent(eventAllocator.findEventByID("e00000004"));
+        String[] cmd = {"recommend", "s00000001"};
+        String result = (new CmdRecommend()).execute(cmd);
+        String expected = "Here are the recommended events from your department:\n" +
+                "|Event ID  |Event Name                    |Date        |Capacity|Major                         |Quota|Type      |Group Capacity |Group Quota|Min No. In Group|Max No. In Group|\n" +
+                "|e00000001 |a-game                        |13-Oct-2020 |11      |Computer Science              |11   |Individual|/              |/          |/               |/               |\n" +
+                "|e00000003 |e-game                        |14-Oct-2020 |6       |Computer Science              |6    |Group     |2              |2          |2               |3               |\n" +
+                "There is no recommended event from other department!\n";
+        assertEquals(expected, result);
+    }
 
 
 

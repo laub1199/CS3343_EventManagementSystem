@@ -44,7 +44,7 @@ public class CmdStudentQuit implements Command {
                     throw new ExStudentNotFound();
                 }
             }
-            else if (cmdParts[2].charAt(0) == 'e') {
+            if (cmdParts[2].charAt(0) == 'e') {
                 String eventID = cmdParts[2];
                 if (!Event.checkEventID(eventID)) {
 					throw new ExInvalidEventID();
