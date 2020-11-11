@@ -19,7 +19,7 @@ public class CmdListStudentJoinedEvent implements Command {
     		StudentHandler studentHandler = StudentHandler.getInstance();
     		//eventAllocator.findEventByStudent();
     		
-    		System.out.println(studentHandler.getStudent(studentID).printString());
+    		//System.out.println(studentHandler.getStudent(studentID).printString());
     		
     		if(cmdParts[3].equals("all")) {
     			str = "All events:\n";
