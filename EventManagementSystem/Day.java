@@ -47,7 +47,7 @@ public class Day implements Cloneable{
         String[] sDayParts = sDay.split("-");
         if (sDayParts.length == 3 && this.isValidDay(sDayParts[0]) && this.isValidMonth(sDayParts[1]) && this.isValidYear(sDayParts[2]) ) {
             int month = this.strMonthToInt(sDayParts[1]);
-            if(this.valid(Integer.parseInt(sDayParts[2]), month, Integer.parseInt(sDayParts[0]))) {
+            if(Day.valid(Integer.parseInt(sDayParts[2]), month, Integer.parseInt(sDayParts[0]))) {
                 this.day = Integer.parseInt(sDayParts[0]); //Apply Integer.parseInt for sDayParts[0];
                 this.year = Integer.parseInt(sDayParts[2]);
                 this.month = month;

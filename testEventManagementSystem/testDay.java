@@ -154,6 +154,45 @@ public class TestDay {
     }
 	
 	@Test
+	public void testValid15() throws ExInvalidDate {
+		boolean result = Day.valid(2020,1,32);
+		assertEquals(false, result);
+	}
+	
+	@Test
+	public void testValid16() throws ExInvalidDate {
+		boolean result = Day.valid(2020,4,31);
+		assertEquals(false, result);
+	}
+	
+	@Test
+	public void testValid17() throws ExInvalidDate {
+		boolean result = Day.valid(2020,2,30);
+		assertEquals(false, result);
+	}
+	
+	@Test
+	public void testIsValidDay01() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day = new Day("10-Dec-2020");
+		boolean result = day.isValidDay("1");
+		assertEquals(true, result);
+    }
+	
+	@Test
+	public void testIsValidDay02() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day = new Day("10-Dec-2020");
+        Exception e = assertThrows(ExDateFormatDay.class, () -> day.isValidDay("32"));
+		assertEquals("Invalid Date format - day, please enter 01 - 31!\n", e.getMessage());
+    }
+	
+	@Test
+	public void testIsValidDay03() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day = new Day("10-Dec-2020");
+        Exception e = assertThrows(ExDateFormatDay.class, () -> day.isValidDay("0"));
+		assertEquals("Invalid Date format - day, please enter 01 - 31!\n", e.getMessage());
+    }
+	
+	@Test
 	public void testGetDay01() throws ExInvalidDate, ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth {
 		Day day = new Day("10-Dec-2020");
 		int result = day.getDay();
@@ -210,6 +249,12 @@ public class TestDay {
         assertEquals("Invalid Date\n", e.getMessage());	
 	}
 	
+	@Test
+	public void testSet06() throws ExInvalidDate, ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth {
+		Day day = new Day("10-Dec-2020");
+        Exception e = assertThrows(ExInvalidDate.class, () -> day.set("29-Feb-2019"));
+        assertEquals("Invalid Date\n", e.getMessage());	
+	}
 	
 	@Test
 	public void testToString01() throws ExInvalidDate, ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth {
@@ -237,6 +282,22 @@ public class TestDay {
 	public void TestIsEqual02() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
 		Day day1 = new Day("10-Dec-2020");
 		Day day2 = new Day("11-Dec-2020");
+		boolean result = day1.isEqual(day2);
+        assertEquals(false, result);	
+	}
+	
+	@Test
+	public void TestIsEqual03() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day1 = new Day("10-Nov-2020");
+		Day day2 = new Day("10-Dec-2020");
+		boolean result = day1.isEqual(day2);
+        assertEquals(false, result);	
+	}
+	
+	@Test
+	public void TestIsEqual04() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day1 = new Day("10-Dec-2020");
+		Day day2 = new Day("10-Dec-2019");
 		boolean result = day1.isEqual(day2);
         assertEquals(false, result);	
 	}
@@ -271,6 +332,22 @@ public class TestDay {
 		Day day2 = new Day("20-Dec-2020");
 		boolean result = day1.isAfter(day2);
         assertEquals(false, result);	
+	}
+	
+	@Test
+	public void TestIsAfter05() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day1 = new Day("10-Dec-2020");
+		Day day2 = new Day("10-Nov-2020");
+		boolean result = day1.isAfter(day2);
+        assertEquals(true, result);	
+	}
+	
+	@Test
+	public void TestIsAfter06() throws ExDateFormatYear, ExDateFormatDay, ExDateFormatMonth, ExInvalidDate {
+		Day day1 = new Day("10-Dec-2021");
+		Day day2 = new Day("10-Nov-2020");
+		boolean result = day1.isAfter(day2);
+        assertEquals(true, result);	
 	}
 	
 	@Test
